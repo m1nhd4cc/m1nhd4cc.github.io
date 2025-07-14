@@ -1,0 +1,183 @@
+/* --- Color Variables --- */
+:root {
+    /* Mặc định là Light Mode (Giao diện gốc) */
+    --primary-color: #c0392b; /* Màu đỏ của giao diện cũ */
+    --bg-color: #ffffff;
+    --secondary-bg-color: #f9f9f9;
+    --text-color: #555;
+    --heading-color: #2c3e50;
+    --border-color: #e0e0e0;
+    --card-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+
+    /* Biến màu riêng cho header để giữ vibe cyber */
+    --header-primary-color: #00ff7f;
+    --header-bg-color: rgba(13, 13, 13, 0.85);
+    --header-text-color: #ccc;
+    --header-border-color: #222;
+}
+
+body.dark-mode {
+    /* Dark Mode "Cyber" Variables */
+    --primary-color: #00ff7f;
+    --bg-color: #050505;
+    --secondary-bg-color: #0d0d0d;
+    --text-color: #ccc;
+    --heading-color: #fff;
+    --border-color: #222;
+    --card-bg: #1a1a1a;
+    --shadow-color: rgba(0, 255, 127, 0.1);
+}
+
+/* --- Base & Reset --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    line-height: 1.7;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Layout & Typography --- */
+.container { max-width: 1100px; margin: auto; overflow: hidden; padding: 0 2rem; }
+section { padding: 5rem 0; border-bottom: 1px solid var(--border-color); }
+h1, h2, h3, h4 { color: var(--heading-color); margin-bottom: 1.2rem; font-family: 'Roboto Mono', monospace; }
+h2 { font-size: 2.5rem; text-align: center; }
+.section-title-underline { width: 80px; height: 4px; background-color: var(--primary-color); margin: 0 auto 3rem auto; border-radius: 2px; }
+a { text-decoration: none; color: var(--primary-color); }
+
+/* --- Header (Luôn có giao diện tối) --- */
+.main-header {
+    background-color: var(--header-bg-color);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 0;
+    position: sticky; top: 0; z-index: 1000;
+    border-bottom: 1px solid var(--header-border-color);
+}
+.main-header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.5rem; font-weight: 700; color: var(--header-primary-color); font-family: 'Roboto Mono', monospace; }
+
+/* --- Navigation (Luôn có giao diện tối) --- */
+.main-nav ul { display: flex; list-style: none; }
+.main-nav ul li a {
+    color: var(--header-text-color);
+    display: flex; flex-direction: column; align-items: center;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+.main-nav ul li a i { font-size: 1.2rem; margin-bottom: 0.25rem; }
+.main-nav ul li a:hover { color: var(--header-primary-color); }
+.main-nav ul li a.active {
+    color: var(--header-primary-color);
+    background-color: rgba(0, 255, 127, 0.1);
+}
+
+/* --- Header Controls (Luôn có giao diện tối) --- */
+.header-controls { display: flex; align-items: center; gap: 0.5rem; }
+.control-btn {
+    background: none; border: none;
+    color: var(--header-text-color);
+    font-size: 1.2rem; cursor: pointer; padding: 0.5rem;
+    border-radius: 50%; width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+.control-btn:hover { color: var(--header-primary-color); background-color: #222; }
+.search-input {
+    width: 0; padding: 0.5rem 0; border: none;
+    border-bottom: 2px solid var(--header-primary-color);
+    background: transparent; color: var(--header-text-color);
+    outline: none;
+    transition: width 0.4s ease-in-out, padding 0.4s ease-in-out;
+    opacity: 0;
+}
+.search-input.active { width: 200px; padding: 0.5rem; opacity: 1; }
+
+/* --- Main Content Sections (Sử dụng biến màu chính) --- */
+#hero {
+    background: var(--bg-color);
+    height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border: none;
+}
+#hero h1 { font-size: 4rem; color: var(--heading-color); }
+#hero .subtitle { font-size: 1.5rem; font-family: 'Roboto Mono', monospace; color: var(--text-color); }
+.typing-effect { color: var(--primary-color); }
+.typing-effect::after { content: '_'; display: inline-block; animation: blink 0.7s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.btn, .btn-sm {
+    display: inline-block;
+    background: var(--primary-color);
+    color: var(--card-bg) !important;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+.btn-sm { padding: 0.5rem 1rem; font-size: 0.9rem; }
+.btn:hover { filter: brightness(1.1); }
+
+#about { background-color: var(--secondary-bg-color); }
+#about .container { display: flex; align-items: center; gap: 3rem; }
+#about .about-image {
+    /* Thay đổi kích thước ảnh ở đây */
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0; /* Ngăn ảnh bị co lại */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--card-bg);
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+section:nth-of-type(even) { background-color: var(--secondary-bg-color); }
+
+.experience-item, .project-card, .skill-category, .education-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+.experience-item h3, .project-card h3, .skill-category h4, .education-item h3 { color: var(--primary-color); }
+.experience-item ul, .education-item ul { list-style-type: disc; padding-left: 1.2rem; }
+.experience-item li, .education-item li { margin-bottom: 0.5rem; }
+
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+.project-card { display: flex; flex-direction: column; justify-content: space-between; }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.education-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+
+.hide { display: none !important; }
+/* --- Contact Section --- */
+#contact .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn giữa tất cả mọi thứ trong container theo chiều ngang */
+    text-align: center;  /* Căn giữa các dòng chữ */
+}
+
+#contact p {
+    max-width: 600px; /* Giới hạn chiều rộng của đoạn văn cho dễ đọc */
+    margin-bottom: 2rem;
+}
+.main-footer { background-color: #2c3e50; color: #fff; text-align: center; padding: 2rem 0; }
+.social-links a { color: #fff; }
+
+@media (max-width: 1024px) { .nav-text { display: none; } }
+@media (max-width: 768px) {
+    .main-header .container { flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
+    .main-nav { order: 3; width: 100%; justify-content: center; margin-top: 0.5rem; }
+    .header-controls { order: 2; }
+    #hero h1 { font-size: 2.8rem; }
+    #about .container { flex-direction: column; text-align: center; }
+}
