@@ -1,224 +1,451 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>MinhDuc's Site - Let's find out...</title>
+
     <link rel="icon" type="image/png" href="my_logo.png">
+
     <meta name="description" content="Personal portfolio of Dang Minh Duc, a Security Engineering student. Showcasing experience, skills, and projects.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Be+Vietnam+Pro:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     
+
     <link rel="stylesheet" href="style.css">
+
     
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
+
 <body>
 
+
+
     <header class="main-header" id="header">
+
         <div class="container">
+
             <a href="#" class="logo">&gt; MinhDuc</a>
+
             <nav class="main-nav">
+
                 <ul>
+
                     <li><a href="#hero"><i class="fas fa-home"></i><span class="nav-text">Home</span></a></li>
+
                     <li><a href="#about"><i class="fas fa-user"></i><span class="nav-text">About</span></a></li>
+
                     <li><a href="#experience"><i class="fas fa-briefcase"></i><span class="nav-text">Experience</span></a></li>
+
                     <li><a href="#projects"><i class="fas fa-folder-open"></i><span class="nav-text">Projects</span></a></li>
+
                     <li><a href="#skills"><i class="fas fa-cogs"></i><span class="nav-text">Skills</span></a></li>
+
                     <li><a href="#education"><i class="fas fa-graduation-cap"></i><span class="nav-text">Education</span></a></li>
+
                     <li><a href="#contact"><i class="fas fa-envelope"></i><span class="nav-text">Contact</span></a></li>
+
                 </ul>
+
             </nav>
+
             <div class="header-controls">
+
                 <input type="text" id="search-input" class="search-input" placeholder="Search content...">
+
                 <button id="search-btn" class="control-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+
                 <button id="theme-toggle-btn" class="control-btn" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+
             </div>
+
         </div>
+
     </header>
 
+
+
     <main>
+
         <section id="hero">
+
             <div class="hero-content">
+
                 <h1>Dang Minh Duc</h1>
+
                 <p class="subtitle">I'm a <span class="typing-effect"></span></p>
+
                 <a href="#about" class="btn">Discover More</a>
+
             </div>
+
         </section>
+
+
 
         <section id="about">
+
             <div class="container">
+
                 <img src="myavatar.png" alt="Portrait of Dang Minh Duc" class="about-image">
+
                 <div class="about-content">
+
                     <h2>About Me</h2>
+
                     <div class="section-title-underline"></div>
+
                     <p>Hi there! I'm Dang Minh Duc, a Security Engineering student at Gia Dinh University (GDU). I am building a strong foundation in Information Security, complemented by a continuous learning mindset and strong teamwork skills.</p>
+
                     <p>With a passion for cybersecurity and a desire to grow professionally, I am actively seeking opportunities in my field, specifically in Security Operations Center (SOC) and Incident Response. Through this website, I share my journey, projects, and insights, hoping to connect with and learn from others in the industry. Welcome!</p>
+
                 </div>
+
             </div>
+
         </section>
 
-<section id="experience" class="searchable-section">
-             <div class="container">
-                <h2>Experience</h2>
-                <div class="section-title-underline"></div>
-                 
-                <div class="experience-item searchable-item">
-                    <h3>Infrastructure, Power Of Passion Technology Solutions Company</h3>
-                    <p class="date">Sep 2024 - Feb 2025</p>
-                    <ul>
-                        <li>Built, deployed, and managed vSphere virtualization using real devices; config ESXi hosts, vCenter Server, and vSphere Networking for monitoring and system management</li>
-                        <li>Practiced foundational CCNA networking concepts and documented packet flow and architecture</li>
-                        <li>Implemented containerized services with Docker, optimizing application deployment and management.</li>
-                        <li>Designed and deployed robust WAF solutions, security measures and aligning with ISO 27001, ITIL</li>
-                        <li>Performed penetration testing based on OWASP methodologies, identifying and mitigating OWASP Top 10 vulnerabilities to improve system security posture.</li>
-                    </ul>
-                </div>
 
-                <div class="experience-item searchable-item">
-                    <h3>Trainer, Cybersecurity Club (GDUCTF)</h3>
-            _       <p class="date">Jun 2024 - Present</p>
-                    <ul>
-                        <li>Hosted training sessions with emphasis on Crypto, Reverse and Forensics techniques</li>
-                        <li>Designed, built and developed CTF challenges, server for my club</li>
-                        <li>Mentor & led team to final cybersecurity competitions: ASEAN, HCMUS, KMA, ISITDTU, DDC, CSCV...</li>
-                    </ul>
-              _ </div>
 
-                <div class="experience-item searchable-item">
-                    <h3>Researcher, HPT Vietnam Corporation Company</h3>
-                    <p class="date">Jul 2025 - Nov 2025</p>
-                    <ul>
-                        <li>Automation scripts (NextJS, Python) to integrate and manage vulnerability scanning workflows by leveraging the Nessus and Acunetix APIs, streamlining the reporting and remediation pipeline.</li>
-                        <li>Forensic in Windows log analysis with Hayabusa/CDIR & Windows systems, leveraging Eric Zimmerman's toolset to parse system artifacts and identify indicators of compromise.</li>
-                        <li>Research and development on AI-driven security, performing comparative analysis of the HexStrikeAI and CAI frameworks. Contributing to the development of multi-agent AI security platforms.</li>
-                    </ul>
-                </div>
+        <section id="experience" class="searchable-section">
 
-            </div>
-        </section>
-        
-        <section id="projects" class="searchable-section">
-            <div class="container">
-                <h2>Projects</h2>
+             <div class="container">
+
+                <h2>Experience</h2>
+
                 <div class="section-title-underline"></div>
-                <div class="projects-grid">
-                    <div class="project-card searchable-item">
-                        <div class="project-content">
-                            <h3>Network Protocol Exploitation with Scapy</h3>
-                            <p>A collection of Python scripts using Scapy to demonstrate and exploit common weaknesses in network protocols. This project showcases practical attacks like SYN Flooding, DHCP Starvation, and Route Injection in a controlled lab environment.</p>
-                            <div class="project-links"><a href="https://github.com/m1nhd4cc/Scapy_Network-Protocol-Exploits" target="_blank" class="btn-sm">Let's find out</a></div>
-                        </div>
-                    </div>
-                    <div class="project-card searchable-item">
-                        <div class="project-content">
-                            <h3>Dynamic Malware Analysis</h3>
-                            <p>Utilized Cuckoo Sandbox and CapeV2 to create controlled environments for analyzing and executing malware, observing its behavior, and documenting its impact on the system.</p>
-                             <div class="project-links"><a href="https://github.com/m1nhd4cc/Dynamic-Malware-Analysis" target="_blank" class="btn-sm">View on GitHub</a></div>
-                        </div>
-                    </div>
-            
-                    <div class="project-card searchable-item">
-                        <div class="project-content">
-                            <h3>Intrusion Detection Systems</h3>
-                            <p>Executed a comprehensive project focused on (IDS) and (IPS) utilizing Snort and Suricata, emphasizing the development and implementation of effective security measures.</p>
-                            <p>Implemented advanced log management solutions through Wazuh and ELK, ensuring efficient monitoring, analysis, and reporting of security events to enhance overall network security posture.</p>
-                            <div class="project-links"><a href="https://github.com/m1nhd4cc/IDS-IPS_Simulation" target="_blank" class="btn-sm">View on GitHub</a></div>
-                        </div>
+
+                 <div class="experience-item searchable-item">
+
+                    <h3>Infrastructure, Power Of Passion Technology Solutions Company</h3>
+
+                    <p class="date">April 2025 - June 2025</p>
+
+                    <ul>
+
+                        <li>Built, deployed, and managed vSphere virtualization using real devices; config ESXi hosts, vCenter Server, and vSphere Networking for monitoring and system management</li>
+
+                        <li>Implemented containerized services with Docker, optimizing application deployment and management. Designed and deployed robust WAF solutions, enhancing security measures and aligning with ISO 27001 standards.</li>
+
+                        <li>Performed penetration testing based on OWASP methodologies, identifying and mitigating OWASP Top 10 vulnerabilities.</li>
+
+                    </ul>
+
                 </div>
+
+                <div class="experience-item searchable-item">
+
+                    <h3>Trainer, Cybersecurity Club (GDUCTF)</h3>
+
+                    <p class="date">Jun 2024 - Present</p>
+
+                    <ul>
+
+                        <li>Hosted training sessions with emphasis on Crypto, Reverse and Forensics techniques</li>
+
+                        <li>Designed, built and developed CTF challenges, server for my club</li>
+
+                        <li>Mentor & led team to final cybersecurity competitions: ASEAN, HCMUS, KMA, ISITDTU, DDC, CSCV...</li>
+
+                    </ul>
+
+                </div>
+
+                <div class="experience-item searchable-item">
+
+                    <h3>Researcher, HPT Vietnam Corporation Company</h3>
+
+                    <p class="date">Jul 2025 - Present</p>
+
+                    <ul>
+
+                        <li>Automation scripts (NextJS, Python) to integrate and manage vulnerability scanning workflows by leveraging the Nessus and Acunetix APIs, streamlining the reporting and remediation pipeline</li>
+
+                        <li>Forensic in Windows log analysis with Hayabusa/CDIR & Windows systems, leveraging Eric Zimmerman's toolset to parse system artifacts and identify indicators of compromise.</li>
+
+                        <li>Research and development on AI-driven security, performing comparative analysis of the HexStrikeAI and CAI frameworks. Contributing to the development of multi-agent AI security platforms</li>
+
+                    </ul>
+
+                </div>
+
+                <div class="experience-item searchable-item">
+
+                    <h3>Security Operations Center Analyst, PricewaterhouseCoopers (PwC)</h3>
+
+                    <p class="date">Nov 2025 - Present</p>
+
+                    <ul>
+
+                        <li>Monitor and analyze security alerts via SIEM solutions to identify potential threats and anomalies in real-time.</li>
+
+                        <li>Investigate security incidents, perform triage, and execute incident response procedures to mitigate risks effectively</li>
+
+                        <li>Collaborate with cross-functional teams to enhance detection capabilities and document security findings for stakeholders</li>
+
+                    </ul>
+
+                </div>
+
             </div>
+
         </section>
+
+        
+
+        <section id="projects" class="searchable-section">
+
+            <div class="container">
+
+                <h2>Projects</h2>
+
+                <div class="section-title-underline"></div>
+
+                <div class="projects-grid">
+
+                    <div class="project-card searchable-item">
+
+                        <div class="project-content">
+
+                            <h3>Network Protocol Exploitation with Scapy</h3>
+
+                            <p>A collection of Python scripts using Scapy to demonstrate and exploit common weaknesses in network protocols. This project showcases practical attacks like SYN Flooding, DHCP Starvation, and Route Injection in a controlled lab environment.</p>
+
+                            <div class="project-links"><a href="https://github.com/m1nhd4cc/Scapy_Network-Protocol-Exploits" target="_blank" class="btn-sm">Let's find out</a></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="project-card searchable-item">
+
+                        <div class="project-content">
+
+                            <h3>Dynamic Malware Analysis</h3>
+
+                            <p>Utilized Cuckoo Sandbox and CapeV2 to create controlled environments for analyzing and executing malware, observing its behavior, and documenting its impact on the system.</p>
+
+                             <div class="project-links"><a href="https://github.com/m1nhd4cc/Dynamic-Malware-Analysis" target="_blank" class="btn-sm">View on GitHub</a></div>
+
+                        </div>
+
+                    </div>
+
+            
+
+                    <div class="project-card searchable-item">
+
+                        <div class="project-content">
+
+                            <h3>Intrusion Detection Systems</h3>
+
+                            <p>Executed a comprehensive project focused on (IDS) and (IPS) utilizing Snort and Suricata, emphasizing the development and implementation of effective security measures.</p>
+
+                            <p>Implemented advanced log management solutions through Wazuh and ELK, ensuring efficient monitoring, analysis, and reporting of security events to enhance overall network security posture.</p>
+
+                            <div class="project-links"><a href="https://github.com/m1nhd4cc/IDS-IPS_Simulation" target="_blank" class="btn-sm">View on GitHub</a></div>
+
+                        </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
 
         <section id="skills" class="searchable-section">
+
             <div class="container">
+
                 <h2>Skills</h2>
+
                 <div class="section-title-underline"></div>
+
                 <div class="skills-grid">
+
                      <div class="skill-category searchable-item">
+
                         <h4><i class="fas fa-terminal"></i> OS & Virtualization</h4>
+
                         <p>Kali Linux, CentOS, Ubuntu, Windows Server; VMware, Docker, GNS3, Oracle...</p>
+
                     </div>
+
                     <div class="skill-category searchable-item">
+
                         <h4><i class="fas fa-shield-alt"></i> Security Tools</h4>
+
                         <p>Nessus, Metasploit, Burp Suite, Wireshark, Nmap, Ettercap, Volatility, FTK Imager, Autopsy, Cuckoo Sandbox, IDA, Ghidra...</p>
+
                     </div>
+
                     <div class="skill-category searchable-item">
+
                         <h4><i class="fas fa-shield-virus"></i> Firewall & IDS/IPS</h4>
+
                         <p>CheckPoint, Pfsense, OPNsense, Security Onion, Iptables; Snort, Suricata...</p>
+
                     </div>
+
                     <div class="skill-category searchable-item">
+
                         <h4><i class="fas fa-chart-bar"></i> SIEM & Monitoring</h4>
+
                         <p>Wazuh, ELK Stack, Grafana, Prometheus, Zabbix,...</p>
+
                     </div>
+
                     <div class="skill-category searchable-item">
+
                         <h4><i class="fas fa-code"></i> Programming & Networking</h4>
+
                         <p>Python, C/C++, Microsoft Office 365</p>
+
                         <p>LAN, WAN, OSI, TCP/IP, RIPv2, OSPF, EIGRP, BGP, HSRP, VPN....</p>
+
                     </div>
+
                     <div class="skill-category searchable-item">
+
                         <h4><i class="fas fa-users"></i> Soft Skills</h4>
+
                         <p>Teamwork, Communication, Report Writing, Technical Research & Summarization, Progress Updates.</p>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
+
+
 
         <section id="education">
+
              <div class="container">
+
                 <h2>Education & Achievements</h2>
+
                 <div class="section-title-underline"></div>
+
                 <div class="education-grid">
+
                     <div class="education-item">
+
                         <h3><i class="fas fa-graduation-cap"></i> Gia Dinh University </h3>
+
                         <p><strong>Bachelor of Information Security</strong> (Graduate in 2026)</p>
+
                         <p>GPA: 3.6/4.0</p>
+
                         <p><strong>Languages:</strong> English, Vietnamese</p>
+
                     </div>
+
                      <div class="education-item">
+
                         <h3><i class="fas fa-certificate"></i> Certifications - Courses</h3>
+
                          <ul>
+
                              <li>Ethical Hacker, Cyber Threat Management, Endpoint Security.... by Cisco & Tryhackme Academy</li>
+
                              <li>Completed CEH, CHFI Course</li>
+
                              <li>ASEAN Cyber Shield Education “Basic & Advanced Course” by KISA</li>
+
                          </ul>
+
                     </div>
+
                     <div class="education-item">
+
                         <h3><i class="fas fa-award"></i> Awards & Activities</h3>
+
                         <ul>
+
                             <li><strong>Vice President</strong> of the Information Security Club, Gia Dinh University.</li>
+
                             <li><strong>Finalist:</strong> ASEAN Students with Information Security 2024 (VNISA) & CIS National Information Security (KMA)</li>
+
                             <li><strong>Top 10 Finisher:</strong> in various national CTF competitions (IsitdtuCTF, Hackthebox, KCSC, WannaGame, CBJSCTF...)</li>
+
                             <li><strong>Top 1:</strong> “DINH IT” Competition at Gia Dinh University</li>
+
                         </ul>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
+
+
 
         <section id="contact">
+
             <div class="container">
+
                 <h2>Get In Touch</h2>
+
                 <div class="section-title-underline"></div>
+
                 <p>I'd love to hear from you! Feel free to reach out.</p>
+
                 <div class="contact-info">
+
                      <a href="mailto:minhduc5336@gmail.com" class="btn">Send Me an Email</a>
+
                 </div>
+
             </div>
+
         </section>
+
     </main>
 
+
+
     <footer class="main-footer">
+
         <div class="container">
+
             <div class="social-links">
+
                 <a href="https://github.com/m1nhd4cc" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+
                 <a href="https://linkedin.com/in/dangminhduc04" target="_blank"aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+
             </div>
+
             <p class="copyright">&copy; 2025 | Designed and developed by <strong>Dang Minh Duc</strong>.</p>
+
         </div>
+
     </footer>
 
-    <script src="script.js"></script>
-</body>
-</html>
 
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
