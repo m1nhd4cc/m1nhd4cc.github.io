@@ -1,0 +1,27 @@
+<div class="sponsor-wrapper">
+  <div class="sponsor-button-wrapper" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+    
+    <img src="/images/loading-green.png" alt="sponsor-left"
+         class="{{ if .Site.Params.sponsor.icon.rotate }}rotate{{ end }}" 
+         style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover; display: block;">
+
+    <div class="sponsor-title" style="line-height: 1;">{{ i18n "sponsor" }}</div>
+
+    <img src="/images/loading-green.png" alt="sponsor-right"
+         class="{{ if .Site.Params.sponsor.icon.rotate }}rotate{{ end }}" 
+         style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover; display: block;">
+  </div>
+  
+  <div class="sponsor-tip">{{ .Site.Params.sponsor.tip }}</div>
+  
+  {{ if .Site.Params.sponsor.qr }}
+    <div class="sponsor-qr">
+      {{ range .Site.Params.sponsor.qr }}
+        <div class="sponsor-qr-image-wrapper">
+          <img src="{{ .src | relURL }}" alt="{{ .name }}" width="200" />
+          <p class="sponsor-qr-name">{{ .name }}</p>
+        </div>
+      {{ end }}
+    </div>
+  {{ end }}
+</div>

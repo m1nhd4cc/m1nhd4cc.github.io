@@ -1,0 +1,420 @@
+/* 1. KHAI BÁO MÀU GỐC */
+:root, html[data-theme="dark"], body[data-theme="dark"] {
+    --color-main: #4A5D23 !important;       
+    --color-primary: #4A5D23 !important;    
+    --color-link: #8a9a5b !important;       
+    --link-color: #8a9a5b !important;
+    --color-link-hover: #a4b688 !important; 
+}
+
+/* -----------------------------------------------------------
+   2. FIX CỤC NGÀY THÁNG (TIME BADGE) - QUAN TRỌNG
+   ----------------------------------------------------------- */
+
+/* Chỉ tô màu cho cái khung bao bên ngoài */
+.post-meta-date, 
+.article-meta .date,
+.post-date {
+    background-color: rgba(74, 93, 35, 0.2) !important; /* Nền rêu trong suốt */
+    border: 1px solid #4A5D23 !important; /* Viền rêu */
+    border-radius: 5px;
+    color: #a4b688 !important;
+}
+
+/* RESET thẻ time bên trong (Xóa cái khung thừa bạn khoanh tròn) */
+.post-meta-date time, 
+.article-meta .date time,
+time {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    color: inherit !important; /* Lấy màu chữ của cha */
+    box-shadow: none !important;
+}
+
+/* Đổi màu cái icon Đồng Hồ (Clock) */
+.post-meta-date i, 
+.article-meta .date i,
+.post-meta-date svg {
+    color: #4A5D23 !important;
+    fill: #4A5D23 !important; /* Đề phòng nó là SVG */
+}
+
+/* -----------------------------------------------------------
+   3. FIX GẠCH CHÂN HEADER (HEADING UNDERLINE)
+   ----------------------------------------------------------- */
+
+/* Gạch chân màu vàng dưới chữ About Me/Journeys */
+/* Gọi tên mọi biến thể class có thể có của Reimu */
+.post-content h1::after, 
+.post-content h2::after, 
+.post-content h3::after,
+.article-entry h1::after, 
+.article-entry h2::after, 
+.article-entry h3::after,
+.widget-title::after {
+    background-color: #4A5D23 !important; /* Đổi vàng thành rêu */
+    background: #4A5D23 !important;
+    height: 4px !important;
+}
+
+/* Dấu thăng # đầu dòng */
+.post-content h1::before,
+.post-content h2::before,
+.headerlink {
+    color: #4A5D23 !important;
+}
+
+/* Xóa cái gạch nhỏ thừa lơ lửng (nếu còn) */
+.hr-line {
+    display: none !important;
+}
+
+/* -----------------------------------------------------------
+   4. CÁC PHẦN ĐÃ OK (SIDEBAR & SCROLLBAR)
+   ----------------------------------------------------------- */
+/* Sidebar */
+.sidebar-author-name { color: #8a9a5b !important; text-shadow: 0 0 10px rgba(74, 93, 35, 0.8) !important; font-weight: bold; }
+.sidebar-description { color: #6b8c42 !important; }
+.sidebar-state-number { color: #4A5D23 !important; font-weight: bold; }
+.sidebar-state-article div:first-child, .sidebar-state-category div:first-child, .sidebar-state-tag div:first-child { color: #8a9a5b !important; }
+.sidebar-author img, .author-avatar { border: 2px solid #4A5D23 !important; box-shadow: 0 0 15px rgba(74, 93, 35, 0.5) !important; }
+.sidebar-social div a { color: #6b8c42 !important; }
+.sidebar-menu-item.active { background-color: rgba(74, 93, 35, 0.15) !important; border-left: 3px solid #4A5D23 !important; }
+.sidebar-menu-item.active a { color: #a4b688 !important; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #1a1a1a !important; border-radius: 4px; }
+::-webkit-scrollbar-thumb { background-color: #4A5D23 !important; border-radius: 4px; border: 2px solid #1a1a1a; }
+::-webkit-scrollbar-thumb:hover { background-color: #6b8c42 !important; }
+
+/* ==========================================================================
+   FIX FINAL: KILL YELLOW BUTTON & SPIN GREEN BUTTON
+   ========================================================================== */
+
+/* 1. TIÊU DIỆT TẬN GỐC CÁC NÚT CŨ CỦA THEME (CỤC VÀNG) */
+#back-to-top,           /* ID gốc */
+.sidebar-top,           /* Class gốc */
+.sidebar-btn-wrapper,   /* Wrapper gốc (thủ phạm chính) */
+.sidebar-toc-btn,       /* Nút mục lục */
+.sidebar-common-btn {   /* Nút setting */
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* 2. STYLE CHO NÚT MỚI CỦA CHÚNG TA (#my-back-to-top) */
+#my-back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    z-index: 99999; /* Luôn nổi trên cùng */
+    cursor: pointer;
+    
+    /* Trạng thái ẩn mặc định */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+/* Style ảnh bên trong nút */
+#my-back-to-top img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(74, 93, 35, 0.6); /* Hào quang xanh rêu */
+}
+
+/* 3. ĐỊNH NGHĨA XOAY TRÒN LIÊN TỤC */
+/* Class này đã được gắn vào thẻ img ở bước 1 */
+.rotate {
+    animation: rotate-infinite 3s linear infinite; /* Xoay đều, 3s một vòng */
+}
+
+@keyframes rotate-infinite {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 4. PRELOADER & CÁC ICON KHÁC (Giữ nguyên cho đẹp) */
+#loader .loader-img, 
+.loader-section img {
+    border-radius: 50% !important; 
+    mix-blend-mode: lighten !important;
+    transform: scale(0.8);
+}
+
+
+/* ==========================================================================
+   CUSTOM CSS V9 - FINAL DETAILS (HEADER, TAGS, PAGINATION, MENU)
+   Target: Sidebar Menu Buttons, Timeline, Category Pills, Page Numbers
+   ========================================================================== */
+
+/* --- 1. SIDEBAR MENU BUTTONS (CÁC NÚT HOME, ABOUT, ARCHIVES...) --- */
+/* Khung viền của các nút */
+.sidebar-menu-link-wrap {
+    border-color: #4A5D23 !important; /* Đổi viền vàng thành Rêu */
+    color: #a4b688 !important; /* Màu chữ */
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng khi di chuột vào hoặc nút đang Active (Sáng đèn) */
+.sidebar-menu-link-wrap:hover,
+.sidebar-menu-link-wrap.active {
+    background: rgba(74, 93, 35, 0.2) !important; /* Nền xanh nhạt */
+    border-color: #7E9F46 !important; /* Viền sáng hơn */
+    color: #ffffff !important; /* Chữ trắng */
+    box-shadow: 0 0 15px rgba(74, 93, 35, 0.5) !important; /* Hào quang (Glow) xanh */
+}
+
+/* Icon bên trong nút (Ngôi nhà, người...) */
+.sidebar-menu-icon {
+    color: #4A5D23 !important;
+}
+.sidebar-menu-link-wrap:hover .sidebar-menu-icon {
+    color: #7E9F46 !important;
+}
+
+/* --- 2. HEADER & MENU (THANH ĐIỀU HƯỚNG TRÊN CÙNG) --- */
+/* Màu chữ và icon trên menu */
+.header-nav .header-nav-item a,
+.header-nav .header-nav-item i {
+    color: #a4b688 !important; /* Màu rêu sáng */
+}
+/* Hiệu ứng khi di chuột vào menu */
+.header-nav .header-nav-item:hover a,
+.header-nav .header-nav-item:hover i {
+    color: #7E9F46 !important; /* Sáng hơn chút */
+}
+/* Gạch chân dưới menu khi Active */
+.header-nav .header-nav-item.active:after {
+    background-color: #4A5D23 !important;
+}
+
+/* --- 3. TAGS & CATEGORIES (CÁC NÚT BẤM & DẤU CHẤM) --- */
+
+/* Các nút Tag/Category hình tròn (Viên thuốc) ở trang Archives */
+.tag-list-link, 
+.article-tag-list-link,
+.article-category-link {
+    background-color: rgba(74, 93, 35, 0.2) !important; /* Nền xanh trong suốt */
+    color: #a4b688 !important; /* Chữ xanh */
+    border: 1px solid #4A5D23 !important; /* Viền xanh */
+}
+
+/* Khi di chuột vào các nút Tag */
+.tag-list-link:hover, 
+.article-tag-list-link:hover,
+.article-category-link:hover {
+    background-color: #4A5D23 !important; /* Nền xanh đậm đặc */
+    color: #ffffff !important; /* Chữ trắng */
+    border-color: #4A5D23 !important;
+}
+
+/* Các dấu chấm vuông nhỏ (Bullet points) ở Widget bên trái */
+.widget-tag-list-item::before,
+.widget-category-list-item::before,
+.category-list-item::before,
+.tag-list-item::before {
+    background: #4A5D23 !important; /* Đổi màu vàng thành Rêu */
+}
+
+/* Icon Bookmark trong nút Category (Writeup) */
+.article-category-link i {
+    color: #a4b688 !important;
+}
+
+/* --- 4. PAGINATION (SỐ THỨ TỰ TRANG 1, 2...) --- */
+
+/* Số trang hiện tại (Active) */
+.pagination .page-number.current {
+    background: #4A5D23 !important;
+    border-color: #4A5D23 !important;
+    box-shadow: 0 0 10px rgba(74, 93, 35, 0.5) !important;
+}
+
+/* Các số trang khác */
+.pagination .page-number {
+    color: #a4b688 !important;
+}
+.pagination .page-number:hover {
+    border-color: #4A5D23 !important;
+    color: #4A5D23 !important;
+}
+
+/* --- 5. TIMELINE (DÒNG THỜI GIAN TRONG ARCHIVES) --- */
+
+/* Đường kẻ dọc nối các năm */
+.archive-article-inner {
+    border-left-color: #4A5D23 !important;
+}
+
+/* Dấu chấm tròn trên dòng thời gian */
+.archive-article-inner::before {
+    background-color: #4A5D23 !important;
+    box-shadow: 0 0 0 3px rgba(74, 93, 35, 0.2) !important; /* Viền mờ xung quanh */
+}
+
+/* Năm (2025, 2024...) */
+.archive-year-wrap .archive-year {
+    color: #a4b688 !important;
+}
+/* Dấu gạch ngang bên cạnh năm */
+.archive-year-wrap::before {
+    background-color: #4A5D23 !important;
+}
+
+/* --- 6. CÁC THANH GẠCH NGANG TRANG TRÍ KHÁC --- */
+/* Thanh gạch dưới tiêu đề bài viết trong list */
+.article-title::after {
+    background-color: #4A5D23 !important;
+}
+
+/* ==========================================================================
+   CUSTOM CSS V10 - HEADER & ARCHIVES (FIX YELLOW REMNANTS)
+   Target: Top Menu, Timeline, Tag Pills, Date Badges
+   ========================================================================== */
+
+/* --- 1. XỬ LÝ HEADER (THANH MENU TRÊN CÙNG) --- */
+
+/* Màu chữ và Icon mặc định (Home, About...) */
+.header-nav .header-nav-item a,
+.header-nav .header-nav-item i {
+    color: #a4b688 !important; /* Màu rêu sáng */
+}
+
+/* Hiệu ứng khi di chuột vào (Hover) */
+.header-nav .header-nav-item:hover a,
+.header-nav .header-nav-item:hover i {
+    color: #7E9F46 !important; /* Sáng hơn chút */
+}
+
+/* Gạch chân màu vàng dưới chân Menu khi đang chọn (Active) */
+.header-nav .header-nav-item.active:after {
+    background-color: #4A5D23 !important; /* Đổi vàng thành Rêu đậm */
+}
+
+/* Icon Search và Chế độ tối (Kính lúp, Mặt trăng) */
+.header-nav .header-nav-btn i {
+    color: #a4b688 !important;
+}
+
+
+/* --- 2. XỬ LÝ BODY: TAGS & CATEGORIES (CÁC NÚT HÌNH VIÊN THUỐC) --- */
+
+/* Trạng thái bình thường: Nền rêu nhạt, Viền rêu, Chữ rêu */
+.tag-list-link, 
+.article-tag-list-link,
+.article-category-link,
+.article-category-link:visited {
+    background-color: rgba(74, 93, 35, 0.15) !important; 
+    color: #a4b688 !important; 
+    border: 1px solid #4A5D23 !important;
+}
+
+/* Trạng thái Hover: Nền rêu đậm, Chữ trắng */
+.tag-list-link:hover, 
+.article-tag-list-link:hover,
+.article-category-link:hover {
+    background-color: #4A5D23 !important; 
+    color: #ffffff !important;
+    border-color: #4A5D23 !important;
+    box-shadow: 0 0 10px rgba(74, 93, 35, 0.6) !important;
+}
+
+/* Icon cái kẹp ghim hoặc icon tag bên trong nút */
+.article-category-link i,
+.article-tag-list-link i {
+    color: #a4b688 !important;
+}
+
+
+/* --- 3. XỬ LÝ ARCHIVES (DÒNG THỜI GIAN - TIMELINE) --- */
+
+/* Đường kẻ dọc nối các năm */
+.archive-article-inner {
+    border-left-color: #4A5D23 !important;
+}
+
+/* Dấu chấm tròn trên dòng thời gian (Chỗ nối bài viết) */
+.archive-article-inner::before {
+    background-color: #4A5D23 !important;
+    box-shadow: 0 0 0 3px rgba(74, 93, 35, 0.2) !important; /* Viền mờ xung quanh */
+}
+
+/* Số Năm to đùng (2025, 2024...) */
+.archive-year-wrap .archive-year {
+    color: #a4b688 !important;
+}
+
+/* Cái gạch ngang trang trí bên cạnh số Năm */
+.archive-year-wrap::before {
+    background-color: #4A5D23 !important;
+}
+
+/* Ngày tháng nhỏ màu xanh (2025-07) */
+.archive-article-date {
+    color: #6b8c42 !important; /* Rêu tươi */
+}
+
+
+/* --- 4. XỬ LÝ BADGE TRONG BÀI VIẾT (WRITEUP / DATE) --- */
+
+/* Cái nút "Writeup" màu vàng ở header bài viết */
+.article-meta .article-category .article-category-link {
+    background-color: #4A5D23 !important; /* Nền rêu đậm */
+    color: #fff !important;
+}
+
+/* Icon đồng hồ và ngày tháng ở header bài viết */
+.article-meta .date {
+    color: #a4b688 !important;
+}
+.article-meta i {
+    color: #4A5D23 !important;
+}
+
+/* -----------------------------------------------------------
+   3. FIX ARCHIVES & TIMELINE (SỬA CÁC THANH VÀNG CỨNG ĐẦU)
+   ----------------------------------------------------------- */
+
+/* Đường kẻ dọc trục thời gian */
+.archive-article-inner {
+    border-left-color: #4A5D23 !important;
+}
+
+/* Dấu chấm tròn trên trục thời gian */
+.archive-article-inner::before {
+    background-color: #4A5D23 !important;
+    box-shadow: 0 0 0 3px rgba(74, 93, 35, 0.2) !important;
+}
+
+/* Số Năm (2025, 2024) */
+.archive-year-wrap .archive-year {
+    color: #a4b688 !important;
+}
+
+/* --- QUAN TRỌNG: CÁI GẠCH NGANG DƯỚI NĂM (SLIDER) --- */
+/* Theme Reimu dùng ::before để vẽ cái gạch này */
+.archive-year-wrap::before {
+    background-color: #4A5D23 !important; /* Đổi vàng thành Rêu */
+}
+
+/* Tiêu đề bài viết trong list Archive */
+.archive-article-title { color: #a4b688 !important; }
+.archive-article-date { color: #6b8c42 !important; }
+
+/* Đường gạch nối ngang ở footer */
+.footer-line {
+    background-color: #4A5D23 !important; /* Đổi vàng thành Rêu đậm */
+    height: 2px !important; /* Đảm bảo độ dày */
+    opacity: 0.8;
+}

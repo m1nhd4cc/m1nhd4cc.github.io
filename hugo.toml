@@ -1,0 +1,53 @@
+baseURL = 'https://m1nhd4cc.github.io/'
+languageCode = 'en-us'
+title = "minhduc's site, let's find out.."
+theme = 'hugo-theme-reimu'
+
+[markup.highlight]
+guessSyntax = true
+noClasses = false
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+        unsafe = true
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+[params]
+  math = true
+
+# --- CẤU HÌNH MENU (CHUẨN TOML) ---
+
+# 1. Home
+[[params.menu]]
+  name = "Home"
+  url = "/"
+  icon = "e632"
+
+# 2. About
+[[params.menu]]
+  name = "About"
+  url = "/about"
+  icon = "e628"
+
+# 3. Projects 
+[[params.menu]]
+  name = "Projects"
+  url = "/projects"
+  icon = "e604" 
+
+# 4. Activities 
+[[params.menu]]
+  name = "Activities"
+  url = "/activities"
+  icon = "e621"  
+
+# 5. Archives
+[[params.menu]]
+  name = "Archives"
+  url = "/archives"
+  icon = "e604"

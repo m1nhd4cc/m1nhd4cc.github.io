@@ -1,0 +1,91 @@
+{{ $totalWordCount := 0 }}
+{{ $totalReadingTime := 0 }}
+{{ $posts := (where .Page.Site.RegularPages "Section" "in" .Site.Params.mainSections) }}
+{{ range $posts }}
+  {{ $totalWordCount = add $totalWordCount .WordCount }}
+  {{ $totalReadingTime = add $totalReadingTime .ReadingTime }}
+{{ end }}
+
+<footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  
+  <div id="footer-info">
+    <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px; line-height: 1;">
+      
+      <span style="font-size: 1.1em; line-height: 1; margin-right: 1px;">&copy;</span>
+      
+      
+      {{- .Site.Params.footer.since -}} - {{ now.Format .Site.Params.yearFormat }}
+        
+      <img src="/images/loading-green.png" alt="logo" 
+           style="width: 20px; height: 20px; border-radius: 50%; display: block;" 
+           class="{{ if .Site.Params.footer.icon.rotate }}rotate{{ end }}">
+      
+      <span>
+        {{ .Site.Params.author | default .Site.Title }}
+      </span>
+    </div>
+
+    {{ if .Site.Params.footer.count }}
+      <div style="margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 5px;">
+        <span class="icon-brush"></span>
+        <span>
+          {{ if gt $totalWordCount 1000 }}
+            {{ printf "%.1fk" (div $totalWordCount 1000.0) }}
+          {{ else }}
+            {{ $totalWordCount }}
+          {{ end }}
+        </span>
+        <span>|</span>
+        <span class="icon-coffee"></span>
+        <span>
+          {{ $hours := div $totalReadingTime 60 }}
+          {{ $minutes := mod $totalReadingTime 60 }}
+          {{ printf "%02d:%02d" $hours $minutes }}
+        </span>
+      </div>
+    {{ end }}
+
+    {{ if .Site.Params.footer.busuanzi }}
+      <div style="margin-top: 5px;">
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">{{ i18n "busuanzi.pv" }}&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">{{ i18n "busuanzi.uv" }}&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    {{ end }}
+  </div>
+
+  <div id="my-back-to-top" title="Back to Top">
+    <img src="/images/loading-green.png" class="rotate" alt="Back to Top">
+  </div>
+  
+
+  <script>
+    (function() {
+      const myBtn = document.getElementById('my-back-to-top');
+      if (!myBtn) return;
+
+      // Xử lý sự kiện click
+      myBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Xử lý ẩn/hiện khi cuộn trang
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          myBtn.style.opacity = '1';
+          myBtn.style.pointerEvents = 'auto';
+          myBtn.style.transform = 'translateY(0)';
+        } else {
+          myBtn.style.opacity = '0';
+          myBtn.style.pointerEvents = 'none';
+          myBtn.style.transform = 'translateY(20px)';
+        }
+      });
+    })();
+  </script>
+</footer>
