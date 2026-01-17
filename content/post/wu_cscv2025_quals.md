@@ -1,5 +1,5 @@
 ---
-title: "Writeup CSCV2025 Quals"
+title: "CSCV 2025 Quals"
 description: "Writeup for Forensic Challenge"
 summary: "Writeup for Forensic Challenge"
 categories: ["Writeup"]

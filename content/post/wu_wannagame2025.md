@@ -1,5 +1,5 @@
 ---
-title: "Writeup WannaGame 2025"
+title: "WannaGame Championship 2025"
 description: "Writeup for Forensic Challenge"
 summary: "Writeup for Forensic Challenge"
 categories: ["Writeup"]
