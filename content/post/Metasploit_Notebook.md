@@ -9,7 +9,7 @@ date: 2024-08-03
 draft: false
 authors:
   - ducnocrypt
-cover: "images/post_covers/metasploit_notebook.png"
+cover: "/images/post_covers/metasploit_notebook.png"
 ---
 
 # Metasploit Notebook
