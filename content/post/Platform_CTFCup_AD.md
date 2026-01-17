@@ -3,7 +3,7 @@ title: "Platform Attack/Defense"
 description: "Hướng dẫn triển khai CTF Cup & Cheatsheet Attack-Defense"
 summary: "Hướng dẫn triển khai CTF Cup & Cheatsheet Attack-Defense"
 categories: ["Notebook"]
-tags: ["Technical"]
+tags: ["Technical", "Vietnamese"]
 #externalUrl: ""
 date: 2025-10-16
 draft: false

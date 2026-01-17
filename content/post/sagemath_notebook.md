@@ -3,7 +3,7 @@ title: "Sagemath Notebook"
 description: "Hướng dẫn cài đặt & sử dụng SageMath"
 summary: "Hướng dẫn cài đặt & sử dụng SageMath"
 categories: ["Notebook"]
-tags: ["Crypto", "Technical"]
+tags: ["Crypto", "Technical", "Vietnamese"]
 #externalUrl: ""
 date: 2025-08-01
 draft: false
