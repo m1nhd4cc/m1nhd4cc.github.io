@@ -9,7 +9,7 @@ date: 2025-10-04
 draft: false
 authors:
   - ducnocrypt
-cover: "images/post_covers/securinet.jpg"
+cover: "/images/post_covers/securinet.jpg"
 ---
 
 

@@ -9,7 +9,7 @@ date: 2025-10-16
 draft: false
 authors:
   - ducnocrypt
-cover: "images/post_covers/Platform_CTFCup_AD.png"
+cover: "/images/post_covers/Platform_CTFCup_AD.png"
 ---
 
 ## Giới thiệu

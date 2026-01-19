@@ -9,7 +9,7 @@ date: 2025-08-04
 draft: false
 authors:
   - ducnocrypt
-cover: "images/post_covers/idekctf2025.png"
+cover: "/images/post_covers/idekctf2025.png"
 ---
 
 

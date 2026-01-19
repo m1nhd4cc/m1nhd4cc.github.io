@@ -9,7 +9,7 @@ date: 2025-08-01
 draft: false
 authors:
   - ducnocrypt
-cover: "images/post_covers/sagemath_notebook.png"
+cover: "/images/post_covers/sagemath_notebook.png"
 ---
 
 

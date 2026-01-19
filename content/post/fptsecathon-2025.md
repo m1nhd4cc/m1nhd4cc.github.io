@@ -9,7 +9,7 @@ date: 2025-07-27
 draft: false
 authors:
   - ducnocrypt
-cover: "images/post_covers/fptsecathon-2025.jpg"
+cover: "/images/post_covers/fptsecathon-2025.jpg"
 ---
 
 # CryptoGraphy
