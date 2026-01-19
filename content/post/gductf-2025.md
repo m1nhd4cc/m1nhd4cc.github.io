@@ -9,7 +9,7 @@ date: 2025-06-29
 draft: false
 authors:
   - ducnocrypt
-cover: "images/post_covers/gductf-2025.png"
+cover: "/images/post_covers/gductf-2025.png"
 ---
 
 
