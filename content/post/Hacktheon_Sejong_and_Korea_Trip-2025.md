@@ -711,7 +711,7 @@ Can u see VietNam food? I'm starting to feel homesick
       The word "Annyeong" (안녕) comes from Hanja (Chinese characters) and literally means "peace", "safety" or "well-being". In the past, during times of constant war and instability, just surviving the night was considered a blessing. So when people met in the morning, they wouldn't just say a casual "hi". Instead, they would anxiously ask: "Did you stay safe through the night?" (밤새?) or "Did you sleep peacefully?" (안녕히 주무셨습니까?)
     </p>
     <p>
-      Over time, these phrases were shortened into the "안녕하세요" we use today. So essentially, it’s not just a meaningless greeting—it is a genuine inquiry wishing for the listener's peace and safety^^
+      Over time, these phrases were shortened into the "안녕하세요" we use today. So essentially, it’s not just a meaningless greeting. It is a genuine inquiry wishing for the listener's peace and safety^^
     </p>
   </div>
 </details> 
