@@ -697,6 +697,24 @@ Can u see VietNam food? I'm starting to feel homesick
 ‘Nice to meat you” =)))))
 ![korea37.png](/images/hackathon-korea/korea37.png)
 
+<details style="background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 15px; margin: 20px 0; border-left: 4px solid #4A5D23;">
+  
+  <summary style="cursor: pointer; font-weight: bold; font-size: 1.1em; outline: none; list-style: none;">
+    The Deeper Meaning of "Annyeonghaseyo" (Click here)
+  </summary>
+  
+  <div style="margin-top: 15px; font-style: italic; color: #d0d0d0; line-height: 1.6;">
+    <p>
+      Did you know that the standard Korean greeting "안녕하세요" (Annyeonghaseyo) is grammatically a question? That's why you often see it written with a question mark (?)
+    </p>
+    <p>
+      The word "Annyeong" (안녕) comes from Hanja (Chinese characters) and literally means "peace", "safety" or "well-being". In the past, during times of constant war and instability, just surviving the night was considered a blessing. So when people met in the morning, they wouldn't just say a casual "hi". Instead, they would anxiously ask: "Did you stay safe through the night?" (밤새?) or "Did you sleep peacefully?" (안녕히 주무셨습니까?)
+    </p>
+    <p>
+      Over time, these phrases were shortened into the "안녕하세요" we use today. So essentially, it’s not just a meaningless greeting—it is a genuine inquiry wishing for the listener's peace and safety^^
+    </p>
+  </div>
+</details> 
 
 On our very last night, a close *hyung* of mine who lives in Korea invited me out for a special dinner. We had a massive **Seafood feast** accompanied by traditional **Makgeolli** (rice wine).
 
