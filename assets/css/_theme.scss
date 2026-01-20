@@ -1,112 +1,141 @@
-.theme-transition {
-    transition: background-color 0.5s ease, color 0.5s ease;
-    
-    * {
-      transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease;
-    }
+// Theme Color Overrides - GREEN THEME
+// This file ensures green color is applied everywhere
+
+a {
+  color: var(--red-1);
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--red-0);
+  }
+}
+
+// Buttons
+button,
+.button,
+.btn {
+  background-color: var(--red-0);
+  border-color: var(--red-1);
+  color: white;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--red-1);
+    border-color: var(--red-0);
+  }
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  color: var(--red-1);
+  
+  &::after {
+    background-color: var(--red-0);
   }
   
-  .dark-mode-btn {
-    position: relative;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    overflow: hidden;
+  &::before {
+    color: var(--red-0);
+  }
+}
+
+// Code blocks
+code {
+  background-color: rgba(74, 93, 35, 0.1);
+  border: 1px solid var(--red-4);
+  color: var(--red-0);
+}
+
+pre code {
+  background-color: var(--color-code-background);
+  border: none;
+}
+
+// Blockquote
+blockquote {
+  border-left-color: var(--red-0);
+  background-color: rgba(74, 93, 35, 0.05);
+}
+
+// HR
+hr {
+  border-color: var(--red-3);
+  background-color: var(--red-3);
+}
+
+// Selection
+::selection {
+  background-color: var(--red-1);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--red-1);
+  color: white;
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--red-0);
+  border-radius: 4px;
+  
+  &:hover {
+    background-color: var(--red-1);
+  }
+}
+
+// Focus states
+*:focus {
+  outline-color: var(--red-1);
+}
+
+// Tables
+table {
+  th {
+    background-color: var(--red-0);
+    color: white;
+    border-color: var(--red-1);
   }
   
-  .sun-moon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    transition: transform 0.5s ease;
-  
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: var(--red-0);
-      border-radius: 50%;
-      transition: all 0.5s ease;
-    }
-  
-    &::after {
-      content: '';
-      position: absolute;
-      top: -1px;
-      right: -1px;
-      width: 100%;
-      height: 100%;
-      background-color: var(--red-5-5);
-      border-radius: 50%;
-      transition: all 0.5s ease;
-    }
-  
-    &.sun {
-      transform: rotate(0deg);
-  
-      &::before {
-        transform: scale(1);
-      }
-  
-      &::after {
-        transform: translateX(100%);
-      }
-    }
-  
-    &.moon {
-      transform: rotate(180deg);
-  
-      &::before {
-        transform: scale(0.5);
-      }
-  
-      &::after {
-        transform: translateX(0);
-      }
-    }
+  tr:hover {
+    background-color: rgba(74, 93, 35, 0.05);
   }
   
-  // Rays animation
-  @keyframes rays {
-    0% {
-      box-shadow: 0 0 0 0px rgba(255, 255, 0, 0.2),
-                  0 0 0 20px rgba(255, 255, 0, 0.1),
-                  0 0 0 40px rgba(255, 255, 0, 0.05);
-    }
-    100% {
-      box-shadow: 0 0 0 20px rgba(255, 255, 0, 0.1),
-                  0 0 0 40px rgba(255, 255, 0, 0.05),
-                  0 0 0 60px rgba(255, 255, 0, 0);
-    }
+  td {
+    border-color: var(--red-4);
+  }
+}
+
+// Forms
+input,
+textarea,
+select {
+  border-color: var(--red-3);
+  
+  &:focus {
+    border-color: var(--red-1);
+    box-shadow: 0 0 0 2px rgba(74, 93, 35, 0.2);
+  }
+}
+
+// Dark mode specific
+[data-theme="dark"] {
+  code {
+    background-color: rgba(138, 154, 91, 0.15);
+    border-color: rgba(164, 182, 136, 0.3);
+    color: var(--red-2);
   }
   
-  [data-theme="dark"] {
-    .sun-moon::before {
-      animation: none;
-    }
+  blockquote {
+    background-color: rgba(74, 93, 35, 0.1);
   }
-  
-  [data-theme="light"] {
-    .sun-moon::before {
-      animation: rays 2s infinite linear;
-    }
-  }
-  
-  // Optional: Add transition for the theme button icon
-  .dark-mode-btn {
-    transition: transform 0.3s ease;
-    
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-  
-  
+}

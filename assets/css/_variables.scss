@@ -1,17 +1,15 @@
-// Colors
+// Colors - GREEN THEME
 :root {
-  --red-0: #d4af37; // Main gold color
-  --red-1: #dbb94e; // Slightly lighter gold
-  --red-2: #e2c265; // Light gold
-  --red-3: #e9cc7c; // Pale gold
-  --red-4: #f0d693; // Very pale gold
-  --red-5: #f7e0aa; // Extremely pale gold
-  --red-5-5: #2c2508; // Very dark gold (almost black, for contrast)
-  --red-6: #fdf8e7; // Almost white with a hint of gold
-
+  --red-0: #4A5D23 !important;        // Main green color
+  --red-1: #6b8c42 !important;        // Lighter green
+  --red-2: #8a9a5b !important;        // Light green
+  --red-3: #a4b688 !important;        // Pale green
+  --red-4: #c1d5a4 !important;        // Very pale green
+  --red-5: #dbe8c8 !important;        // Extremely pale green
+  --red-5-5: #1a2410 !important;      // Very dark green (almost black)
+  --red-6: #f0f5e8 !important;        // Almost white with hint of green
   --grey-9: #999;
   --grey-7: #777;
-
   --color-archive-year: black;
   --color-default: #555;
   --color-border: var(--red-3);
@@ -23,14 +21,12 @@
   --color-mobile-nav-background: #fff;
   --color-wrap: #fff;
   --color-sticky: #fff;
-
   --color-h2-border: #eee;
   --color-meta-shadow: var(--red-6);
   --color-hover-shadow: rgba(150, 150, 150, 0.1);
   --color-h2-after: var(--red-1);
-  --color-red-6-shadow: rgba(212, 175, 55, 0.6);
-  --color-red-3-shadow: rgba(233, 204, 124, 0.3);
-
+  --color-red-6-shadow: rgba(74, 93, 35, 0.6);
+  --color-red-3-shadow: rgba(164, 182, 136, 0.3);
   --highlight-nav: #e6e6e6;
   --highlight-scrollbar: #d6d6d6;
   --highlight-background: #f7f7f7;
@@ -41,11 +37,10 @@
   --highlight-red: #c8362b;
   --highlight-orange: #b66014;
   --highlight-yellow: #cb911d;
-  --highlight-green: #2ea52e;
+  --highlight-green: #4A5D23;
   --highlight-aqua: #479d9d;
   --highlight-blue: #1973b8;
   --highlight-purple: #7135ac;
-
   --cursor-default: url(#{$cursor-default}), auto;
   --cursor-pointer: url(#{$cursor-pointer}), pointer;
   --cursor-text: url(#{$cursor-text}), text;
@@ -53,12 +48,12 @@
 
 [data-theme="dark"] {
   &:root {
-    --red-0: var(--red-1);
-    --red-4: rgba(255, 208, 208, 0.5);
-    --red-5: rgba(255, 228, 228, 0.2);
-    --red-5-5: rgba(255, 236, 236, 0.1);
-    --red-6: rgba(255, 243, 243, 0.2);
-
+    --red-0: #6b8c42 !important;
+    --red-1: #8a9a5b !important;
+    --red-4: rgba(164, 182, 136, 0.5);
+    --red-5: rgba(193, 213, 164, 0.2);
+    --red-5-5: rgba(219, 232, 200, 0.1);
+    --red-6: rgba(240, 245, 232, 0.2);
     --color-archive-year: #999;
     --color-default: #999;
     --color-border: var(--red-5);
@@ -68,18 +63,16 @@
     --color-footer-background: #0a0a0a;
     --color-mobile-nav-background: #0a0a0a;
     --color-wrap: #101010;
-
     --color-h2-border: #47474a;
     --color-meta-shadow: rgba(0, 0, 0, 0.2);
     --color-hover-shadow: rgba(0, 0, 0, 0.2);
-
     --highlight-nav: #2e353f;
     --highlight-scrollbar: #454d59;
     --highlight-background: #22272e;
     --highlight-current-line: #393939;
     --highlight-selection: #515151;
     --highlight-foreground: #cccccc;
-    --highlight-comment: #dbb94e;
+    --highlight-comment: #8a9a5b;
     --highlight-red: #f47067;
     --highlight-orange: #f69d50;
     --highlight-yellow: #ffcc66;
@@ -88,18 +81,14 @@
     --highlight-blue: #54b6ff;
     --highlight-purple: #dcbdfb;
   }
-
   img {
     filter: brightness(100%);
   }
-
-  // 排除 lightbox
   .pswp__img {
     opacity: 1;
     filter: none;
     animation: none;
   }
-
   img.lazyloaded {
     opacity: 1;
     animation: blur-darken 0.8s ease-in-out forwards !important;
@@ -109,7 +98,6 @@
 // Fonts
 $font-basic: $basic-families, $local-basic-families;
 $font-code: $code-families, $local-code-families;
-
 $font-size: 14px;
 $line-height: 1.8em;
 $line-height-title: 1.2em;
@@ -132,5 +120,4 @@ $mq-normal: "screen and (min-width: 768px)";
 $mg-normal: "screen and (max-width: 767px)";
 $mq-large: "screen and (min-width: 960px)";
 $mg-large: "screen and (max-width: 959px)";
-
 $post-radius: 10px;
