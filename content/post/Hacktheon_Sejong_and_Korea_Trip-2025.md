@@ -585,10 +585,9 @@ If you are a LoLs fan, specifically a T1 or Faker fan, this place is essentially
 
 ![korea21.png](/images/hackathon-korea/korea21.png)
 
-> Seoul’s subway system is huge (9 main lines!) and can honestly be a bit overwhelming at first glance.
-> 
-> - *To get to T1 Basecamp smoothly, just hop on **Line 2**. It’s the **Green Line** on the map.*
-> - *Definitely have an updated subway map or a reliable app handy to check the schedule.*
+Seoul’s subway system is huge (9 main lines!) and can honestly be a bit overwhelming at first glance.
+- *To get to T1 Basecamp smoothly, just hop on **Line 2**. It’s the **Green Line** on the map.*
+- *Definitely have an updated subway map or a reliable app handy to check the schedule.*
 
 ![LoL Park Entrance](/images/hackathon-korea/seoul_metro_line.jpg)
 
