@@ -13,15 +13,15 @@ cover: /images/post_covers/hackathon_sejong2025.png
 ---
 
 
-Welcome to the recap of our journey at **Hacktheon Sejong 2025**. This blog covers the technical writeups of the challenges we solved during the competition, followed by a photo diary of our memorable trip to South Korea.
+Welcome! This blog covers the technical writeups of the challenges we solved during the competition, followed by a photo diary of my memorable trip to South Korea.
 
-Our journey began at **Tan Son Nhat (SGN)** to **Incheon (ICN)** on a flight lasting approximately 5 hours. We flew with **Vietjet Air**,  an airline notorious for delays but popular for its budget-friendly fares compared to other carriers. We were quite lucky, the flight was only delayed by 30 minutes
+My journey began at **Tan Son Nhat (SGN)** to **Incheon (ICN)** on a flight lasting approximately 5 hours. We flew with **Vietjet Air**,  an airline notorious for delays but popular for its budget-friendly fares compared to other carriers. We were quite lucky, the flight was only delayed by 30 minutes
 
 The food on Vietjet is very familiar. I had spaghetti with tomato sauce and cashews for dessert
 
 ![Flight Photo 2](/images/hackathon-korea/food-vj.png)
 
- During the flight, I reviewed the timeline, mentally preparing myself for what was coming
+During the flight, I reviewed the timeline, mentally preparing myself for what was coming
 
 <div style="display: flex; gap: 15px; margin: 20px 0;">
   <div style="flex: 1;">
@@ -49,7 +49,6 @@ As soon as we got off the plane, we just followed the signs to get to immigratio
 Taxi Grab in Korea are expensive, so the subway and bus are the way to go. We decided to bought a **T-Money card** right away so we wouldn't have to deal with buying single tickets every time we moved.
 
 - *The card itself is 4000 KRW, can find them at any convenience store like **GS25, CU, etc** or even right there at the airport vending machines.*
-
 - *Sim card i bought it in VietNam to save money*
  
 
@@ -72,7 +71,6 @@ Okay, you bought the card, now how do you put money on it?
 If you buy these cards at convenience stores, you can ask the staff to top up your account directly after purchasing the card. Otherwise, you have to find "Ticket Vending and Card Reload" machines at every subway station (It have an **English** language button)
 
 Here’s a quick breakdown of the machine layout so you don't look confused like I did at first:
-
 - **The Red Slot (Left):** This is where you place your card. Once you put it there, the screen will pop up showing your current balance and ask how much you want to add.
 - **The Yellow Slot (Middle):** This is for coins money
 - **The Black Slot (Right):** This is for paper money
@@ -87,7 +85,7 @@ Make sure your cash is **crisp and flat**. If your bill is wrinkled or old, the 
 
 ![pricebus.png](/images/hackathon-korea/pricebus.png)
 
-7000KRW ~ 2,3 days 
+~ 2,3 days 
 
 ## Writeup of Competition
 
@@ -129,7 +127,7 @@ Inside the output file, I performed a text search for suspicious keywords such a
 
 Upon filtering through the results, I located the flag hidden within a service entry.
 
-**> FLAG:** `FLAG{8yp455_u4c_g37_5y5t3m}`
+> **FLAG:** `FLAG{8yp455_u4c_g37_5y5t3m}`
 
 ### Watch
 
@@ -377,13 +375,11 @@ Running the script gave us the final flag.
 ### **Competition View**
 
 Banner
-
 ![GvdSSn7XoAEpctE.jpg](/images/hackathon-korea/GvdSSn7XoAEpctE.jpg)
 
 I went into the competition feeling relax..
-
 <div style="margin: 20px 0;">
-  
+
   <div style="display: flex; gap: 15px; justify-content: space-between;">
     <div style="flex: 1;">
       <img src="/images/hackathon-korea/view.png" 
@@ -391,19 +387,21 @@ I went into the competition feeling relax..
            alt="View 1">
     </div>
     <div style="flex: 1;">
-      <img src="/images/hackathon-korea/view2.png" 
+      <img src="/images/hackathon-korea/medal.jpg" 
            style="width: 100%; height: auto; border-radius: 12px; object-fit: cover; display: block; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" 
            alt="View 2">
     </div>
   </div>
 
-  <div style="text-align: center; margin-top: 10px; font-weight: bold; font-style: italic; color: #a4b688;">
-    hardcore vibes 🥵
-  </div>
-
 </div>
 
-After spending two days in Competition, I chose to stay in South Korea for two more days and travel to Seoul for sightseeing
+<div style="text-align: center; margin-top: 10px; font-weight: bold; font-style: italic; color: #a4b688;">
+hardcore vibes 🥵
+</div>
+
+![view2.png](/images/hackathon-korea/view2.png)
+
+After spending two days in competition, I stayed in South Korea for two more days to go to Seoul & do some sightseeing 😁
 
 ## Korea Trip 🇰🇷
 
@@ -416,7 +414,6 @@ The convenience store that seems to be absolutely *everywhere* here is **Nice to
 ![ntcu.png](/images/hackathon-korea/ntcu.png)
 
 They stock some unique and quirky items that caught my eye
-
 
 <div style="display: flex; gap: 15px; margin: 20px 0;">
   <div style="flex: 1;">
@@ -431,7 +428,7 @@ They stock some unique and quirky items that caught my eye
   </div>
 </div>
 
-I like soju, but it’s strong, so it’s best to drink it with non-alcoholic sweet drinks
+I like soju but it’s strong, so it’s better to drink it with sweet drinks... you can see right 🤫😂
 
 <div style="display: flex; gap: 15px; margin: 20px 0;">
   <div style="flex: 1;">
@@ -446,12 +443,11 @@ I like soju, but it’s strong, so it’s best to drink it with non-alcoholic sw
   </div>
 </div>
 
-
-I decided to try the famous **Banana Milk** since everyone says it's a total "must-try" when in Korea. I took my friend's advice and tried mixing banana milk with Americano... and wow, it tasted really good!!
+I tried the famous **Banana Milk** since everyone says it's a total "must-try" when in Korea. I took my friend's advice and tried mixing banana milk with Americano... and wow, it tasted really good!!
 
 ![drink_ntcu.jpg](/images/hackathon-korea/drink_ntcu.jpg)
 
-Let me tell you... I got *hooked* immediately. I’m not even joking, it was so good that I actually ran back out late at night just to grab another 🤣
+Let me tell you... I got *hooked* immediately, it was so good that I actually ran back out late at night just to grab another 🤣
 
 ![bnnmilk.png](/images/hackathon-korea/bnnmilk.png)
 
@@ -465,7 +461,7 @@ Walking through here feels like entering a maze of skincare and cosmetics, there
 
 ![shoppinghall.png](/images/hackathon-korea/shoppinghall.png)
 
-Additionally, Myeongdong is well-known for its diverse street food, including spicy rice cakes (tteokbokki), Korean fried chicken, and fish-shaped pastries (bungeoppang)
+Additionally, Myeongdong is well-known for its diverse street food, including spicy rice cakes (teokbokki), Korean fried chicken, and fish-shaped pastries (bungeoppang)
 
 <div style="display: flex; gap: 15px; margin: 20px 0;">
   <div style="flex: 1;">
@@ -499,9 +495,7 @@ The energy here is just unmatched. It’s always packed and lively, often with r
 
 The district also houses major shopping malls and duty-free stores, attracting millions of visitors each year. Moreover, Myeongdong Cathedral, a significant historical site, is also located in this area.
 
-I was really full and finished with a fantastic glass of lemonade at the end of the road.
-
-Our trip to Seoul after two days in Sejong, we decided to stay in here for another two days 
+I finished with a fantastic glass of lemonade at the end of the road.
 
 <div style="display: flex; gap: 15px; margin: 20px 0;">
   <div style="flex: 1;">
@@ -519,7 +513,7 @@ Our trip to Seoul after two days in Sejong, we decided to stay in here for anoth
 <details style="background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 15px; margin: 20px 0; border-left: 4px solid #4A5D23;">
   
   <summary style="cursor: pointer; font-weight: bold; font-size: 1.1em; outline: none; list-style: none;">
-    💡 Tips Booking & Transport (Click here)
+  Booking & Transport (Click here)
   </summary>
   
   <div style="margin-top: 15px; font-style: italic; color: #d0d0d0; line-height: 1.6;">
@@ -585,7 +579,7 @@ If you are a LoLs fan, specifically a T1 or Faker fan, this place is essentially
 
 ![korea21.png](/images/hackathon-korea/korea21.png)
 
-Seoul’s subway system is huge (9 main lines!) and can honestly be a bit overwhelming at first glance.
+Seoul’s subway system is huge (9 main lines) and can honestly be a bit overwhelming at first glance.
 - *To get to T1 Basecamp smoothly, just hop on **Line 2**. It’s the **Green Line** on the map.*
 - *Definitely have an updated subway map or a reliable app handy to check the schedule.*
 
@@ -634,6 +628,7 @@ I just want to drop a few random photos I took while walking around. Here are a 
 ![korea23.png](/images/hackathon-korea/korea23.png)
 
 streets
+
 <div style="display: flex; gap: 15px; margin: 20px 0;">
   <div style="flex: 1;">
     <img src="/images/hackathon-korea/korea14.png" 
@@ -648,15 +643,19 @@ streets
 </div>
 
 rainbow
+
 ![korea17.png](/images/hackathon-korea/korea17.png)
 
 souvenir shop
+
 ![korea6.png](/images/hackathon-korea/korea6.png)
 
 streets in alleys
+
 ![korea5.png](/images/hackathon-korea/korea5.png)
 
 photobooth
+
 ![korea27.png](/images/hackathon-korea/korea27.png)
 
 Honestly, you don't even need to go to famous tourist spots to find beauty here. Just wandering down a random street feels like being in a movie scene. Everything is super clean, organized, and has this really peaceful, cinematic vibes..
@@ -669,13 +668,15 @@ Of course, with a "foodie soul" like mine, there is no way I could finish this b
 My impression of Korean food is that it's quite spicy and bland (probably because I'm used to Vietnamese food)
 
 The traditional spicy rice cakes paired with fried chicken are a match made in heaven
+
 ![fooood.jpg](/images/hackathon-korea/fooood.jpg)
 
 Even a basic lunch with Kimchi and side dishes felt very hearty
+
 ![lunch.jpg](/images/hackathon-korea/lunch.jpg)
 
 
-We went to a local BBQ spot and the owner was incredibly friendly. The moment he found out we were from Vietnam, he actually **gifted us an extra serving of meat** on the house! He was so adorable. Thank you so much, uncle! ❤️
+We went to a local BBQ spot and the owner was incredibly friendly. The moment he found out we were from Vietnam, he actually **gifted us an extra serving of meat** on the house! He was so adorable. Thank you so much ❤️
 
 <div style="display: flex; gap: 15px; margin: 20px 0;">
   <div style="flex: 1;">
@@ -691,15 +692,17 @@ We went to a local BBQ spot and the owner was incredibly friendly. The moment he
 </div>
 
 Can u see VietNam food? I'm starting to feel homesick
+
 ![korea13.png](/images/hackathon-korea/korea13.png)
 
 ‘Nice to meat you” =)))))
+
 ![korea37.png](/images/hackathon-korea/korea37.png)
 
 <details style="background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 15px; margin: 20px 0; border-left: 4px solid #4A5D23;">
   
   <summary style="cursor: pointer; font-weight: bold; font-size: 1.1em; outline: none; list-style: none;">
-    The Deeper Meaning of "Annyeonghaseyo" (Click here)
+  Fact of "Annyeonghaseyo" (Click here)
   </summary>
   
   <div style="margin-top: 15px; font-style: italic; color: #d0d0d0; line-height: 1.6;">
@@ -758,21 +761,10 @@ I'm also incredibly grateful to my wonderful teammates and to the Hackathon Sejo
 
 This trip was especially meaningful because I finally got to meet friends and brothers I'd only known online before not in Vietnam it’s Korea, which made it even more special. I was particularly impressed by Korea's beautiful scenery, rich culture, and historical landmarks. The local food was delicious, and I felt genuinely welcomed by the people there, which left a lasting impression on me.
 
-I truly fell in love with Korea and hope to return one day to reconnect with all the amazing people I met on this journey.
+I truly fell in love with Korea and hope to return one day to reconnect with all the amazing people I met on this journey. 감사합니다 🇰🇷 , 또 만나요 !
 
-<div style="display: flex; gap: 15px; margin: 20px 0;">
-  <div style="flex: 1;">
-    <img src="/images/hackathon-korea/viewplane.png" 
-         style="width: 100%; height: auto; border-radius: 12px; object-fit: cover; display: block; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" 
-         alt="...">
-  </div>
-  <div style="flex: 1;">
-    <img src="/images/hackathon-korea/medal.jpg" 
-         style="width: 100%; height: auto; border-radius: 12px; object-fit: cover; display: block; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" 
-         alt="...">
-  </div>
-</div>
+![viewplane.png](/images/hackathon-korea/viewplane.png)
 
-감사합니다 🇰🇷 , 또 만나요 !
+
 
 Thank you for taking the time to read my blog and for joining me on this memorable adventure❤️

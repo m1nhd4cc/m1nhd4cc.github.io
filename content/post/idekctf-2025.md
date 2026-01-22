@@ -20,7 +20,7 @@ During the weekend, I participated in Idek CTF... which is something new to me �
 
 
 ### Catch
-![Ảnh chụp màn hình 2025-08-04 020941](https://hackmd.io/_uploads/B127V4pvxl.png)
+![capture](https://hackmd.io/_uploads/B127V4pvxl.png)
 
 **Challenge:** In this 20-round challenge, we must find the secret sequence of matrix transformations a "cat" uses to move from a starting coordinate to a final one.
 

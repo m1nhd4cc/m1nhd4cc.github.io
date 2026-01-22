@@ -290,7 +290,7 @@ Also, you won't find small individual bowls here bcz everyone just eats together
 <details style="background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 15px; margin: 20px 0; border-left: 4px solid #4A5D23;">
   
   <summary style="cursor: pointer; font-weight: bold; font-size: 1.1em; outline: none; list-style: none;">
-    💡 Fun Facts: Dining Etiquette (Click here)
+  Facts of Dining Etiquette (Click here)
   </summary>
   
   <div style="margin-top: 15px; font-style: italic; color: #d0d0d0; line-height: 1.6;">
@@ -382,13 +382,11 @@ After wandering for a while it got dark, so I headed back to camp to prepare my 
 
 ## Dubai Trip 🐫
 
-**04/12**
-
-After hours of "brain-draining" with code and security vulnerabilities, I spent the next two days exploring Dubai's lavish beauty with my friend.
+**04/12**: After hours of "brain-draining" with code and security vulnerabilities, I spent the next two days exploring Dubai's lavish beauty with my friend.
 
 ### Asiana Hotel
 
-After brain-straining hours of hacking at Black Hat, armed with my personal notes, we moved from the camping site to the [**Asiana Hotel**](https://maps.app.goo.gl/Hoargr3s4UrtjYAf7). We decided to station ourselves here for two days to explore the city's sights
+We moved from the camping site to the [**Asiana Hotel**](https://maps.app.goo.gl/Hoargr3s4UrtjYAf7). We decided to station ourselves here for two days to explore the city's sights
 
 ![dubai35.png](/images/blackhatmea2025/dubai/dubai35.png)
 
@@ -440,7 +438,7 @@ I gave some local dishes a try here, but honestly, they didn't quite suit my tas
 <details style="background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 15px; margin: 20px 0; border-left: 4px solid #4A5D23;">
   
   <summary style="cursor: pointer; font-weight: bold; font-size: 1.1em; outline: none; list-style: none;">
-    🌍 Fun Facts pt2: Population & Nomads (Click here)
+  Facts of Population & Nomads (Click here)
   </summary>
   
   <div style="margin-top: 15px; font-style: italic; color: #d0d0d0; line-height: 1.6;">
@@ -574,10 +572,7 @@ The architecture and design are stunning, and the atmosphere is incredibly peace
 
 **Heed:** 
 
-> Wear comfortable shoes and stay hydrated. Photography is allowed in designated areas.
-> 
-
-> You can rent traditional attire here, but a crucial note for women: you must wear long sleeves and long trousers. There is a strict inspection before entry. While the rules are somewhat more relaxed for men, they are much stricter for women
+> Wear comfortable shoes and stay hydrated. Photography is allowed in designated areas. You can rent traditional attire here, but a crucial note for women: you must wear long sleeves and long trousers. There is a strict inspection before entry. While the rules are somewhat more relaxed for men, they are much stricter for women
 > 
 
 ### Burj Khalifa
@@ -723,4 +718,4 @@ But the experience didn't stop at the venue's exit doors. Shifting from the digi
 
 I'll definitely come back - next time with a fuller checklist and... a thicker wallet 😄
 
-Thank you for taking the time to read my blog about this memorable journey ❤️ Thankful!
+Thank you for taking the time to read my blog about this memorable journey ❤️
