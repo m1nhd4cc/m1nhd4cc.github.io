@@ -763,7 +763,7 @@ I truly fell in love with Korea and hope to return one day to reconnect with all
 
 <div style="display: flex; gap: 15px; margin: 20px 0;">
   <div style="flex: 1;">
-    <img src="/images/hackathon-korea/494026627_2371731856534498_5700683234493888929_n.jpg" 
+    <img src="/images/hackathon-korea/viewplane.png" 
          style="width: 100%; height: auto; border-radius: 12px; object-fit: cover; display: block; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" 
          alt="...">
   </div>
