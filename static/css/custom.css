@@ -1,0 +1,216 @@
+/* ==========================================================================
+   1. KHAI BÁO BIẾN GỐC (ROOT VARIABLES)
+   ========================================================================== */
+:root, html[data-theme="dark"], body[data-theme="dark"] {
+    --color-main: #4A5D23 !important;       
+    --color-primary: #4A5D23 !important;    
+    --color-link: #8a9a5b !important;       
+    --link-color: #8a9a5b !important;
+    --color-link-hover: #a4b688 !important; 
+}
+
+/* ==========================================================================
+   2. GLOBAL UI (SCROLLBAR, LOADING, FOOTER)
+   ========================================================================== */
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #1a1a1a !important; border-radius: 4px; }
+::-webkit-scrollbar-thumb { background-color: #4A5D23 !important; border-radius: 4px; border: 2px solid #1a1a1a; }
+::-webkit-scrollbar-thumb:hover { background-color: #6b8c42 !important; }
+
+/* Preloader & Icons */
+#loader .loader-img, 
+.loader-section img {
+    border-radius: 50% !important; 
+    mix-blend-mode: lighten !important;
+    transform: scale(0.8);
+}
+
+/* Footer Line */
+.footer-line {
+    background-color: #4A5D23 !important;
+    height: 2px !important;
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   3. HEADER & MENU & NAVIGATION
+   ========================================================================== */
+/* Màu chữ Menu & Icon (Header) */
+.header-nav .header-nav-item a,
+.header-nav .header-nav-item i,
+.header-nav .header-nav-btn i {
+    color: #a4b688 !important;
+}
+
+/* Hover Menu */
+.header-nav .header-nav-item:hover a,
+.header-nav .header-nav-item:hover i {
+    color: #7E9F46 !important;
+}
+
+/* Active Menu (Gạch chân) */
+.header-nav .header-nav-item.active:after {
+    background-color: #4A5D23 !important;
+}
+
+/* ==========================================================================
+   4. SIDEBAR (PROFILE, BUTTONS, SOCIAL)
+   ========================================================================== */
+/* Author Info & Stats */
+.sidebar-author-name { color: #8a9a5b !important; text-shadow: 0 0 10px rgba(74, 93, 35, 0.8) !important; font-weight: bold; }
+.sidebar-description { color: #6b8c42 !important; }
+.sidebar-state-number { color: #4A5D23 !important; font-weight: bold; }
+.sidebar-state-article div:first-child, .sidebar-state-category div:first-child, .sidebar-state-tag div:first-child { color: #8a9a5b !important; }
+.sidebar-social div a { color: #6b8c42 !important; }
+
+/* Avatar Border */
+.sidebar-author img, .author-avatar { 
+    border: 2px solid #4A5D23 !important; 
+    box-shadow: 0 0 15px rgba(74, 93, 35, 0.5) !important; 
+}
+
+/* Sidebar Menu Buttons (Home, About...) */
+.sidebar-menu-link-wrap {
+    border-color: #4A5D23 !important;
+    color: #a4b688 !important;
+    transition: all 0.3s ease;
+}
+.sidebar-menu-icon { color: #4A5D23 !important; }
+
+/* Sidebar Active/Hover State */
+.sidebar-menu-link-wrap:hover,
+.sidebar-menu-link-wrap.active,
+.sidebar-menu-item.active {
+    background: rgba(74, 93, 35, 0.2) !important;
+    border-color: #7E9F46 !important;
+    border-left: 3px solid #4A5D23 !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 15px rgba(74, 93, 35, 0.5) !important;
+}
+.sidebar-menu-link-wrap:hover .sidebar-menu-icon,
+.sidebar-menu-item.active a {
+    color: #7E9F46 !important;
+}
+
+/* ==========================================================================
+   5. POST CONTENT STYLING (HEADERS, TIME, BADGES)
+   ========================================================================== */
+/* Header Underlines & Bullets (#, H1, H2...) */
+.post-content h1::after, .post-content h2::after, .post-content h3::after,
+.article-entry h1::after, .article-entry h2::after, .article-entry h3::after,
+.widget-title::after,
+.article-title::after {
+    background-color: #4A5D23 !important;
+    height: 4px !important;
+}
+.post-content h1::before, .post-content h2::before, .headerlink {
+    color: #4A5D23 !important;
+}
+.hr-line { display: none !important; }
+
+/* Time/Date Badges (Khung thời gian) */
+.post-meta-date, .article-meta .date, .post-date {
+    background-color: rgba(74, 93, 35, 0.2) !important;
+    border: 1px solid #4A5D23 !important;
+    border-radius: 5px;
+    color: #a4b688 !important;
+}
+/* Reset inner Time elements */
+.post-meta-date time, .article-meta .date time, time {
+    background: transparent !important; border: none !important; padding: 0 !important; color: inherit !important; box-shadow: none !important;
+}
+/* Icons (Clock, Calendar) */
+.post-meta-date i, .article-meta .date i, .post-meta-date svg, .article-meta i {
+    color: #4A5D23 !important; fill: #4A5D23 !important;
+}
+
+/* Category Badge (Writeup - Nút vàng cũ) */
+.article-meta .article-category .article-category-link {
+    background-color: #4A5D23 !important;
+    color: #fff !important;
+}
+
+/* ==========================================================================
+   6. TAGS, CATEGORIES & PAGINATION (COMPONENTS)
+   ========================================================================== */
+/* Tags & Category Pills (Viên thuốc) */
+.tag-list-link, .article-tag-list-link, .article-category-link, .article-category-link:visited {
+    background-color: rgba(74, 93, 35, 0.15) !important;
+    color: #a4b688 !important;
+    border: 1px solid #4A5D23 !important;
+}
+.tag-list-link:hover, .article-tag-list-link:hover, .article-category-link:hover {
+    background-color: #4A5D23 !important;
+    color: #ffffff !important;
+    border-color: #4A5D23 !important;
+    box-shadow: 0 0 10px rgba(74, 93, 35, 0.6) !important;
+}
+/* Icons inside Pills */
+.article-category-link i, .article-tag-list-link i { color: #a4b688 !important; }
+
+/* Widget Dots (Dấu chấm vuông nhỏ) */
+.widget-tag-list-item::before, .widget-category-list-item::before,
+.category-list-item::before, .tag-list-item::before {
+    background: #4A5D23 !important;
+}
+
+/* Pagination (Số trang 1, 2...) */
+.pagination .page-number.current {
+    background: #4A5D23 !important;
+    border-color: #4A5D23 !important;
+    box-shadow: 0 0 10px rgba(74, 93, 35, 0.5) !important;
+}
+.pagination .page-number { color: #a4b688 !important; }
+.pagination .page-number:hover {
+    border-color: #4A5D23 !important; color: #4A5D23 !important;
+}
+
+/* ==========================================================================
+   7. CUSTOM SPINNING BUTTON (MY-BACK-TO-TOP)
+   ========================================================================== */
+/* Ẩn nút cũ */
+#back-to-top, .sidebar-top, .sidebar-btn-wrapper, .sidebar-toc-btn, .sidebar-common-btn {
+    display: none !important; visibility: hidden !important; width: 0 !important; height: 0 !important;
+}
+
+/* Nút mới */
+#my-back-to-top {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 45px; height: 45px; z-index: 99999; cursor: pointer;
+    opacity: 0; pointer-events: none; transform: translateY(20px); transition: all 0.4s ease;
+}
+#my-back-to-top img {
+    width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+    box-shadow: 0 0 15px rgba(74, 93, 35, 0.6);
+}
+.rotate { animation: rotate-infinite 3s linear infinite; }
+@keyframes rotate-infinite { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* ==========================================================================
+   8. ARCHIVES & TIMELINE (KHÔNG GỘP CHUNG VỚI MỤC KHÁC THEO YÊU CẦU)
+   ========================================================================== */
+/* Đường kẻ dọc trục thời gian */
+.archive-article-inner {
+    border-left-color: #4A5D23 !important;
+}
+
+/* Dấu chấm tròn trên trục thời gian */
+.archive-article-inner::before {
+    background-color: #4A5D23 !important;
+    box-shadow: 0 0 0 3px rgba(74, 93, 35, 0.2) !important;
+}
+
+/* Slider (Gạch ngang bên cạnh năm) */
+.archive-year-wrap::before {
+    background-color: #4A5D23 !important;
+}
+
+/* Số Năm (2025, 2024...) */
+.archive-year-wrap .archive-year {
+    color: #a4b688 !important;
+}
+
+/* Tiêu đề & Ngày tháng bài viết trong Archive */
+.archive-article-title { color: #a4b688 !important; }
+.archive-article-date { color: #6b8c42 !important; }
