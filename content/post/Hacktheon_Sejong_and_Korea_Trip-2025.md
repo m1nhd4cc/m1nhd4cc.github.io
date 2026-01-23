@@ -671,25 +671,10 @@ The traditional spicy rice cakes paired with fried chicken are a match made in h
 
 ![fooood.jpg](/images/hackathon-korea/fooood.jpg)
 
-Even a basic lunch with Kimchi and side dishes felt very hearty
-
-![lunch.jpg](/images/hackathon-korea/lunch.jpg)
-
 
 We went to a local BBQ spot and the owner was incredibly friendly. The moment he found out we were from Vietnam, he actually **gifted us an extra serving of meat** on the house! He was so adorable. Thank you so much ❤️
 
-<div style="display: flex; gap: 15px; margin: 20px 0;">
-  <div style="flex: 1;">
-    <img src="/images/hackathon-korea/516292897_1121504863283645_6811244239143569945_n.jpg" 
-         style="width: 100%; height: auto; border-radius: 12px; object-fit: cover; display: block; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" 
-         alt="...">
-  </div>
-  <div style="flex: 1;">
-    <img src="/images/hackathon-korea/518367177_1121505623283569_6106613725449056297_n.jpg" 
-         style="width: 100%; height: auto; border-radius: 12px; object-fit: cover; display: block; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" 
-         alt="...">
-  </div>
-</div>
+![fooodbbq.jpg](/images/hackathon-korea/518367177_1121505623283569_6106613725449056297_n.jpg)
 
 Can u see VietNam food? I'm starting to feel homesick
 
