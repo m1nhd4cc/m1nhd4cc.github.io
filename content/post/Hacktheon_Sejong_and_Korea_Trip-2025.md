@@ -370,7 +370,7 @@ Running the script gave us the final flag.
 
 ![flag_bc.png](/images/hackathon-korea/flag_bc.png)
 
-**> FLAG:** `FLAG{0x000202027e027e00ff83ffff83ff83ff003e424202424000fffdffcfffff83ff}`
+> **FLAG:** `FLAG{0x000202027e027e00ff83ffff83ff83ff003e424202424000fffdffcfffff83ff}`
 
 ### **Competition View**
 
@@ -556,16 +556,17 @@ You can just grab any book you want and start reading, no librarians, no checkou
 
 Since it was super crowded, I mainly focused on getting those iconic check-in shots.
 
-> *P/s: If you do want to read but don't know Korean, the library actually provides **iPads**! You can use them to translate content or read e-books in your preferred language.*
-> 
+*P/s: If you do want to read but don't know Korean, the library actually provides **iPads**! You can use them to translate content or read e-books in your preferred language.*
 
-### Gwanghwamun
+### Gyeongbokgung 
 
-Next up, we headed to [**Gwanghwamun**](https://maps.app.goo.gl/ctGF8bH9JBGwm4gv5). I *cannot* skip this place - it is iconic
+Next up, we headed to [**Gwanghwamun Gate**](https://maps.app.goo.gl/ctGF8bH9JBGwm4gv5). Even though it has been rebuilt multiple times over the centuries, it stands tall today as an absolute icon of Seoul.
+
+Construction began in **1395**, at the beginning of the **Joseon dynasty**. The gate quickly became one of the most important gates, as it protected the main palace. This main gate also holds a rich history; during the Japanese invasion of 1592, it was destroyed by fire and left abandoned for over **250 years**. After being rebuilt in **1867**, its wooden structure was again destroyed during the **Korean War**, and the stone foundation was left unfinished.
+
+![Gwanghwamun Gate](/images/hackathon-korea/korea18.png)
 
 You should try to time your visit perfectly to see the **Royal Changing of the Guard**. It's definitely worth checking the schedule beforehand because it's a truly spectacular sight! I couldn't make it because I was running late.
-
-![Gwanghwamun Palace](/images/hackathon-korea/korea18.png)
 
 The complex is massive with so many different sections. I haven't dug too deep into the history books, but one thing that stood out was the giant statue of **King Sejong** right in the middle of the square. I learned that he’s a legendary figure from the Joseon Dynasty, basically the "Great King" who invented **Hangul** (the Korean alphabet we see everywhere today)
 
@@ -627,8 +628,7 @@ I just want to drop a few random photos I took while walking around. Here are a 
 
 ![korea23.png](/images/hackathon-korea/korea23.png)
 
-streets
-
+streets 
 <div style="display: flex; gap: 15px; margin: 20px 0;">
   <div style="flex: 1;">
     <img src="/images/hackathon-korea/korea14.png" 
@@ -643,19 +643,15 @@ streets
 </div>
 
 rainbow
-
 ![korea17.png](/images/hackathon-korea/korea17.png)
 
 souvenir shop
-
 ![korea6.png](/images/hackathon-korea/korea6.png)
 
 streets in alleys
-
 ![korea5.png](/images/hackathon-korea/korea5.png)
 
 photobooth
-
 ![korea27.png](/images/hackathon-korea/korea27.png)
 
 Honestly, you don't even need to go to famous tourist spots to find beauty here. Just wandering down a random street feels like being in a movie scene. Everything is super clean, organized, and has this really peaceful, cinematic vibes..
@@ -664,44 +660,24 @@ Honestly, you don't even need to go to famous tourist spots to find beauty here.
 
 ![korea30.png](/images/hackathon-korea/korea30.png)
 
+streets at night
+![street-fd.png](/images/hackathon-korea/street-fd.png)
+
 Of course, with a "foodie soul" like mine, there is no way I could finish this blog without talking about the food! 🤤
 My impression of Korean food is that it's quite spicy and bland (probably because I'm used to Vietnamese food)
 
 The traditional spicy rice cakes paired with fried chicken are a match made in heaven
-
 ![fooood.jpg](/images/hackathon-korea/fooood.jpg)
 
+A raw food restaurant that we chose based on a friend's recommendation... it's good
+![fooodd.png](/images/hackathon-korea/fooodd.png)
 
-We went to a local BBQ spot and the owner was incredibly friendly. The moment he found out we were from Vietnam, he actually **gifted us an extra serving of meat** on the house! He was so adorable. Thank you so much ❤️
+We went to a local BBQ spot and the owner was incredibly friendly. The moment he found out we were from Vietnam, he actually **gifted us an extra serving of meat** on the house! He was so adorable ❤️
 
 ![fooodbbq.jpg](/images/hackathon-korea/518367177_1121505623283569_6106613725449056297_n.jpg)
 
-Can u see VietNam food? I'm starting to feel homesick
-
-![korea13.png](/images/hackathon-korea/korea13.png)
-
 ‘Nice to meat you” =)))))
-
-![korea37.png](/images/hackathon-korea/korea37.png)
-
-<details style="background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 15px; margin: 20px 0; border-left: 4px solid #4A5D23;">
-  
-  <summary style="cursor: pointer; font-weight: bold; font-size: 1.1em; outline: none; list-style: none;">
-  Fact of "Annyeonghaseyo" (Click here)
-  </summary>
-  
-  <div style="margin-top: 15px; font-style: italic; color: #d0d0d0; line-height: 1.6;">
-    <p>
-      Did you know that the standard Korean greeting "안녕하세요" (Annyeonghaseyo) is grammatically a question? That's why you often see it written with a question mark (?)
-    </p>
-    <p>
-      The word "Annyeong" (안녕) comes from Hanja (Chinese characters) and literally means "peace", "safety" or "well-being". In the past, during times of constant war and instability, just surviving the night was considered a blessing. So when people met in the morning, they wouldn't just say a casual "hi". Instead, they would anxiously ask: "Did you stay safe through the night?" (밤새?) or "Did you sleep peacefully?" (안녕히 주무셨습니까?)
-    </p>
-    <p>
-      Over time, these phrases were shortened into the "안녕하세요" we use today. So essentially, it’s not just a meaningless greeting. It is a genuine inquiry wishing for the listener's peace and safety^^
-    </p>
-  </div>
-</details> 
+![korea37.png](/images/hackathon-korea/korea37.png) 
 
 On our very last night, a close *hyung* of mine who lives in Korea invited me out for a special dinner. We had a massive **Seafood feast** accompanied by traditional **Makgeolli** (rice wine).
 
@@ -720,6 +696,9 @@ Honestly, for a student like me, this was a truly luxurious experience. It was t
   </div>
 </div>
 
+Can u see VietNam food? I'm starting to feel homesick
+![korea13.png](/images/hackathon-korea/korea13.png)
+
 <details style="background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 15px; margin: 20px 0; border-left: 4px solid #4A5D23;">
   
   <summary style="cursor: pointer; font-weight: bold; font-size: 1.1em; outline: none; list-style: none;">
@@ -737,6 +716,27 @@ Honestly, for a student like me, this was a truly luxurious experience. It was t
 </details> 
 
 I feel lucky that I didn't get into any fights or encounter any difficult people, everything went smoothly ^^
+
+<details style="background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 15px; margin: 20px 0; border-left: 4px solid #4A5D23;">
+  
+  <summary style="cursor: pointer; font-weight: bold; font-size: 1.1em; outline: none; list-style: none;">
+  Fact of "Annyeonghaseyo" (Click here)
+  </summary>
+  
+  <div style="margin-top: 15px; font-style: italic; color: #d0d0d0; line-height: 1.6;">
+    <p>
+      Did you know that the standard Korean greeting "안녕하세요" (Annyeonghaseyo) is grammatically a question? That's why you often see it written with a question mark (?)
+    </p>
+    <p>
+      The word "Annyeong" (안녕) comes from Hanja (Chinese characters) and literally means "peace", "safety" or "well-being". In the past, during times of constant war and instability, just surviving the night was considered a blessing. So when people met in the morning, they wouldn't just say a casual "hi". Instead, they would anxiously ask: "Did you stay safe through the night?" (밤새?) or "Did you sleep peacefully?" (안녕히 주무셨습니까?)
+    </p>
+    <p>
+      Over time, these phrases were shortened into the "안녕하세요" we use today. So essentially, it’s not just a meaningless greeting. It is a genuine inquiry wishing for the listener's peace and safety^^
+    </p>
+  </div>
+</details>
+
+
 
 ## The End
 
