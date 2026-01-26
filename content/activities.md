@@ -17,12 +17,12 @@ comments: false
 
 ## Achievements
 
-### University
+**University**
 - **First prize**, “DINH IT” Competition at my University 2023.
 - **Merit Prize**, Hutech IT Got Talent 2024.
 - **Top 12 Outstanding Participants**, VNNIC Internet Conference 2024.
 
-### Finalist
+**Finalist**
 - ASEAN Students with Information Security 2024 (VNISA).
 - CIS National Information Security 2024 (KMA).
 - Digital Dragons CTF 2025 (DDC).
@@ -31,4 +31,4 @@ comments: false
 - Ho Chi Minh University of Science Capture The Flag 2025 (HCMUS).
 - Visitor BlackHat MEA 2025 (Riyadh, Saudi).
 
-**On top 10~20 Finisher Various national CTF competitions on [CTFTime](https://ctftime.org/)**.
+**Actively participate in international CTF competitions on [CTFTime](https://ctftime.org/)**.
