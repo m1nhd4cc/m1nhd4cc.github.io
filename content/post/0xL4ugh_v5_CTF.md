@@ -846,6 +846,8 @@ int __fastcall sub_1400024D0(const char *a1)
 And this note for us:
 "*All your files are encrypted by K1r1too! To restore, contact him at https://medium.com/@karimesam117*"
 
+![image](https://hackmd.io/_uploads/ByUDwMHIWe.png)
+
 So we now have the encryption key: 
 `cc2e406c5a9cf1202256672389781d0ebecbf73bbc091b035f88a41b90b7b07f`
 
