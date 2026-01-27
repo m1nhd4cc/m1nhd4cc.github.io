@@ -1148,3 +1148,53 @@ answer: **IMPORTANT.TXT-MEETINGS.TXT-REMINDERS.TXT-RESEARCH.TXT-STAND_PROUD_YOU_
 
 > Flag: 0xL4ugh{97913f33aac650abb1c799e5b7e9041a} 
 
+## Manipulation
+
+![image](https://hackmd.io/_uploads/r1qfOGUU-e.png)
+
+
+*ALLAM was working on a project file when something weird happened—some numbers didn’t match up, and the data looked off. Turns out, someone accessed his machine, edited the file, and left without a trace. Your job? Dig through the disk image, track the changes, and figure out exactly what was altered to reveal the flag.*
+
+![image](https://hackmd.io/_uploads/Syj8VMLUZg.png)
+
+File Manipulation.001 is a raw forensic image of a disk. For the operating system (Windows) to be able to read the file system (NTFS) structure inside, we need to mount it as a real physical drive.
+    
+First, download [ArsenalImageMounter Tools](https://arsenalrecon.com/downloads). Then load file Manipulation.001, after successfully mounting the drive, open This PC, we will see a new drive appear
+    
+![image](https://hackmd.io/_uploads/SJKaVf88Zg.png)
+
+Look around folder
+![image](https://hackmd.io/_uploads/H1LfH78Ibl.png)
+
+***dir /r***
+![image](https://hackmd.io/_uploads/ByWsHGL8bg.png)
+
+Read file **secret.txt** (The stream contains metadata about the file's origin)
+![image](https://hackmd.io/_uploads/S10eIz88bx.png)
+
+```
+[ZoneTransfer]
+ZoneId=3
+HostUrl=https://objects.githubusercontent.com/github-production-repository-file-5c1aeb/846622427/24846253?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250226%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250226T095503Z&X-Amz-Expires=300&X-Amz-Signature=455d77a80d9539a1de43d47c6693fc0ddbea1a9317ff9c597389904c2054c797&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3Bfilename%3Dsecret.txt&response-content-type=text%2Fplain
+```
+
+- ZoneId=3: Confirms this file was downloaded from the Internet
+- HostUrl: This is the original download link. However, this is an AWS CDN link (Amazon S3) that GitHub uses to temporarily store the file.
+- This link contains two important numbers in the path: https://objects.githubusercontent.com/github-production-repository-file-5c1aeb/ ***846622427*** / ***24846253*** ?X-Amz...
+
+According to GitHub's mechanism, attachments in Issues or Comments usually have a public link structure like this: https://github.com/user-attachments/files/{FILE_ID}/{FILE_NAME}
+    
+From that long AWS URL, we have two candidates for {FILE_ID}:
+1. 846622427
+2. 24846253
+
+And the file: secret.txt
+
+Now, try matching these two IDs to GitHub's standard structure to find the original file and i found correct link: https://github.com/user-attachments/files/24846253/secret.txt
+    
+when access link, we got the flag
+![image](https://hackmd.io/_uploads/SJIIOzIUWe.png)
+
+> Flag: 0xL4ugh{Disc1plin3d_0n_duty_Rel3ntless_0ff_1t}
+    
+*The challenge wasn't difficult, but it was strange to me. btw tks author for chall*
