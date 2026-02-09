@@ -27,7 +27,7 @@ Mình sẽ sử dụng [nmap](https://nmap.org/) để kiểm tra các port đư
 ```
 nmap -sV -A 10.0.2.15
 ```
-![nmap_scan_victim](https://hackmd-prod-images.s3.ap-northeast-1.amazonaws.com/uploads/upload_a7088c4ea304a1332f82cbc75052ab60.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1768496526&Signature=ww5OT0tbNBCRKefRLMG%2FZ4HgD7Q%3D)
+![nmap_scan_victim](https://hackmd.io/_uploads/H1f-j23vlg.png)
 
 Kết quả cho thấy máy windows đang mở rất nhiều port có thể exploit. Trong đó có 1 port đặc biệt lưu ý:
 
