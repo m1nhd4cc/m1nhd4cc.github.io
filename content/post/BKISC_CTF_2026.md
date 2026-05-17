@@ -809,11 +809,10 @@ with open('flag.png', 'wb') as f: f.write(encrypted_data)
 ![image](https://hackmd.io/_uploads/rJ6bm1Pyze.png)
 
 Đề cho 1 file ad1 khá nặng ~10GB khiến việc điều tra ban đầu khá khó khăn, mình đã mất nhiều thời gian để tìm được hướng đi 
+Vọc 1 hồi mình tìm thấy được script đáng ngờ: `nuke.py`
 
-Vọc 1 hồi mình tìm thấy được kẻ thù đã xóa 2 file quan trọng pdf và txt
 ![image](https://hackmd.io/_uploads/HJCqQkDkMe.png)
 
-nuke.py
 ```python    
 import os
 import sys
@@ -954,10 +953,11 @@ if __name__ == '__main__':
     main()
 ```
 
-đọc hàm quan trọng `secure_wipe_file` thấy hàm này sẽ ghi đè nội dung file bằng byte *0x00*, đồng bộ xuống disk rồi xóa file
+đọc hàm `secure_wipe_file` thấy hàm này sẽ ghi đè nội dung file bằng byte *0x00*, đồng bộ xuống disk rồi xóa file
 *Từ đây mình hướng tới cách giải là tìm tools có thể phục hồi được 2 cái file quan trọng này*
 
-Mình có vọc được thêm file INBOX chứa nội dung của attacker. Navigate đến `AppData\Roaming\Thunderbird\Profiles\b62yv516.default-release\ImapMail\imap.gmail.com\`
+Mình có vọc được thêm file INBOX chứa nội dung của attacker. 
+Navigate đến `AppData\Roaming\Thunderbird\Profiles\b62yv516.default-release\ImapMail\imap.gmail.com\`
  
 ![image](https://hackmd.io/_uploads/SyUfSkPyzl.png)
 Tìm thấy file **INBOX** có thể đọc được. Phần lớn là Google security alert (nhiễu), nhưng vẫn có phát hiện
