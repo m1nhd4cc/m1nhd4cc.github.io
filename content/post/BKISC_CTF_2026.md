@@ -461,7 +461,7 @@ print(RC4(key, plaintext).decode())
 
 ## The Interview
 
-![image](https://hackmd.io/_uploads/SJ9kSN0RWx.png)
+![image](https://hackmd.io/_uploads/Sy3X2wwJzg.png)
 
 *You are an undercover police officer, sent on a dangerous mission to bring down a fraudulent organization from the inside. Your only way in is to pose as a job applicant, and now, the company has contacted you for an interview. You unexpectedly gain access to the HR representative’s phone data. It is your chance to expose their secrets and take the entire operation down.*
 *!!!WARNING: Need OSINT skills to complete the challenge*
@@ -716,7 +716,7 @@ Vậy ta có Flag:
 
 ## HomeWork
 
-![image](https://hackmd.io/_uploads/HJJXLNACZx.png)
+![image](https://hackmd.io/_uploads/HJFD2DPJzl.png)
 *My friend and I were sleeping in our online class, when the session ended in group chat our teacher said the deadline is tomorrow, but we don't know what it is. Can you help us ?*
 *Flag format is BKISC{}*
 
