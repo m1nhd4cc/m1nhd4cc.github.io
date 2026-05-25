@@ -18,26 +18,26 @@ cover: "/images/post_covers/wu_gdu_training.jpg"
 **Câu hỏi:** Biết hacker đã upload thành công webshell sau đó truy cập vào để điều khiển máy chủ ứng dụng.
 
 Khi tấn công vào hệ thống cần rất nhiều thời gian, ta lọc time-token lớn nhất.
-![image](https://hackmd.io/_uploads/SkME5tLH-x.png)
+![image](/images/gductf_training/1.png)
 
 > **IP của attacker:** `216.139.234.95`
 
 ### Q2: Thời gian tấn công bằng webshell
 Dựa vào IP tìm được ở câu 1, đối chiếu qua thời gian (time).
-![image](https://hackmd.io/_uploads/HybB9KLB-e.png)
+![image](/images/gductf_training/2.png)
 
 > **Thời gian tấn công:** `15:19:50`
 
 ### Q3: Xác minh mã hash SHA-256 của webshell
 Dựa vào câu 1 đối chiếu thì đường dẫn webshell là: `/webs/web/images/image1.php`.
 Tuy nhiên, khi vào thư mục `images` lại không tìm thấy tệp `image1.php`. Có nghĩa là attacker đã đổi tên và di chuyển nó đi nơi khác.
-![image](https://hackmd.io/_uploads/rkTI5FUHbl.png)
+![image](/images/gductf_training/3.png)
 
 Nhìn xuống dòng tiếp theo sẽ thấy attacker truy cập vào: `/Webs/Web/ListSP/showSanPham.php`
-![image](https://hackmd.io/_uploads/BklO9tIHbl.png)
+![image](/images/gductf_training/4.png)
 
 Sau khi truy cập vào đường dẫn thì tìm được webshell:
-![image](https://hackmd.io/_uploads/HJnOct8Sbe.png)
+![image](/images/gductf_training/5.png)
 
 Tính toán mã hash SHA-256 của webshell:
 ![image](https://hackmd.io/_uploads/B1KFqK8SWx.png)
@@ -50,10 +50,10 @@ Tính toán mã hash SHA-256 của webshell:
 ### Q4: Xác định tài khoản được tạo thêm
 Để xác định được tài khoản được tạo thêm, kiểm tra Windows Powershell của `web-data`.
 Để tạo tên đăng nhập sẽ dùng lệnh `New-LocalUser` nên chỉ cần lọc lệnh này ra.
-![image](https://hackmd.io/_uploads/r1TcqtLrWl.png)
+![image](/images/gductf_training/7.png)
 
 Sau khi kiểm tra thì biết được thông tin:
-![image](https://hackmd.io/_uploads/B12a9Y8S-l.png)
+![image](/images/gductf_training/8.png)
 
 > **Username:** `SOCAdmin`
 > **Password:** `qwerty@123#`
@@ -61,13 +61,13 @@ Sau khi kiểm tra thì biết được thông tin:
 ### Q5: Xác định mã hash SHA-256 của công cụ leo thang đặc quyền
 Để xác định được công cụ leo thang đặc quyền, kiểm tra Windows Powershell của `web-data`.
 Để tải 1 công cụ leo thang đặc quyền thì dùng lệnh `wget` nên ta sẽ lọc từ khóa này.
-![image](https://hackmd.io/_uploads/BJ3yotISWg.png)
+![image](/images/gductf_training/9.png)
 
 Sau khi kiểm tra thì tìm được:
-![image](https://hackmd.io/_uploads/S1KliYIH-l.png)
+![image](/images/gductf_training/10.png)
 
 Xác định `GodPotato-NET35.exe` là công cụ leo thang đặc quyền.
-![image](https://hackmd.io/_uploads/S1QWoKLrWe.png)
+![image](/images/gductf_training/11.png)
 
 > **SHA-256:**
 > ```text
@@ -76,17 +76,17 @@ Xác định `GodPotato-NET35.exe` là công cụ leo thang đặc quyền.
 
 ### Q6: Xác định mật khẩu tài khoản dùng để tấn công AD
 Như ở câu trên thì attacker đã dùng công cụ leo thang đặc quyền nên thường tài khoản tấn công sẽ là **Administrator**.
-![image](https://hackmd.io/_uploads/HkTZsFUr-e.png)
+![image](/images/gductf_training/12.png)
 
 Theo dõi luồng (Follow Stream):
-![image](https://hackmd.io/_uploads/SJZGjYLrZe.png)
+![image](/images/gductf_training/13.png)
 Tài khoản dùng tấn công đã đăng nhập vào lúc `16:00:49`.
 
 Xuất file `ad-vm1.pcapng` sang `ad-vm1.pcap`.
-![image](https://hackmd.io/_uploads/HkszjFUHWx.png)
+![image](/images/gductf_training/14.png)
 
 Dùng **Network Miner** tìm đến khoảng thời gian trên thì sẽ thấy hash password (NTLMv2).
-![image](https://hackmd.io/_uploads/HyhQiFLBWl.png)
+![image](/images/gductf_training/15.png)
 
 Dùng Hashcat để crack chuỗi NetNTLMv2 hash. Cấu trúc: `USERNAME::DOMAIN:SERVER_CHALLENGE:NTLMV2_RESPONSE:BLOB`
 
@@ -94,25 +94,25 @@ Dùng Hashcat để crack chuỗi NetNTLMv2 hash. Cấu trúc: `USERNAME::DOMAIN
 
 ### Q7: Policy trên máy người dùng
 Kiểm tra trong Windows Powershell của `ad-data`. Vì là policy nên lọc theo `new-gpo`.
-![image](https://hackmd.io/_uploads/HyONstISbe.png)
+![image](/images/gductf_training/16.png)
 
 **Cú pháp cơ bản:**
 `New-GPO -Name "Tên-GPO" [-Domain "tên-domain"] [-Comment "ghi chú"] [-StarterGPOName "tên-starter-gpo"]`
 
-![image](https://hackmd.io/_uploads/H1yrjKIrZx.png)
-![image](https://hackmd.io/_uploads/HkOHsYLBZx.png)
+![image](/images/gductf_training/17.png)
+![image](/images/gductf_training/18.png)
 
 > **Tên Policy:** `OpenThis`
 
 ### Q8: Xác định mã hash SHA-256 của Mã độc mã hóa tệp tin
 Mở file `pc-user-vm0.pcapng`. Lọc theo giao thức `smb2`.
 Chuột phải chọn **Protocol Preferences 🡪 SMB2 (…) 🡪 Use the full…**
-![image](https://hackmd.io/_uploads/HJ8UsKUH-g.png)
+![image](/images/gductf_training/19.png)
 
 Sau đó Export file -> Lưu file -> Dùng `sha256sum` để kiểm tra.
-![image](https://hackmd.io/_uploads/HJJwsF8H-x.png)
-![image](https://hackmd.io/_uploads/By2wiY8BWg.png)
-![image](https://hackmd.io/_uploads/rkgdsFIHWe.png)
+![image](/images/gductf_training/20.png)
+![image](/images/gductf_training/21.png)
+![image](/images/gductf_training/22.png)
 
 > **SHA-256:**
 > ```text
@@ -125,71 +125,71 @@ Sau đó Export file -> Lưu file -> Dùng `sha256sum` để kiểm tra.
 
 ### Q1. Bản phân phối Linux nào đang được sử dụng?
 Kiểm tra tại `partition5/boot`.
-![image](https://hackmd.io/_uploads/r1uKoFLH-l.png)
+![image](/images/gductf_training/23.png)
 
 > **Đáp án:** `vmlinuz-4.13.0-kali1-amd64`
 
 ### Q2. Hàm băm MD5 của access.log apache là gì?
 Đường dẫn: `/var/log/apache/`.
-![image](https://hackmd.io/_uploads/BJWqoFUBZe.png)
+![image](/images/gductf_training/24.png)
 
 Vào file chọn *Export file hash list*, mở file đã export.
-![image](https://hackmd.io/_uploads/SyLqjF8r-x.png)
-![image](https://hackmd.io/_uploads/H1eosFLHZg.png)
+![image](/images/gductf_training/25.png)
+![image](/images/gductf_training/26.png)
 
 > **MD5 Hash:** `d41d8cd98f00b204e9800998ecf8427e`
 
 ### Q3. Tên tệp của công cụ kết xuất thông tin xác thực đã tải xuống?
 Kiểm tra thư mục Downloads: `/root/Downloads/`.
-![image](https://hackmd.io/_uploads/BkqsiFLH-l.png)
+![image](/images/gductf_training/27.png)
 
 > **Tên công cụ:** `mimikatz_trunk.zip`
 
 ### Q4. Đường dẫn tuyệt đối của tệp siêu bí mật?
 Kiểm tra file `.bash_history` trong `/root/` để xem lịch sử lệnh.
-![image](https://hackmd.io/_uploads/BJV2iYIBbx.png)
-![image](https://hackmd.io/_uploads/Sk93iYUHZl.png)
+![image](/images/gductf_training/28.png)
+![image](/images/gductf_training/29.png)
 
 > **Đường dẫn:** `/root/Desktop/SuperSecretFile.txt`
 
 ### Q5. Chương trình nào được sử dụng với didyouthinkwedmakeiteasy.jpg?
 Vẫn tìm trong `.bash_history`.
-![image](https://hackmd.io/_uploads/Hkl6oFISZl.png)
+![image](/images/gductf_training/30.png)
 
 > **Chương trình:** `binwalk`
 
 ### Q6. Mục tiêu thứ ba trong danh sách kiểm tra mà Karen tạo ra?
 Kiểm tra tại `/root/Desktop/`.
-![image](https://hackmd.io/_uploads/Hkv6sFLS-l.png)
+![image](/images/gductf_training/31.png)
 
 > **Mục tiêu:** `Profit`
 
 ### Q7. Apache đã chạy bao nhiêu lần?
 Kiểm tra `/var/log/`.
-![image](https://hackmd.io/_uploads/rJRpjKUBWe.png)
+![image](/images/gductf_training/32.png)
 Kích thước file `access.log` là 0.
 
 > **Kết luận:** Máy chủ Apache chưa chạy lần nào.
 
 ### Q8. Hồ sơ nào chứng minh máy này dùng để tấn công người khác?
 Vào `/root/`.
-![image](https://hackmd.io/_uploads/HJr0otUr-g.png)
+![image](/images/gductf_training/33.png)
 
 ### Q9. Karen đang chế nhạo ai qua kịch bản bash?
 Vào `/root/Documents/myfirsthack/`.
-![image](https://hackmd.io/_uploads/Hk5RjF8rWe.png)
+![image](/images/gductf_training/34.png)
 
 > **Karen đang chế nhạo:** `Young`
 
 ### Q10. Ai là người dùng đã root vào lúc 11:26 nhiều lần?
 Vào `partition5/var/log/auth.log`.
-![image](https://hackmd.io/_uploads/BJ-y3KUBbg.png)
+![image](/images/gductf_training/35.png)
 
 > **User:** `postgres`
 
 ### Q11. Dựa trên lịch sử bash, thư mục làm việc hiện tại là gì?
 Vào `/root/`.
-![image](https://hackmd.io/_uploads/HyIy3FIHZe.png)
+![image](/images/gductf_training/36.png)
 
 > **Thư mục:** `/root/Documents/myfirsthack/`
 
@@ -198,166 +198,166 @@ Vào `/root/`.
 ## Phần 3: Phân tích đĩa (Horcrux-partition 2)
 
 ### Q1. Tên của examiner đã tạo ra E01 là gì?
-![image](https://hackmd.io/_uploads/SJlght8HZl.png)
+![image](/images/gductf_training/37.png)
 > **Đáp án:** `Minerva`
 
 ### Q2. Tên người dùng chính của máy?
-![image](https://hackmd.io/_uploads/HkCe2tUHWe.png)
-![image](https://hackmd.io/_uploads/H1Q-nKISWx.png)
+![image](/images/gductf_training/38.png)
+![image](/images/gductf_training/39.png)
 > **Đáp án:** `Karen`
 
 ### Q3. Hàm băm SHA1 của bằng chứng là gì?
-![image](https://hackmd.io/_uploads/Bklr2tIrZx.png)
+![image](/images/gductf_training/40.png)
 > **SHA1:** `0fa6ab4bd9a707d49ded70e8b9198fe18114b369`
 
 ### Q4. Hình ảnh được tạo ra lúc mấy giờ?
 Format UTC (24h): `MM/DD/YYYY HH:MM:SS`
-![image](https://hackmd.io/_uploads/HyzInKIBbe.png)
+![image](/images/gductf_training/41.png)
 > **Đáp án:** `03/23/2019 00:08:08`
 
 ### Q5. Hệ điều hành nào được cài đặt?
-![image](https://hackmd.io/_uploads/B1T8nKUrbe.png)
+![image](/images/gductf_training/42.png)
 > **Đáp án:** `Windows 10`
 
 ### Q6. Chủ đề được sử dụng khi tạo ra E01 là gì?
 *Gợi ý: Phân biệt chữ hoa chữ thường, hai từ.*
 
 * Minerva (Minerva McGonagall)
-    ![image](https://hackmd.io/_uploads/rkNd2YUrZx.png)
+    ![image](/images/gductf_training/43.png)
 * Voldemort
-    ![image](https://hackmd.io/_uploads/SJqw3YLBZe.png)
-    ![image](https://hackmd.io/_uploads/B1NK3tUrZe.png)
-    ![image](https://hackmd.io/_uploads/SJnFhKIBbg.png)
+    ![image](/images/gductf_training/44.png)
+    ![image](/images/gductf_training/45.png)
+    ![image](/images/gductf_training/46.png)
 * Horcrux
-    ![image](https://hackmd.io/_uploads/ByS5ht8HZl.png)
+    ![image](/images/gductf_training/47.png)
 * Dementor
-    ![image](https://hackmd.io/_uploads/Syi5hF8HZl.png)
+    ![image](/images/gductf_training/48.png)
 
 > **Chủ đề:** `Harry Potter`
 
 ### Q7. Tên được giải mã của Hồ sơ bằng chứng?
-![image](https://hackmd.io/_uploads/HkrsnFLHWx.png)
-![image](https://hackmd.io/_uploads/S1Vn3YUBWx.png)
+![image](/images/gductf_training/49.png)
+![image](/images/gductf_training/50.png)
 > **Đáp án:** `You're a wizard Harry!`
 
 ### Q8. Tên máy chủ của phân vùng Windows?
-![image](https://hackmd.io/_uploads/SJ6n3KISZe.png)
+![image](/images/gductf_training/51.png)
 > **Hostname:** `TOTALLYNOTAHACK`
 
 ### Q9. Tên phần mềm nhắn tin được sử dụng?
-![image](https://hackmd.io/_uploads/H1-T3FLHbl.png)
-![image](https://hackmd.io/_uploads/SJdT2YLH-e.png)
+![image](/images/gductf_training/52.png)
+![image](/images/gductf_training/53.png)
 > **Software:** `Skype`
 
 ### Q10. Mã zip của bài đăng craigslist của Karen?
-![image](https://hackmd.io/_uploads/SJCahY8Sbe.png)
+![image](/images/gductf_training/54.png)
 > **Zip code:** `19709`
 
 ### Q11. What are the initials of the person who contacted Karen?
 > **Initials:** `M.S`
 
 ### Q12. How much money was TAAUSAI willing to pay Karen upfront?
-![image](https://hackmd.io/_uploads/Hk502KIBWx.png)
+![image](/images/gductf_training/55.png)
 > **Amount:** `150000 USD`
 
 ### Q13. What country is Karen meeting the hacker group in?
 Tọa độ: `27°22’50.10″N, 33°37’54.62″E`
-![image](https://hackmd.io/_uploads/HJolaK8Hbg.png)
+![image](/images/gductf_training/56.png)
 > **Country:** `Ai Cập` (Egypt)
 
 ### Q14. What is the timezone?
-![image](https://hackmd.io/_uploads/S1U-pYUBbg.png)
+![image](/images/gductf_training/57.png)
 > **Timezone:** `UTC`
 
 ### Q15. Thời gian truy cập cuối cùng cho AlpacaCare.docx?
 *Yêu cầu: Gửi theo UTC dưới dạng MM/DD/YYYY HH:MM:SS (24h)*
 Vì máy đang ở múi giờ ICT nên cần đổi sang UTC.
-![image](https://hackmd.io/_uploads/HJkQptIrZl.png)
+![image](/images/gductf_training/58.png)
 > **Đáp án:** `03/17/2019 21:52:20`
 
 ### Q16. Chữ cái ổ đĩa của vách ngăn thứ hai?
-![image](https://hackmd.io/_uploads/BkAbTYLSZg.png)
+![image](/images/gductf_training/59.png)
 > **Drive Letter:** `A`
 
 ### Q17. Câu trả lời cho câu hỏi mà quản lý của Michael hỏi Karen?
-![image](https://hackmd.io/_uploads/BJEuTKLBWl.png)
-![image](https://hackmd.io/_uploads/BJKdTY8HZe.png)
+![image](/images/gductf_training/60.png)
+![image](/images/gductf_training/61.png)
 > **Đáp án:** `TheCardCriesNoMore`
 
 ### Q18. Karen được xem xét cho công việc gì?
 *Lưu ý: Viết thường, không khoảng trắng.*
-![image](https://hackmd.io/_uploads/BkJtatUSZl.png)
+![image](/images/gductf_training/62.png)
 > **Job:** `cybersecurityanalysts`
 
 ### Q19. Mật khẩu của Karen được thay đổi lần cuối khi nào (UTC)?
-![image](https://hackmd.io/_uploads/BJQYptIr-e.png)
-![image](https://hackmd.io/_uploads/rJuKTYLrWe.png)
+![image](/images/gductf_training/63.png)
+![image](/images/gductf_training/64.png)
 > **Time:** `03/21/2019 19:13:09`
 
 ### Q20. Phiên bản Chrome nào được cài đặt?
-![image](https://hackmd.io/_uploads/Syb56FLHZx.png)
+![image](/images/gductf_training/65.png)
 > **Version:** `72.0.3626.121`
 
 ### Q21. Địa chỉ email liên kết với câu trả lời từ Alpaca enthusiast?
-![image](https://hackmd.io/_uploads/Hy1o6KUS-g.png)
+![image](/images/gductf_training/66.png)
 > **Email:** `7066d7539fdf30539e2e43ba5fd21606@reply.craigslist.org`
 
 ### Q22. Công cụ mà Karen hy vọng sẽ học cách sử dụng?
-![image](https://hackmd.io/_uploads/rJBoTKLrWe.png)
+![image](/images/gductf_training/67.png)
 > **Tool:** `BeEF`
 
 ### Q23. Tên tập đĩa của phân vùng thứ ba trên laptop?
-![image](https://hackmd.io/_uploads/S1p3aYIBWe.png)
+![image](/images/gductf_training/68.png)
 > **Label:** `PacaLady`
 
 ### Q24. HostUrl của Skype là gì?
-![image](https://hackmd.io/_uploads/rkHBRFLSWe.png)
-![image](https://hackmd.io/_uploads/Bk5HCF8HWe.png)
+![image](/images/gductf_training/69.png)
+![image](/images/gductf_training/70.png)
 > **URL:** `https://download.skype.com/s4l/download/win/Skype-8.41.0.54.exe`
 
 ### Q25. Tên của Alpaca yêu thích của Bob?
-![image](https://hackmd.io/_uploads/HkHURtUBZe.png)
-![image](https://hackmd.io/_uploads/H1KL0t8Bbe.png)
+![image](/images/gductf_training/71.png)
+![image](/images/gductf_training/72.png)
 
 Tải về và extract với password: `pacalove`
-![image](https://hackmd.io/_uploads/BJovCFIrZx.png)
-![image](https://hackmd.io/_uploads/HJgOCt8r-x.png)
+![image](/images/gductf_training/73.png)
+![image](/images/gductf_training/74.png)
 
 Giải mã chuỗi: `MFDfMiTfMyHfMyHfMyj=`
-![image](https://hackmd.io/_uploads/r1ndRKIHZe.png)
-![image](https://hackmd.io/_uploads/r1WF0tLBZg.png)
+![image](/images/gductf_training/75.png)
+![image](/images/gductf_training/76.png)
 > **Name:** `Jerry`
 
 ### Q26. Tìm tệp với MD5 2BD8E82961FC29BBBCF0083D0811A9DB?
-![image](https://hackmd.io/_uploads/rk6YCtLHbg.png)
-![image](https://hackmd.io/_uploads/BJL90FUB-x.png)
-![image](https://hackmd.io/_uploads/B1RqAFLBZl.png)
+![image](/images/gductf_training/77.png)
+![image](/images/gductf_training/78.png)
+![image](/images/gductf_training/79.png)
 > **Link:** `http://ctf.champdfa.org/winnerwinnerchickendinner/potato.txt`
 
 ### Q27. Tên miền trang web Karen duyệt (liên quan AlpacaCare.docx)?
-![image](https://hackmd.io/_uploads/H17sAtUSbg.png)
-![image](https://hackmd.io/_uploads/r1oiRt8BWl.png)
+![image](/images/gductf_training/80.png)
+![image](/images/gductf_training/81.png)
 > **Domain:** `palominoalpacafarm`
 
 ### Q28. Dấu thời gian tạo tệp bí mật (UTC)?
-![image](https://hackmd.io/_uploads/SkdnCK8S-e.png)
-![image](https://hackmd.io/_uploads/BJ6hRFLB-l.png)
-![image](https://hackmd.io/_uploads/HyV6AFIS-l.png)
+![image](/images/gductf_training/82.png)
+![image](/images/gductf_training/83.png)
+![image](/images/gductf_training/84.png)
 
 *Chú ý: Bật hiển thị giây trong WinRAR: Options 🡪 Settings 🡪 Show seconds*
-![image](https://hackmd.io/_uploads/SJkR0FIBZe.png)
+![image](/images/gductf_training/85.png)
 > **Đáp án:** `03/25/2019 15:23:45`
 
 ### Q29. Mật khẩu LinkedIn của Duane là gì?
 Vị trí: `C:\Users\Karen\Desktop\DuanesChallenge`.
-![image](https://hackmd.io/_uploads/HyiJJcLrbx.png)
-![image](https://hackmd.io/_uploads/ry1g15IS-e.png)
-![image](https://hackmd.io/_uploads/S14lyqLr-g.png)
+![image](/images/gductf_training/86.png)
+![image](/images/gductf_training/87.png)
+![image](/images/gductf_training/88.png)
 
 Kéo xuống cuối sẽ có 1 đoạn Base64. Copy và Export file ra Excel.
-![image](https://hackmd.io/_uploads/HyyWkqLHbg.png)
-![image](https://hackmd.io/_uploads/r1ob158BWx.png)
-![image](https://hackmd.io/_uploads/SJZf158H-x.png)
+![image](/images/gductf_training/89.png)
+![image](/images/gductf_training/90.png)
+![image](/images/gductf_training/91.png)
 
 > **Password:** `R33*D)DogHouse`
 
@@ -370,7 +370,7 @@ Kéo xuống cuối sẽ có 1 đoạn Base64. Copy và Export file ra Excel.
 ```bash
 vol -f ram.mem imageinfo
 ```
-![image](https://hackmd.io/_uploads/HyGQCqUB-x.png)
+![image](/images/gductf_training/92.png)
 
 > **Profile:** `Win7SP1x64`
 
@@ -382,7 +382,7 @@ vol -f ram.mem imageinfo
 ```bash
 vol -f ram.mem --profile=Win7SP1x64 pslist | grep notepad
 ```
-![image](https://hackmd.io/_uploads/SJsX09Irbe.png)
+![image](/images/gductf_training/93.png)
 
 > **PID:** `3032`
 
@@ -394,7 +394,7 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep notepad
 ```bash
 vol -f ram.mem --profile=Win7SP1x64 pstree
 ```
-![image](https://hackmd.io/_uploads/HyB40c8Hbe.png)
+![image](/images/gductf_training/94.png)
 
 > **Process Name:** `UWkpjFjDzM.exe`
 
@@ -406,7 +406,7 @@ vol -f ram.mem --profile=Win7SP1x64 pstree
 ```bash
 vol -f ram.mem --profile=Win7SP1x64 netscan
 ```
-![image](https://hackmd.io/_uploads/ryJUCqIrWe.png)
+![image](/images/gductf_training/95.png)
 > **IP:** `10.0.0.101`
 
 
@@ -417,7 +417,7 @@ vol -f ram.mem --profile=Win7SP1x64 netscan
 ```bash
 vol -f ram.mem --profile=Win7SP1x64 netscan | grep 3496
 ```
-![image](https://hackmd.io/_uploads/Hy6uC5LrWg.png)
+![image](/images/gductf_training/96.png)
 
 
 > **Attacker IP:** `10.0.0.106`
@@ -430,7 +430,7 @@ vol -f ram.mem --profile=Win7SP1x64 netscan | grep 3496
 ```bash
 vol -f ram.mem --profile=Win7SP1x64 dlllist | grep -8 33 "VCRUNTIME140.dll"
 ```
-![image](https://hackmd.io/_uploads/BkOFRcLSZe.png)
+![image](/images/gductf_training/97.png)
 
 > **Process Name:** `OfficeClickToR`
 
@@ -438,13 +438,13 @@ vol -f ram.mem --profile=Win7SP1x64 dlllist | grep -8 33 "VCRUNTIME140.dll"
 
 ### Q6: Giá trị băm MD5 của phần mềm độc hại?
 *Dump malicious process và tính hash*
-![image](https://hackmd.io/_uploads/B1STCqLrbl.png)
+![image](/images/gductf_training/98.png)
 
 ```bash
 vol -f ram.mem --profile=Win7SP1x64 procdump -p 3496 -D output/
 md5sum output/executable.3496.exe
 ```
-![image](https://hackmd.io/_uploads/Hy3aC9IBWe.png)
+![image](/images/gductf_training/99.png)
 
 > **MD5:** `690ea20bc3bdfb328e23005d9a80c290`
 
@@ -452,7 +452,7 @@ md5sum output/executable.3496.exe
 
 ### Challenge 7: Hàm băm LM của tài khoản bobs?
 *Extract password hashes từ registry*
-![image](https://hackmd.io/_uploads/HJKlyjLHbx.png)
+![image](/images/gductf_training/100.png)
 
 ```bash
 vol -f ram.mem --profile=Win7SP1x64 hashdump
@@ -468,7 +468,7 @@ vol -f ram.mem --profile=Win7SP1x64 hashdump
 ```bash
 vol -f ram.mem --profile=Win7SP1x64 vadinfo | grep "0xfffffa800577ba10" -A 3
 ```
-![image](https://hackmd.io/_uploads/r14bkiIBWe.png)
+![image](/images/gductf_training/101.png)
 
 > **Protection:** `PAGE_READONLY`
 
@@ -480,7 +480,7 @@ vol -f ram.mem --profile=Win7SP1x64 vadinfo | grep "0xfffffa800577ba10" -A 3
 ```bash
 vol -f ram.mem --profile=Win7SP1x64 vadinfo | grep "Start 0x00000000033c0000 End 0x00000000033dffff" -A 3
 ```
-![image](https://hackmd.io/_uploads/rJ4GJjLr-e.png)
+![image](/images/gductf_training/102.png)
 
 > **Protection:** `PAGE_NOACCESS`
 
@@ -488,12 +488,12 @@ vol -f ram.mem --profile=Win7SP1x64 vadinfo | grep "Start 0x00000000033c0000 End
 
 ### Q10: Tên của tập lệnh VBS đang chạy?
 *Phân tích command line của wscript.exe*
-![image](https://hackmd.io/_uploads/BJyQkiUSWl.png)
+![image](/images/gductf_training/103.png)
 
 ```bash
 vol -f ram.mem --profile=Win7SP1x64 cmdline | grep -i wscript
 ```
-![image](https://hackmd.io/_uploads/Hy8XyoUSZl.png)
+![image](/images/gductf_training/104.png)
 
 > **Script Name:** `vhjReUDEuumrX`
 
@@ -505,7 +505,7 @@ vol -f ram.mem --profile=Win7SP1x64 cmdline | grep -i wscript
 ```bash
 vol -f ram.mem --profile=Win7SP1x64 shimcache | grep "2019-03-07 23:06:58"
 ```
-![image](https://hackmd.io/_uploads/SypQyoUH-x.png)
+![image](/images/gductf_training/105.png)
 
 > **Program:** `C:\Program Files (x86)\Microsoft\Skype for Desktop\Skype.exe`
 
@@ -518,8 +518,8 @@ vol -f ram.mem --profile=Win7SP1x64 shimcache | grep "2019-03-07 23:06:58"
 vol -f ram.mem --profile=Win7SP1x64 memdump -p 3032 -D output/
 strings output/3032.dmp | grep -A 10 -B 10 "relevant_text"
 ```
-![image](https://hackmd.io/_uploads/BJU4JjIrZx.png)
-![image](https://hackmd.io/_uploads/HysVkiLHWl.png)
+![image](/images/gductf_training/106.png)
+![image](/images/gductf_training/107.png)
 
 
 
@@ -530,8 +530,8 @@ strings output/3032.dmp | grep -A 10 -B 10 "relevant_text"
 ```bash
 vol -f ram.mem --profile=Win7SP1x64 mftparser | grep "59045" -A 20
 ```
-![image](https://hackmd.io/_uploads/Hks8yo8rbg.png)
-![image](https://hackmd.io/_uploads/rJ7vks8SZl.png)
+![image](/images/gductf_training/108.png)
+![image](/images/gductf_training/109.png)
 
 > **Filename:** `EMPLOY~1.XLS`
 
@@ -543,8 +543,8 @@ vol -f ram.mem --profile=Win7SP1x64 mftparser | grep "59045" -A 20
 ```bash
 vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 ```
-![image](https://hackmd.io/_uploads/SJ2Pki8SZe.png)
-![image](https://hackmd.io/_uploads/rkzdJiISZx.png)
+![image](/images/gductf_training/110.png)
+![image](/images/gductf_training/111.png)
 
 > **PID:** `3496`
 
@@ -554,7 +554,7 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 ### C0. Compression format used?
 *Định dạng nén mà attacker sử dụng để đóng gói dữ liệu*
-![image](https://hackmd.io/_uploads/Sy2_kiUrZx.png)
+![image](/images/gductf_training/112.png)
 
 > **Format:** `7z`
 
@@ -562,8 +562,8 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 ### C1. Password used by attacker?
 *Mật khẩu được sử dụng để bảo vệ file nén hoặc truy cập hệ thống*
-![image](https://hackmd.io/_uploads/HJnYJjIr-g.png)
-![image](https://hackmd.io/_uploads/Bke5kiLBbg.png)
+![image](/images/gductf_training/113.png)
+![image](/images/gductf_training/114.png)
 
 > **Password:** `apokonooijang1`
 
@@ -571,7 +571,7 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 ### C2. Folder used to temporarily store data?
 *Thư mục tạm thời để staging dữ liệu trước khi exfiltration*
-![image](https://hackmd.io/_uploads/rJUqyiUHWl.png)
+![image](/images/gductf_training/115.png)
 
 > **Path:** `/tmp/...`
 
@@ -579,7 +579,7 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 ### C3. Domain name (onion) used?
 *Tor hidden service domain được attacker sử dụng*
-![image](https://hackmd.io/_uploads/BJTc1iLHbx.png)
+![image](/images/gductf_training/116.png)
 
 > **Onion Domain:** `jilgx2dpduxwr3byjbxfbf777kfmtqoed2rrbwshhlrdpfhzu63hj2qd.onion`
 
@@ -587,7 +587,7 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 ### C4. Web shell type?
 *Loại web shell được deploy trên server*
-![image](https://hackmd.io/_uploads/H1BjkjIr-x.png)
+![image](/images/gductf_training/117.png)
 
 > **Web Shell:** `sonang.php`
 
@@ -595,7 +595,7 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 ### C5. File affected to deface the website?
 *File chính bị thay đổi trong cuộc tấn công defacement*
-![image](https://hackmd.io/_uploads/SyFiJiUS-e.png)
+![image](/images/gductf_training/118.png)
 
 > **File:** `index.php`
 
@@ -603,7 +603,7 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 ### C6. File containing DB creds (full path)?
 *Đường dẫn đầy đủ đến file chứa thông tin xác thực database*
-![image](https://hackmd.io/_uploads/ryxhki8HZx.png)
+![image](/images/gductf_training/119.png)
 
 > **Path:** `/opt/drillsaham/.env`
 
@@ -611,7 +611,7 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 ### C7. Tool used during first compromise?
 *Công cụ được sử dụng trong giai đoạn initial access*
-![image](https://hackmd.io/_uploads/BydnJiLSWx.png)
+![image](/images/gductf_training/120.png)
 
 > **Tool:** `Curl`
 
@@ -619,7 +619,7 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 ### C8. Backdoor special key?
 *Key hoặc signature đặc biệt của backdoor*
-![image](https://hackmd.io/_uploads/rk22kjISZe.png)
+![image](/images/gductf_training/121.png)
 
 > **Key:** `BKD0`
 
@@ -627,7 +627,7 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 ### C9. Linux tool used to exfiltrate data?
 *Công cụ Linux được dùng để đánh cắp dữ liệu*
-![image](https://hackmd.io/_uploads/HJbT1oUrWe.png)
+![image](/images/gductf_training/122.png)
 
 > **Tool:** `Rsync`
 
@@ -635,7 +635,7 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 ### C10. Email used to report abuse?
 *Địa chỉ email liên hệ của attacker hoặc dùng để báo cáo*
-![image](https://hackmd.io/_uploads/rJNAJsISZg.png)
+![image](/images/gductf_training/123.png)
 
 
 > **Email:** `apokono@jilgx2dpduxwr3byjbxfbf777kfmtqoed2rrbwshhlrdpfhzu63hj2qd.onion`
@@ -644,7 +644,7 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 ### C11. Server IP during defacement?
 *Địa chỉ IP của server tại thời điểm bị defacement*
-![image](https://hackmd.io/_uploads/ry_JejUH-g.png)
+![image](/images/gductf_training/124.png)
 
 > **IP:** `10.108.102.48`
 
@@ -652,7 +652,7 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 ### C12. IP of local repository storing affected Ubuntu package?
 *Địa chỉ IP của repository local chứa package Ubuntu bị ảnh hưởng*
-![image](https://hackmd.io/_uploads/B1Ryes8rWl.png)
+![image](/images/gductf_training/125.png)
 
 > **IP:** `10.108.201.140`
 
@@ -660,7 +660,7 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 ## MISC Challenge
 
-![image](https://hackmd.io/_uploads/HygX8NvBZx.png)
+![image](/images/gductf_training/126.png)
 
 
 
@@ -668,11 +668,11 @@ vol -f ram.mem --profile=Win7SP1x64 pslist | grep UWkpjFjDzM
 
 Ở phiến đầu tiên, ta nhận được một tấm ảnh có tên **poneglyphs.jpg**.
 
-![image](https://hackmd.io/_uploads/rkSV8NPBZx.png)
+![image](/images/gductf_training/127.png)
 
 Thử kiểm tra định dạng thực sự của file ảnh này:
 
-![image](https://hackmd.io/_uploads/S1ZBLEDHZg.png)
+![image](/images/gductf_training/128.png)
 
 Kết quả cho thấy đây không phải JPG thông thường mà là **Targa image data**.
 
@@ -685,15 +685,15 @@ FF D8 FF
 
 Nếu các byte này bị thay đổi, trình đọc ảnh sẽ không nhận diện đúng định dạng, dẫn đến lỗi hoặc hiển thị sai dữ liệu.
 
-![image](https://hackmd.io/_uploads/SyS8LEPr-g.png)
+![image](/images/gductf_training/129.png)
 
 Mở file bằng **HxD**, ta thấy 3 byte đầu **không phải** `FF D8 FF`.
 
-![image](https://hackmd.io/_uploads/BJFPIVwHbx.png)
+![image](/images/gductf_training/130.png)
 
 Tiến hành chỉnh sửa lại các byte đầu cho đúng chuẩn JPG. Sau khi sửa xong, file ảnh có thể mở bình thường.
 
-![image](https://hackmd.io/_uploads/SyEOLNwBWg.png)
+![image](/images/gductf_training/131.png)
 
 Kết quả thu được là **phiến poneglyphs đầu tiên**, chứa ký tự **P**.
 
@@ -703,13 +703,13 @@ Kết quả thu được là **phiến poneglyphs đầu tiên**, chứa ký t�
 
 Tiếp theo, ta đi vào thư mục của phiến thứ hai:
 
-![image](https://hackmd.io/_uploads/HJbYU4wSZl.png)
+![image](/images/gductf_training/132.png)
 
 Bên trong có hai folder, mỗi folder chứa nhiều file `.php`.
 
 Khi kiểm tra một trong các folder, ta nhận thấy chỉ có **1 bit dữ liệu**, nên thử mở ra xem nội dung. Kết quả thu được là ký tự **O**.
 
-![image](https://hackmd.io/_uploads/SJ75INwrWe.png)
+![image](/images/gductf_training/133.png)
 
 Vậy đây chính là **phiến poneglyphs thứ hai**.
 
@@ -719,17 +719,17 @@ Vậy đây chính là **phiến poneglyphs thứ hai**.
 
 Đến với mảnh cuối:
 
-![image](https://hackmd.io/_uploads/B1kyvVvBWx.png)
+![image](/images/gductf_training/134.png)
 
 Ta tiến hành **decode đoạn Base64** được cung cấp:
 
-![image](https://hackmd.io/_uploads/SkdyvNPr-x.png)
+![image](/images/gductf_training/135.png)
 
 Sau khi decode, kết quả là chuỗi **`user_input`**.
 
 Chuỗi này gợi ý rằng dữ liệu đến từ **đầu vào của người dùng**. Vậy trên website, nơi nào cho phép nhập dữ liệu?
 
-![image](https://hackmd.io/_uploads/HJPlPEwS-x.png)
+![image](/images/gductf_training/136.png)
 
 Khả năng cao chính là **URL**.
 
@@ -755,8 +755,8 @@ F – O – P
 
 Quay lại trang đầu để xem **hint**:
 
-![image](https://hackmd.io/_uploads/ByMbvEPHbx.png)
-![image](https://hackmd.io/_uploads/SygGwVPSbx.png)
+![image](/images/gductf_training/137.png)
+![image](/images/gductf_training/138.png)
 
 Từ đó suy ra đây có thể là một **đường dẫn**. Sau khi thử các hoán vị, ta tìm được URL hợp lệ:
 
@@ -764,7 +764,7 @@ Từ đó suy ra đây có thể là một **đường dẫn**. Sau khi thử c�
 /FOP
 ```
 
-![image](https://hackmd.io/_uploads/BJ6MvVPr-l.png)
+![image](/images/gductf_training/139.png)
 
 
 
@@ -774,8 +774,8 @@ Sau khi nhập key **"Vua Hải Tặc"**, hệ thống hiển thị thông báo 
 
 Tiếp theo, quay lại trang trước và click vào **kho báu**:
 
-![image](https://hackmd.io/_uploads/B17mDEwrWx.png)
+![image](/images/gductf_training/140.png)
 
 Ta nhận được một đoạn dữ liệu mới. Đưa đoạn này lên **CyberChef** để xử lý tiếp:
 
-![image](https://hackmd.io/_uploads/SJumDEPHWx.png)
+![image](/images/gductf_training/141.png)

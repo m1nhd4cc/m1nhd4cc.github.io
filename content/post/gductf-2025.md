@@ -113,7 +113,7 @@ else:
     print("[-] Didn't find a valid k up to 10000. Increase bound if needed.")
    ```
 
-![image](https://hackmd.io/_uploads/rkxYCoIHWx.png)
+![image](/images/gductf2025/1.png)
 
 > Flag: CTF{1t_4lw4ys_c0m3s_b4ck_t0_1_21bcd6}
 
@@ -445,7 +445,7 @@ if __name__ == '__main__':
     print("Flag: CTF{" + pt + "}")
 
 ```
-![image](https://hackmd.io/_uploads/BkMpAiIrWl.png)
+![image](/images/gductf2025/2.png)
 
 > Flag: CTF{revisreallythestartingpointformostcategoriesiydk}
 
@@ -456,7 +456,7 @@ if __name__ == '__main__':
 #### 1.1 Sử dụng Ghidra để decompile
 - Mở file nhị phân trong Ghidra.
 - Decompile để xem pseudocode của các hàm.
-![Ảnh chụp màn hình 2025-06-27 024240](https://hackmd.io/_uploads/BkN2Qx3Vxx.png)
+![Ảnh chụp màn hình 2025-06-27 024240](/images/gductf2025/3.png)
 
 #### 1.2 Hiểu luồng chương trình
 - Hàm `main()` gọi `verify_password()`, sau đó gọi `decrypt_flag()`.  
@@ -472,7 +472,7 @@ if __name__ == '__main__':
 ### II: REVERSE PASSWORD
 
 #### 2.1 Phân tích hàm `verify_password()`
-![1](https://hackmd.io/_uploads/r1hAmlhVxg.png)
+![1](/images/gductf2025/4.png)
 
 - Password nhập vào sau khi XOR với `0x42` phải khớp với:
   ```python
@@ -504,11 +504,11 @@ print(f"Password: {password}")
 
 
 Thực ra tới đây sau khi tìm được Password là ra flag rồi
-![Ảnh chụp màn hình 2025-06-27 174234](https://hackmd.io/_uploads/BkWnSlnNlg.png)
+![Ảnh chụp màn hình 2025-06-27 174234](/images/gductf2025/5.png)
 > CTF{9xnH2VcnsjM0rLjMI8FJ}
 
 #### 2.3 Phân tích hàm decrypt_flag
-![Ảnh chụp màn hình 2025-06-27 174033](https://hackmd.io/_uploads/rJ38Be3Nxl.png)
+![Ảnh chụp màn hình 2025-06-27 174033](/images/gductf2025/6.png)
 
 - Biến:
 ```python
@@ -548,7 +548,7 @@ putchar((uint)(*(byte *)((long)&key + (ulong)(local_c & 3)) ^ encrypted_flag[(in
 
 
 ### I: Phân tích chức năng hàm `FUN_00101179`
-![Ảnh chụp màn hình 2025-06-29 213746](https://hackmd.io/_uploads/r1rAJC0Nxg.png)
+![Ảnh chụp màn hình 2025-06-29 213746](/images/gductf2025/7.png)
 
 Chức năng chính của hàm `FUN_00101179` là thực hiện một thuật toán mã hóa đơn giản dựa trên chuỗi (stream cipher).
 
@@ -587,7 +587,7 @@ Trong đó:
 3.  Với mỗi byte đã mã hóa tiếp theo ($enc_i$):
 Thực hiện giải mã: $dec_i = enc_i \oplus enc_{i-1}$.
 
-![Ảnh chụp màn hình 2025-06-29 214007](https://hackmd.io/_uploads/SyfclR0Egl.png)
+![Ảnh chụp màn hình 2025-06-29 214007](/images/gductf2025/8.png)
 
 ### IV. Thực thi giải mã
 
@@ -627,7 +627,7 @@ decrypt('memo.pdf.enc', 'memo_decrypted.pdf')
 ## rev0x1337
 Mở file trong IDA và chuyển đến hàm `main`. Ta thấy chuỗi `The encrypted flag is:` và biến `unk_40082B` chứa flag đã được mã hóa.
 
-![image](https://hackmd.io/_uploads/HyFiuoUBbl.png)
+![image](/images/gductf2025/9.png)
 
 Trích xuất encrypted flag
 
@@ -650,7 +650,7 @@ Tiếp theo, vào hàm `sub_400620` để xem pseudocode và hiểu rõ thuật 
 
 Trong đó, `xor_key` được tính từ công thức: `(i % 0xFF) | 0xA0`
 
-![image](https://hackmd.io/_uploads/SklkKi8Hbe.png)
+![image](/images/gductf2025/10.png)
 ```python
 xor_key = [
     0xa0, 0xa1, 0xa2, 0xa3, 0xa4, 0xa5, 0xa6, 0xa7,
@@ -668,7 +668,7 @@ Sử dụng [CyberChef](https://gchq.github.io/CyberChef/#recipe=From_Hex('0x%20
 3. OR với 0x1
 4. Bit shift right 1
 
-![image](https://hackmd.io/_uploads/HJDgYi8rWl.png)
+![image](/images/gductf2025/11.png)
 
 
 ```

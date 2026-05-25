@@ -20,7 +20,7 @@ During the weekend, I participated in Idek CTF... which is something new to me �
 
 
 ### Catch
-![capture](https://hackmd.io/_uploads/B127V4pvxl.png)
+![capture](/images/idekctf-2025/1.png)
 
 **Challenge:** In this 20-round challenge, we must find the secret sequence of matrix transformations a "cat" uses to move from a starting coordinate to a final one.
 
@@ -248,7 +248,7 @@ def main():
 if __name__ == "__main__":
     main
 ```
-![Ảnh chụp màn hình 2025-08-04 021204](https://hackmd.io/_uploads/SyKCVEpPxl.png)
+![Ảnh chụp màn hình 2025-08-04 021204](/images/idekctf-2025/2.png)
 
 > Flag: idek{Catch_and_cat_sound_really_similar_haha}
 
@@ -256,7 +256,7 @@ if __name__ == "__main__":
 
 ### Diamond Ticket
 
-![Ảnh chụp màn hình 2025-08-05 114247](https://hackmd.io/_uploads/BJM-3WyOge.png)
+![Ảnh chụp màn hình 2025-08-05 114247](/images/idekctf-2025/3.png)
 
 
 
@@ -529,7 +529,7 @@ for ii in range(10):
 
 
 After running the lattice attack, the script finds the plaintext: `tks_f0r_ur_t1ck3t_xD`  --> you win
-![Ảnh chụp màn hình 2025-08-05 115258](https://hackmd.io/_uploads/rk8PAZ1_lx.png)
+![Ảnh chụp màn hình 2025-08-05 115258](/images/idekctf-2025/4.png)
 
 > Flag: idek{tks_f0r_ur_t1ck3t_xD}
 
@@ -537,7 +537,7 @@ After running the lattice attack, the script finds the plaintext: `tks_f0r_ur_t1
 
 ## Pwn
 
-![Ảnh chụp màn hình 2025-08-04 030338](https://hackmd.io/_uploads/HJk0lrpwxx.png)
+![Ảnh chụp màn hình 2025-08-04 030338](/images/idekctf-2025/5.png)
 
 This challenge requiring the player to exploit a C program to gain control and read the contents of the flag file. The solution involves chaining two common vulnerabilities: an information leak to bypass the stack canary protection and a buffer overflow to hijack the program's control flow.
 
@@ -551,7 +551,7 @@ After analyzing the program's source code and behavior, we identified two critic
 
 The main vulnerability lies in the `edit_friend` function
 
-![Ảnh chụp màn hình 2025-08-04 111026](https://hackmd.io/_uploads/HyUbQnavgg.png)
+![Ảnh chụp màn hình 2025-08-04 111026](/images/idekctf-2025/6.png)
 
 
 ```c
@@ -572,7 +572,7 @@ void edit_friend(char (*top_friends)[8]) {
 
 To bypass the stack canary protection, exploit another in the `display_friend` function 
 
-![Ảnh chụp màn hình 2025-08-04 111136](https://hackmd.io/_uploads/ryPE7npwgx.png)
+![Ảnh chụp màn hình 2025-08-04 111136](/images/idekctf-2025/7.png)
 
 
 ```c
@@ -659,7 +659,7 @@ LAB_004016cd:
 
 `get_flag`
 
-![Ảnh chụp màn hình 2025-08-04 111305](https://hackmd.io/_uploads/B15tQn6wxg.png)
+![Ảnh chụp màn hình 2025-08-04 111305](/images/idekctf-2025/8.png)
 
 
 ###  Exploit 
@@ -723,6 +723,6 @@ log.success(f"Exploit successful! FLAG: {flag}")
 ```
 
 
-![Ảnh chụp màn hình 2025-08-04 010405](https://hackmd.io/_uploads/HkwiWBTDgg.png)
+![Ảnh chụp màn hình 2025-08-04 010405](/images/idekctf-2025/9.png)
 
 > Flag: idek{b4bys_1st_c00k1e_leak_yayyy!}

@@ -81,12 +81,12 @@ Use any tool (e.g., sha256sum on Linux or Get-FileHash on PowerShell) to calcula
 
 Analyze the SOFTWARE registry hive. This information is located in the key: `SOFTWARE\Microsoft\Windows NT\CurrentVersion`.
 
-![image](https://hackmd.io/_uploads/HysgyodSZx.png)
+![image](/images/wu_securinets-2025/1.png)
 
 **Answer:** `19045`
 
 Extract the SOFTWARE file FIRST. Load it into Registry Explorer.
-![image](https://hackmd.io/_uploads/SytdyoOB-l.png)
+![image](/images/wu_securinets-2025/2.png)
 
 
 **Question 3: What is the victim machine's IP address?**
@@ -94,7 +94,7 @@ Extract the SOFTWARE file FIRST. Load it into Registry Explorer.
 Analyze the SYSTEM registry hive. Network configuration is stored at key: `SYSTEM\ControlSet001\Services\Tcpip\Parameters\Interfaces\{GUID}`.
 **Answer:** `192.168.206.131`
 
-![image](https://hackmd.io/_uploads/rJtKJsOrbl.png)
+![image](/images/wu_securinets-2025/3.png)
 
 
 Extract the SYSTEM file first. Load it into Registry Explorer.
@@ -113,7 +113,7 @@ Check user application folders, especially AppData. During this process, a suspi
 Analyze the Thunderbird profile at `Profiles/6red5uxz.default-release/ImapMail/`. The INBOX file contains all received emails, revealing the victim's address.
 **Answer:** `ammar55221133@gmail.com`
 
-![image](https://hackmd.io/_uploads/HJQTksOBbl.png)
+![image](/images/wu_securinets-2025/4.png)
 
 
 **Question 6: What is the attacker's email address?**
@@ -127,12 +127,12 @@ Analyze the GitHub repository sent in the email. The package.json file contains 
 
 **Answer:** `https://tmpfiles.org/dl/23860773/sys.exe`
 
-![image](https://hackmd.io/_uploads/ryYyesOHZe.png)
+![image](/images/wu_securinets-2025/5.png)
 
 
 Access the GitHub link
-![image](https://hackmd.io/_uploads/BkJZlj_SZx.png)
-![image](https://hackmd.io/_uploads/HJVWejuB-l.png)
+![image](/images/wu_securinets-2025/6.png)
+![image](/images/wu_securinets-2025/7.png)
 
 
 ### Stage 3: Malware Analysis
@@ -144,7 +144,7 @@ Now that we have the malware and know its origin, the next stage is analyzing it
 - **Method:** Calculate the hash of sys.exe file.
 - **Answer:** `BE4F01B3D537B17C5BA7DC1BB7CD4078251364398565A0CA1E96982CFF820B6D`
 
-![image](https://hackmd.io/_uploads/BJwzlsuB-g.png)
+![image](/images/wu_securinets-2025/8.png)
 
 
 **Questions 9 & 10: What are the IP address and port of the C2 (Command & Control) server?**
@@ -153,7 +153,7 @@ Now that we have the malware and know its origin, the next stage is analyzing it
 - **IP Answer:** `40.113.161.85`
 - **Port Answer:** `5000`
 
-![image](https://hackmd.io/_uploads/B1QXliuB-x.png)
+![image](/images/wu_securinets-2025/9.png)
 
 
 **Question 11: What is the URL of the first request the malware sends to C2?**
@@ -161,7 +161,7 @@ Now that we have the malware and know its origin, the next stage is analyzing it
 Analyze network protocol logs from Any.run sandbox.
 **Answer:** `http://40.113.161.85:5000/helppppiscofebabe23`
 
-![image](https://hackmd.io/_uploads/B1ZEes_Bbl.png)
+![image](/images/wu_securinets-2025/10.png)
 
 
 ### Stage 4: Post-Infection Artifacts & Persistence Mechanisms 
@@ -173,7 +173,7 @@ Finally, we investigate changes the malware made to the system to ensure persist
 VirusTotal reports show the malware creates id.txt file at `C:\Users\Public\Documents`. We return to the disk image and read this file's contents.
 **Answer:** `3649ba90-266f-48e1-960c-b908e1f28aef`
 
-![image](https://hackmd.io/_uploads/Bk8Ilj_BZl.png)
+![image](/images/wu_securinets-2025/11.png)
 
 
 **Question 13: Which Registry key did the malware modify/add to maintain access?**
@@ -181,7 +181,7 @@ VirusTotal reports show the malware creates id.txt file at `C:\Users\Public\Docu
 VirusTotal shows the malware creates an entry in the Registry Run key, a common technique for automatic startup with Windows.
 **Answer:** `HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\MyApp`
 
-![image](https://hackmd.io/_uploads/ryy_xoOSWe.png)
+![image](/images/wu_securinets-2025/12.png)
 
 
 **Question 14: What is the content of this Registry key?**
@@ -196,14 +196,14 @@ Use simple static analysis with the strings command on sys.exe file and filter (
 
 **Answer:** `e7bcc0ba5fb1dc9cc09460baaa2a6986`
 
-![image](https://hackmd.io/_uploads/rkrFgidHWe.png)
+![image](/images/wu_securinets-2025/13.png)
 
 
 
 
 ## Lost File
 
-![image](https://hackmd.io/_uploads/rJbBMouH-e.png)
+![image](/images/wu_securinets-2025/14.png)
 
 ### Stage 1: Static Analysis of Executable File (locker_sim.exe)
 
@@ -247,7 +247,7 @@ python2 volatility/vol.py -f mem.vmem --profile=WinXPSP2x86 consoles
 
 - **Result:** `hmmisitreallyts`
 
-![image](https://hackmd.io/_uploads/H1x7uGo_BZg.png)
+![image](/images/wu_securinets-2025/15.png)
 
 
 **Question 5: What is the victim's computer name (hostname)?**
@@ -262,7 +262,7 @@ python2 volatility/vol.py -f mem.vmem --profile=WinXPSP2x86 envars
 
 - **Result:** `RAGDOLLF-F9AC5A`
 
-![image](https://hackmd.io/_uploads/S1wFfsuSWe.png)
+![image](/images/wu_securinets-2025/16.png)
 
 
 ### Stage 3: Recovering Deleted File
@@ -323,35 +323,35 @@ decrypt_file(
 - **Processing:** The above string is Base64 encoded. After Base64 decoding, we obtain the final flag.
 - **Flag:** `Securinets{screen+registry+mft??}`
 
-![image](https://hackmd.io/_uploads/B1ZbDs_HWl.png)
+![image](/images/wu_securinets-2025/17.png)
 
 
 ## Recovery
 
 We had 2 files: a pcapng file and a backup. First, I looked through the backup: 
 
-![image](https://hackmd.io/_uploads/rk3wDouSWl.png)
+![image](/images/wu_securinets-2025/18.png)
 
 
 When I opened files, I could not read since they were encrypted although their name looked normal:
 
-![image](https://hackmd.io/_uploads/rJ5Ows_Bbe.png)
+![image](/images/wu_securinets-2025/19.png)
 
 
 From here I read content of powershell_history.txt for more information and I noticed a github repo:
 
-![image](https://hackmd.io/_uploads/H1AtDjurbl.png)
+![image](/images/wu_securinets-2025/20.png)
 
 
 It looked so suspicious so I accessed this repo. Read app.py and this was result: 
 
-![image](https://hackmd.io/_uploads/r1T5DidBbe.png)
+![image](/images/wu_securinets-2025/21.png)
 
 
 I checked commit to see file history and I found many things interesting, especially DNS exfiltration which used domain **meow**. To confirm this information I opened 
 **Wireshark** and fortunately it's correct:
 
-![image](https://hackmd.io/_uploads/H1ooPs_S-l.png)
+![image](/images/wu_securinets-2025/22.png)
 
 
 When we solved, we found the dns6 commit contained the correct decryption method for this case, and I rewrote the script for decryption:
@@ -539,12 +539,12 @@ I ran the code and got a packed executable file
 
 Simply I unpacked it and used IDA Pro again: 
 
-![image](https://hackmd.io/_uploads/B1nAwsOSWe.png)
+![image](/images/wu_securinets-2025/23.png)
 
 
 I searched and found the function for encrypting files:
 
-![image](https://hackmd.io/_uploads/B1vbOiuSbl.png)
+![image](/images/wu_securinets-2025/24.png)
 
 
 You could see that they used a simple XOR operation for encryption. But we need to know exactly how they implemented their encryption method. Next we will dig into 
@@ -595,7 +595,7 @@ at a2.
 
 To know what 37 bytes string was, we just simple click on the variable and we can see the content:
 
-![image](https://hackmd.io/_uploads/r1Ofus_S-g.png)
+![image](/images/wu_securinets-2025/25.png)
 
 
 Because filename was an important part of seeding process, giving correct filepath is very essential and just a small modification will change the seed. And fortunately 
@@ -732,7 +732,7 @@ if __name__ == "__main__":
 
 Run with the filename and you got the flag:
 
-![image](https://hackmd.io/_uploads/SJD7djuB-l.png)
+![image](/images/wu_securinets-2025/26.png)
 
 
 That's my writeup for all forensic challenges. Thank you for reading my blog, see you in the next post. Byeeee!!!

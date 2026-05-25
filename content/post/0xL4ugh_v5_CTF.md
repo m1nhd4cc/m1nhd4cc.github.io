@@ -14,7 +14,7 @@ cover: /images/post_covers/0xl4ugh.png
 
 ## Zero Hour
 
-![image](https://hackmd.io/_uploads/SksCdqN8Zl.png)
+![image](/images/0xL4ughv5CTF/1.png)
 
 
 *Our intelligence unit has successfully identified a long-time cybercriminal. According to information provided by our confidential informant, he is preparing something major, and time is critical. Your mission is to investigate the suspect’s laptop and uncover the following information:
@@ -28,31 +28,31 @@ By looking at the PowerShell history of the attacker, we can see he has WSL inst
 
 `C:\Users\tarok\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt`
 
-![image](https://hackmd.io/_uploads/SJPXicEL-l.png)
+![image](/images/0xL4ughv5CTF/2.png)
 
 Now we get the WSL vhdx file and mount it so we can do further analysis.
 
 `C:\Users\tarok\AppData\Local\wsl\{e49649b6-5696-4474-a155-3ed599c71619\ext4.vhdx`
 
-![image](https://hackmd.io/_uploads/S149n5N8bg.png)
+![image](/images/0xL4ughv5CTF/3.png)
 
 Interesting, i found sliver-server which is an open-source, cross-platform Command and Control (C2) framework, and the **arsenal** folder of the attacker.
 Trying to look for any logs that guide us to who the target of the attacker is, we couldn’t find any, which makes the possibility that he was caught before he began his attack more likely.
 
-![image](https://hackmd.io/_uploads/S1_EAq48Wl.png)
+![image](/images/0xL4ughv5CTF/4.png)
 
 we can see a malware called setup.exe.
 
-![image](https://hackmd.io/_uploads/r1TQT94UWg.png)
-![image](https://hackmd.io/_uploads/BJtn05V8Zg.png)
+![image](/images/0xL4ughv5CTF/5.png)
+![image](/images/0xL4ughv5CTF/6.png)
 
 Loading it into IDA, let’s see.
 
-![image](https://hackmd.io/_uploads/HkhEJsE8Wx.png)
+![image](/images/0xL4ughv5CTF/7.png)
 
 First we gone to the main and we can there are interesting fuctions that’s getting called.
 
-![image](https://hackmd.io/_uploads/BJMcs6VL-l.png)
+![image](/images/0xL4ughv5CTF/8.png)
 
 ```cpp
 __int64 sub_14000AB40()
@@ -111,7 +111,7 @@ __int64 sub_14000AB40()
 ```
 
 Going to the first one, we can see it’s used to check for debuggers.
-![image](https://hackmd.io/_uploads/SJnGK6V8be.png)
+![image](/images/0xL4ughv5CTF/9.png)
 
 ```cpp
 _BOOL8 sub_1400014A0()
@@ -208,7 +208,7 @@ _BOOL8 sub_1400014A0()
 
 In the second function, it’s checking for VM or sandbox behavior; if you XOR the strings with the corresponding key, you can see the actual strings used in order to get system info.
 
-![image](https://hackmd.io/_uploads/H1wtYaE8bl.png)
+![image](/images/0xL4ughv5CTF/10.png)
 
 ```cpp
 _BOOL8 sub_140002DA0()
@@ -263,7 +263,7 @@ _BOOL8 sub_140002DA0()
 
 The third one is for creating the mutex named NerveGearMutex and checking that there is no other instance running, and also, you can get all the info by XORing the string with the corresponding key.
 
-![image](https://hackmd.io/_uploads/Bk319pVLWx.png)
+![image](/images/0xL4ughv5CTF/11.png)
 
 ```cpp
 __int64 sub_140002EE0()
@@ -342,7 +342,7 @@ __int64 sub_140002EE0()
 
 After it passes those three fuctions it goes to another function to check privileges; if it doesn’t have the required privileges, it goes to another function.
 
-![image](https://hackmd.io/_uploads/HkY75TVL-x.png)
+![image](/images/0xL4ughv5CTF/12.png)
 
 ```cpp
 __int64 sub_140002870()
@@ -454,7 +454,7 @@ __int64 sub_140002870()
 
 In which it tries to escalate privileges to be able to do whatever it wants.
 
-![image](https://hackmd.io/_uploads/rJCUqpELWg.png)
+![image](/images/0xL4ughv5CTF/13.png)
 
 ```cpp
 HMODULE sub_1400033A0()
@@ -504,7 +504,7 @@ HMODULE sub_1400033A0()
 
 Now going to the main fuction which we can see that it drives a key.
 
-![image](https://hackmd.io/_uploads/rkg2qpEIZg.png)
+![image](/images/0xL4ughv5CTF/14.png)
 
 ```cpp
 unsigned __int64 sub_1400016C0()
@@ -731,7 +731,7 @@ unsigned __int64 sub_1400016C0()
 
 Now jumping to the Xref to where it was used, we can see it’s used in ChaCha20 encryption.
 
-![image](https://hackmd.io/_uploads/HyweipNL-e.png)
+![image](/images/0xL4ughv5CTF/15.png)
 
 ```cpp
 __int64 __fastcall sub_1400022F0(const CHAR *a1)
@@ -791,9 +791,9 @@ And by going through the rest of the ransomware, it sends the data found to cert
 
 Now, to get the key, we can do dynamic analysis while skipping all the checks and setting the IP to the beginning of the function responsible for driving the key, then letting it run to the end to easily get the key
 
-![image](https://hackmd.io/_uploads/ryLLOpEUZl.png)
+![image](/images/0xL4ughv5CTF/16.png)
 
-![image](https://hackmd.io/_uploads/Skl9d648-x.png)
+![image](/images/0xL4ughv5CTF/17.png)
 
 **Method 2**
 
@@ -861,12 +861,12 @@ key = bytes(mu.mem_read(0x1400120E0, 32))
 print(f"Key: {key.hex()}")
 ```
 
-![image](https://hackmd.io/_uploads/HyVMBhrL-e.png)
+![image](/images/0xL4ughv5CTF/18.png)
 
 
 At the end, it creates the **README_K31R.txt** file 
 
-![image](https://hackmd.io/_uploads/B1oFpTN8-g.png)
+![image](/images/0xL4ughv5CTF/19.png)
 
 ```cpp
 int __fastcall sub_1400024D0(const char *a1)
@@ -914,7 +914,7 @@ int __fastcall sub_1400024D0(const char *a1)
 And this note for us:
 "*All your files are encrypted by K1r1too! To restore, contact him at https://medium.com/@karimesam117*"
 
-![image](https://hackmd.io/_uploads/ByUDwMHIWe.png)
+![image](/images/0xL4ughv5CTF/20.png)
 
 
 So we now have the encryption key
@@ -927,26 +927,26 @@ Going back to the host, we can see that he has Discord and Telegram installed an
 
 But if we explore the [Discord cache](https://abrignoni.blogspot.com/2018/03/finding-discord-app-chats-in-windows.html) ***C:\Users\tarok\AppData\Roaming\discord\cache\Cache_Data*** using ChromeCacheView, we won’t find anything.
 
-![image](https://hackmd.io/_uploads/BJStSxHUZe.png)
+![image](/images/0xL4ughv5CTF/21.png)
 
 
 But we know that Telegram can use Windows notifications, so what if the message is no longer there, but still wasn’t removed from the notifications database
 
 So after we check the database ***C:\Users\tarok\AppData\local\Microsoft\Windows\Notifications\wpndatabase.db***
 
-![image](https://hackmd.io/_uploads/rJSrrlrIWl.png)
+![image](/images/0xL4ughv5CTF/22.png)
 
 
 we can see that a message was sent from **Tarek Ibrahim** to the attacker telling him that the next target is **Purdue Pete**.
 
-![image](https://hackmd.io/_uploads/S1aELxr8-e.png)
+![image](/images/0xL4ughv5CTF/23.png)
 
 > Flag: 0xL4ugh{Purdue Pete;cc2e406c5a9cf1202256672389781d0ebecbf73bbc091b035f88a41b90b7b07f}
 
 
 ## The Hood
 
-![image](https://hackmd.io/_uploads/r1Mzz1LI-e.png)
+![image](/images/0xL4ughv5CTF/24.png)
 
 
 *Teddy MacDonald, a senior CIA operative, is under investigation after classified files leaked from his personal computer. A security camera captured an unidentified individual breaking into Teddy’s residence and tampering with his workstation.
@@ -959,17 +959,17 @@ In this challenge the attacker access the computer physically.
 ### Q1: The intruder connected a device to Teddy’s machine during the breach. Can you uncover its serial number?
 
 Parsed the **SYSTEM** registry hive at `C:\Windows\System32\config\SYSTEM` 
-![image](https://hackmd.io/_uploads/H1DuXjHUbx.png)
+![image](/images/0xL4ughv5CTF/25.png)
 
 Load in Registry Explorer. Find follow path: `ROOT -> ControlSet001 -> Enum -> USBSTOR`
-![image](https://hackmd.io/_uploads/SJUdViHLWe.png)
+![image](/images/0xL4ughv5CTF/26.png)
 
 Can se the serial number **UM2I126E**
 
 ### Q2: What is the manufacturer of this device? [company name]
 
 Look the device name we can see the company name
-![image](https://hackmd.io/_uploads/SyXrrsSLWx.png)
+![image](/images/0xL4ughv5CTF/27.png)
 
 answer **Transcend**
 
@@ -979,7 +979,7 @@ answer **Transcend**
 we will move to the second hive **SOFTWARE**. Load in Registry Explorer, and in the key ***windows protable devices*** or ***MountedDevices*** we can see the friendly name
 
 Find follow path: `Microsoft -> Windows Portable Devices`
-![image](https://hackmd.io/_uploads/HyPiLiHLZx.png)
+![image](/images/0xL4ughv5CTF/28.png)
 
 answer: **OMKALALA**
 
@@ -989,11 +989,11 @@ We need to compine the investigation from multiple artifacts to find the answer.
 ***Security.evtx*** with Event Viewer
 
 Logon to user **a1l4m** before this was in `2024-12-10 21:59:52`
-![image](https://hackmd.io/_uploads/S1R6c6rLWe.png)
+![image](/images/0xL4ughv5CTF/29.png)
 
 
 Logoff was in `2024-12-10 22:05:45`.
-![image](https://hackmd.io/_uploads/HkIvqaSU-e.png)
+![image](/images/0xL4ughv5CTF/30.png)
 
 answer: `2024-12-10 21:59:52_2024-12-10 22:05:45`
 
@@ -1002,7 +1002,7 @@ answer: `2024-12-10 21:59:52_2024-12-10 22:05:45`
 Between `21:59:52 - 22:05:45`, attacker activated a built-in Windows tool to view running processes/services. We need to find out what that tool was.
 
 Follow path: `C\Windows\Prefetch`
-![image](https://hackmd.io/_uploads/ryxia6rLWl.png)
+![image](/images/0xL4ughv5CTF/31.png)
 
 The first useful app that run after the logon was `taskmgr.exe`
 
@@ -1011,13 +1011,13 @@ The first useful app that run after the logon was `taskmgr.exe`
 ### Q6: In the reconnaissance stage the attacker found a vulnerable service on the machine. What is the CVE number assigned to this vulnerability?
 
 By examining Task Manager, the attacker discovered a lucrative printer service. Look at the file list in the Prefetch folder; there's a series of files starting with **DXP01...**
-![image](https://hackmd.io/_uploads/rkckkASLZl.png)
+![image](/images/0xL4ughv5CTF/32.png)
 
 When i search wwith keyword filename, i know this is malware **XPS Card Printer**
-![image](https://hackmd.io/_uploads/SyqQkRSU-g.png)
+![image](/images/0xL4ughv5CTF/33.png)
 
 I found CVE Id
-![image](https://hackmd.io/_uploads/S1FqJCSLbe.png)
+![image](/images/0xL4ughv5CTF/34.png)
 
 answer: **CVE-2024-34329**
 
@@ -1027,7 +1027,7 @@ answer: **CVE-2024-34329**
 ### Q7: What is the SHA1 hash of the file that he used to exploit the service?
 
 It is just the hash of the dll. Follow path: `C\ProgramData\Datacard\XPS Card Printer\Service\`
-![image](https://hackmd.io/_uploads/HyKTx0HLbx.png)
+![image](/images/0xL4ughv5CTF/35.png)
 
 
 answer: **7ba477a58eb546b6d3cac3a86633b531ba82fa50**
@@ -1036,7 +1036,7 @@ answer: **7ba477a58eb546b6d3cac3a86633b531ba82fa50**
 ### Q8; What MITRE technique is used by the attacker here?
 
 Dll Side loading
-![image](https://hackmd.io/_uploads/rydZZ0H8Wl.png)
+![image](/images/0xL4ughv5CTF/36.png)
 
  -> **T1574.002**
 
@@ -1044,7 +1044,7 @@ Dll Side loading
 ### Q9: To cover their tracks, the attacker executed multiple commands to disable system logging. What is the name of the file that has these commands?
 
 The first thing that came to my mind at that moment was that the commands should be in a PowerShell script, so I went to the powershell logs: ***Microsoft-Windows-PowerShell%4Operational.evtx***
-![image](https://hackmd.io/_uploads/r1rBf0r8-l.png)
+![image](/images/0xL4ughv5CTF/37.png)
 
 ```log
 <Data Name="MessageNumber">1</Data> 
@@ -1062,7 +1062,7 @@ answer: **svc1D3C.ps1**
 
 Follow path: **`C\Windows\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData`**
 Open file with notepad first, i found IP in file **965B295F92685B983726E076B583D923**
-![image](https://hackmd.io/_uploads/B1vSVArLWx.png)
+![image](/images/0xL4ughv5CTF/38.png)
 
 we see the URL: http://3.75.217.26/tools.7z
 *Certutil (the tool you just checked the cache of) downloads files via port 80. But the original malware (DEVOBJ.dll) is actually configured to connect to port 8080 to retrieve the initial payloads (like the .ps1 script file you found earlier).*
@@ -1073,19 +1073,19 @@ Therefore, answer: **3.75.217.26:8080**
 
 Back path: `C\Windows\System32\winevt\Logs\`. Open file ***Key Management Service.evtx***
 
-![image](https://hackmd.io/_uploads/H1O1IArIZe.png)
+![image](/images/0xL4ughv5CTF/39.png)
 
 answer: **2024-12-11 04:01:41**
 
 ### Q12: Which IP address and port were used by the attacker to establish the shell and communicate with the C2 server? Foramt IP:port
 
 The data in the <Binary> tag of Event 31337 is the encrypted shellcode.
-![image](https://hackmd.io/_uploads/HkPKLAr8Wg.png)
+![image](/images/0xL4ughv5CTF/40.png)
 
 Look at the first 3 bytes of the hexadecimal string: `1F 8B 08`. In computer science, **1F 8B** is the classic signature (magic bytes) of the **GZIP** compression format. This means that the attacker compressed the malicious code using Gzip first and then XOR it [cyberchef](https://gchq.github.io/CyberChef/#recipe=From_Hex('None')Gunzip()XOR(%7B'option':'Hex','string':'5A'%7D,'Standard',false)To_Hex('Space',0)&input=MUY4QjA4MDAwMDAwMDAwMDA0MDA1QjI2NzQ3M0RGQUE0REIzQTJBMkEyQTRCOUE1QjkzOEI4Nzk4NEIyM0JFQzg1MkU3MjU4MDFCMTEzMTA1NzA5NURENEUwMTIwQTdEMkIyMDIwOUUzRDU5Mjg3QkQ2QjczNDZCQjU4OEIyMkFFOUQ5OTNDM0E1QTM2N0VGRDhDRTIxQ0QwRDUyNzU1MTIyNEQyOEJBRUJFMkFENEI0MDgzODRFRUNGRDJCMzA1RjJCODJFMEEzOUM5NUQ5NEFBMTI4RUVFREFDOTIzQjQ3NEIyRjRDNUJDNEI0MkQxM0Q1MDczQTAyNjI0RUREMjVGMkQxNjI5NTYxNzI0OUZEQ0FEREZDNDA0NTQ1RjA3NTQ2RjIzN0QzMTRDMDhDODc2MDNCMkE1MkZDNjAxQjU3NTQ5MzM0OTMzQjEzMDMzMDAyOTY2NjkwNkExOUJEQkFBQTQzOTk2RUUwMjcyMTg4NDJFN0E2Q0U2NURCQTc0MjlCQkYwMTM1RENEMENENkNDMENBMDU3Nzg4NDJGRUYxMUJBQkRFRDU3NzQ1NDk0RjBFNUZEQzJDRjIyQTI3QTEzMjM5NUU3Mjk0OEYzMDk1RkRFMjc3Njc5QjVGNDAzMzFERDlBRDhBNUZENjI5NzM3MTg0NTAzMTUzMTRCM0YyOEJFNjUxOEI1QjQ5RjhCMEJFODNDRjFFQzU5NDI0QjY3MDk1RDlFMDEyNjY3NEIzRkQ4MTBEQUJBNkI2OUJGRDBFNUI5MDY1RUQyNEM2Mjk3NzcwODVENUUyQ0ZERTBGMDdGM0Q2QkEwRTBFRDc5NTIxMTQwNUIxRTU5OUFEQjQ1ODE4MDM0OTczNDk3RDBFNTFEQkNCQ0JDNDA2MzBDQzI5OUE1Qjk3NjJDQjM5OTJCNTdDNzE3MUQyRDc0NURBRUNFNjk0RTk0OTFEMEU1M0QzQzVDRDI2MDI4QkM3NDE2ODg5ODI0N0U3OUI2MThDODI2RTU2OUE5Nzc4MDg2NjY3NzA4MkQ5RDcwMzE0NEZBNDFEMDVENzdBQkE1RkQwRjU3QkRGRkMxMjNGREUwQ0ZGOUU3Qzc4MTkyMzdFNzE1QTVDNUE4MDVEQzVBQjg0QjNGRkVBMUFDQTc4NkE5MDFEMEZEOTcxQjk2RjYwMzAwREQzQjY4QTdDQzAxMDAwMA&ienc=65001&oeol=CR)
 
-![image](https://hackmd.io/_uploads/rk9KcRBLbe.png)
-![image](https://hackmd.io/_uploads/HyBgsABLWl.png)
+![image](/images/0xL4ughv5CTF/41.png)
+![image](/images/0xL4ughv5CTF/42.png)
 
 answer: **3.121.196.122:55099**
 
@@ -1093,7 +1093,7 @@ answer: **3.121.196.122:55099**
 ### Q13: To ensure control over the system, The attacker runs some commands on the machine. What command did he use to enumerate the machine and ensure access?
 
 back to **prefetch**, we can see **whoami.exe** (*WHOAMI.EXE-9D378AFE.pf*) executed after the **cmd.exe**
-![image](https://hackmd.io/_uploads/ry0X2RSL-l.png)
+![image](/images/0xL4ughv5CTF/43.png)
 
 answer: **whoami**
 
@@ -1101,8 +1101,8 @@ answer: **whoami**
 ### Q14: Before leaving, the attacker downloaded additional files for exfiltration. Can you uncover the SHA256 hash of the downloaded file? Hint: it’s a zip file
 
 The attacker downloaded the **tools.7z** file to their computer (we found in Q10). Back path:  `C\Windows\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\`
-![image](https://hackmd.io/_uploads/B1rnnRSLZg.png)
-![image](https://hackmd.io/_uploads/rJdbp0rUWg.png)
+![image](/images/0xL4ughv5CTF/44.png)
+![image](/images/0xL4ughv5CTF/45.png)
 
 answer: **0905089bb59887880312af06c769cebd967ffa7d2f652fe397ee972ddbed3d25**
 
@@ -1112,12 +1112,12 @@ answer: **0905089bb59887880312af06c769cebd967ffa7d2f652fe397ee972ddbed3d25**
 Extracted the zip file we will see file called deep **inside.zip** and I tried to reverse it to confirm if it used for exfiltration or not.
 
 This file was searching for files with extensions **.txt** or **.png** in the Desktop and Downloads then comprise them to one file Exfiltrated_data.zip then rename it to **Would you lose.png** and it used **sdelete.exe** to remove the files.
-![image](https://hackmd.io/_uploads/rJRnA0HLWg.png)
-![image](https://hackmd.io/_uploads/B1rpR0HL-g.png)
-![image](https://hackmd.io/_uploads/S1jaA0SLWl.png)
+![image](/images/0xL4ughv5CTF/46.png)
+![image](/images/0xL4ughv5CTF/47.png)
+![image](/images/0xL4ughv5CTF/48.png)
 
 so we confirmed the exfiltration, now we need to go back to prefetch files.
-![image](https://hackmd.io/_uploads/B1xZkyLUZl.png)
+![image](/images/0xL4ughv5CTF/49.png)
 
 answer: **2024-12-11 04:42:35** (UTC conversion: 11:42 - 7h = 04:42)
 
@@ -1144,33 +1144,33 @@ We need the .txt and .png files from the desktop and downloads just.
 
 answer: **IMPORTANT.TXT-MEETINGS.TXT-REMINDERS.TXT-RESEARCH.TXT-STAND_PROUD_YOU_ARE_STRONG.PNG-TASKS.TXT-TODOLIST.TXT**
   
-![image](https://hackmd.io/_uploads/rkZVWkLIWe.png)
+![image](/images/0xL4ughv5CTF/50.png)
 
 > Flag: 0xL4ugh{97913f33aac650abb1c799e5b7e9041a} 
 
 ## Manipulation
 
-![image](https://hackmd.io/_uploads/r1qfOGUU-e.png)
+![image](/images/0xL4ughv5CTF/51.png)
 
 
 *ALLAM was working on a project file when something weird happened—some numbers didn’t match up, and the data looked off. Turns out, someone accessed his machine, edited the file, and left without a trace. Your job? Dig through the disk image, track the changes, and figure out exactly what was altered to reveal the flag.*
 
-![image](https://hackmd.io/_uploads/Syj8VMLUZg.png)
+![image](/images/0xL4ughv5CTF/52.png)
 
 File Manipulation.001 is a raw forensic image of a disk. For the operating system (Windows) to be able to read the file system (NTFS) structure inside, we need to mount it as a real physical drive.
     
 First, download [ArsenalImageMounter Tools](https://arsenalrecon.com/downloads). Then load file Manipulation.001, after successfully mounting the drive, open This PC, we will see a new drive appear
     
-![image](https://hackmd.io/_uploads/SJKaVf88Zg.png)
+![image](/images/0xL4ughv5CTF/53.png)
 
 Look around folder
-![image](https://hackmd.io/_uploads/H1LfH78Ibl.png)
+![image](/images/0xL4ughv5CTF/54.png)
 
 ***dir /r***
-![image](https://hackmd.io/_uploads/ByWsHGL8bg.png)
+![image](/images/0xL4ughv5CTF/55.png)
 
 Read file **secret.txt** (The stream contains metadata about the file's origin)
-![image](https://hackmd.io/_uploads/S10eIz88bx.png)
+![image](/images/0xL4ughv5CTF/56.png)
 
 ```
 [ZoneTransfer]
@@ -1193,7 +1193,7 @@ And the file: secret.txt
 Now, try matching these two IDs to GitHub's standard structure to find the original file and i found correct link: https://github.com/user-attachments/files/24846253/secret.txt
     
 when access link, we got the flag
-![image](https://hackmd.io/_uploads/SJIIOzIUWe.png)
+![image](/images/0xL4ughv5CTF/57.png)
 
 > Flag: 0xL4ugh{Disc1plin3d_0n_duty_Rel3ntless_0ff_1t}
     

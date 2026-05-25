@@ -14,7 +14,7 @@ cover: /images/post_covers/cscv2025.jpg
 
 
 ## DNS Exifil
-![image](https://hackmd.io/_uploads/r1Hw3J_SWx.png)
+![image](/images/cscv2025_quals/1.png)
 
 
 **Phân tích**
@@ -35,7 +35,7 @@ Sau khi tải **getfile.php** lên, attacker gọi **GET /media/getfile.php?debu
 - _Key: 5769179ccdf950443501d9978f52ddb5_
 - _IV: 1b70ca0d4f607a976c6639914af7c7a6_
 
-![image](https://hackmd.io/_uploads/rkeO3JdHbe.png)
+![image](/images/cscv2025_quals/2.png)
 
 
 
@@ -54,7 +54,7 @@ f.6837abc6655c12c454abe0ca85a596e98473172829581235dd.hex.cloudflar3.com
 f.95380b06bf6dd06b89118b0003ea044700a5f2c4c106c3.hex.cloudflar3.com
 ```
 
-![image](https://hackmd.io/_uploads/Hk9u2JdHbe.png)
+![image](/images/cscv2025_quals/3.png)
 
 
 
@@ -137,56 +137,56 @@ for prefix in sorted(prefix_data.keys()):
             print(f"[!] Still failed: {e2}")
 
 ```
-![image](https://hackmd.io/_uploads/rkhK3JurZg.png)
+![image](/images/cscv2025_quals/4.png)
 
 
 > CSCV2025{DnS_Exf1ltr4ti0nnnnnnnnnnNN!!}
 
 ## NostalgiaS
 
-![image](https://hackmd.io/_uploads/SyS9nkuHbe.png)
+![image](/images/cscv2025_quals/5.png)
 
 
 
 Đề bài có nhắc đến việc dữ liệu đã bị exfiltrated cho nên có thể đoán rằng người dùng đã tải hoặc chạy mã độc trên máy, kiểm tra các thư mục của người dùng **kadoyat**
 
 Kiểm tra thư mục **Documents** thấy có thêm 1 vài file
-![image](https://hackmd.io/_uploads/SkCi3y_rZg.png)
+![image](/images/cscv2025_quals/6.png)
 
 
 
 Các file zip đều có mật khẩu, thử crack thì biết được là **secret**, giải nén ra 3 file xlsm bình thường, không có gì lạ. Các thư mục khác Desktop, Downloads, ... cũng vậy nên sẽ chuyển sang xem lịch sử duyệt web của người dùng
 
 Kiểm tra trong thư mục AppData có thể thấy người dùng sử dụng 3 trình duyệt là Chrome, Edge và Internet Explorer. Kiểm tra Chrome và Edge trước thì vẫn không có gì đặc biệt, nhưng khi kiểm tra Internet Explorer trong **AppData/Local/Microsoft/Windows/WebCache/WebCacheV01.dat**
-![image](https://hackmd.io/_uploads/SJL2nk_B-g.png)
+![image](/images/cscv2025_quals/7.png)
 
 
 
 
 Để phân tích ta có thể dùng [IE10Analyzer](https://github.com/moaistory/IE10Analyzer) với tuỳ chọn là Carving records để lấy được nhiều data nhất có thể. Trong bảng **iedownload** thấy người dùng tải một file **FlashInstaller.hta**
-![image](https://hackmd.io/_uploads/Byv621drZx.png)
+![image](/images/cscv2025_quals/8.png)
 
 
 
 Sau một lúc tìm kiếm trong bảng **Contents** ta thấy có truy cập một đường link lạ trên github
-![image](https://hackmd.io/_uploads/r1Z02kuHWl.png)
+![image](/images/cscv2025_quals/9.png)
 
 
 
 **https://gist.githubusercontent.com/oumazio/ad5626973af6118062ae401c1e788464/raw/725302cda73d10e260e2ed0f26d935e576d3bc1c/FlashInstaller.hta_**
 
 Thử curl về và phân tích
-![image](https://hackmd.io/_uploads/Hk3AnkuH-x.png)
+![image](/images/cscv2025_quals/10.png)
 
 
 
 Khi kiểm tra các phần tag thì thấy các tag **&lt;script&gt;** có nhiều hành động lạ không như một file FlashInstaller bình thường
-![image](https://hackmd.io/_uploads/r1DkT1dHZg.png)
+![image](/images/cscv2025_quals/11.png)
 
 
 
 Tải và thực hiện một file javascript từ github
-![image](https://hackmd.io/_uploads/S1yeTJ_SWl.png)
+![image](/images/cscv2025_quals/12.png)
 
 
 
@@ -195,38 +195,38 @@ Vậy có thể nói rằng người dùng đã có thể bị lừa tải file 
 **_https://gist.githubusercontent.com/oumazio/d2b2cbbe1ad51fd956815e78e6bfe31d/raw/2e34af3f8aac3392f07a1d59013cc8897dda8f3a/something.txt_**
 
 File **something.txt** là một file javascript đã bị **obfuscated**, để deobf ta có thể lên [obf-io.deobfuscate.io](https://obf-io.deobfuscate.io/)
-![image](https://hackmd.io/_uploads/BJsx6kurWl.png)
+![image](/images/cscv2025_quals/13.png)
 
 
 
 Sau khi deobf có thể thấy đây là một file dùng để giao tiếp với server C2: **192.168.11.1:3000**
-![image](https://hackmd.io/_uploads/r1zbp1OSbe.png)
+![image](/images/cscv2025_quals/14.png)
 
 
 
 **initializeRegistry():** Kiểm tra xem **HKCU\\\\SOFTWARE\\\\hensh1n** có tồn tại hay không, nếu không thì sẽ thêm vào khoá hensh1n một giá trị 8 kí tự ngẫu nhiên
-![image](https://hackmd.io/_uploads/H1kGpkdr-l.png)
+![image](/images/cscv2025_quals/15.png)
 
 
 Biết được người dùng là **kadoyat** ta có thể xuất file **NTUSERDAT** cùng tên
-![image](https://hackmd.io/_uploads/H1dUa1uBbe.png)
+![image](/images/cscv2025_quals/16.png)
 
 
 
 Và kiểm tra **HKCU\\\\SOFTWARE\\\\hensh1n** biết được 8 kí tự đó là **HxrYJgdu**
 
 **_(ghi nhớ 8 ký tự này)_**
-![image](https://hackmd.io/_uploads/HyHDaJuH-x.png)
+![image](/images/cscv2025_quals/17.png)
 
 
 
 Tiếp tục phân tích hàm **sendToServer**: Gửi dữ liệu lên server C2 **http://192.168.11.1:3000**
-![image](https://hackmd.io/_uploads/HypPTy_SWl.png)
+![image](/images/cscv2025_quals/18.png)
 
 
 
 Hàm **checkIn()**: Tạo một **taskID**, lấy thông tin hệ điều hành của người dùng rồi gửi đến C2 qua uri **/api/agent/checkin**
-![image](https://hackmd.io/_uploads/B1rdp1uHbg.png)
+![image](/images/cscv2025_quals/19.png)
 
 
 
@@ -241,17 +241,17 @@ Sau khi thực hiện xong thì sleep 5 giây, gửi đến uri **/api/agent/pol
 \+ Tự huỷ
 
 \+ Xoá windows evtx và lịch sử powershell
-![image](https://hackmd.io/_uploads/ByRuTJuBbe.png)
+![image](/images/cscv2025_quals/20.png)
 
 
 
 Bây giờ ta sẽ chuyển qua phân tích **secr3t.txt**
-![image](https://hackmd.io/_uploads/BJNYpyuBWg.png)
+![image](/images/cscv2025_quals/21.png)
 
 
 
 File này sẽ decode một chuỗi Base64 sau đó deompress, ta sẽ lên Cyberchef để [decode](https://gchq.github.io/CyberChef/#recipe=From_Base64%28'A-Za-z0-9%2B/%3D',true,false%29Raw_Inflate%280,0,'',false,false%29&input=aFZOaGI5b3dFUDJPeEgrd1VDU0NJSVpPMDZReTdRTnQxYTFyeHlaZzZ5YkVKaWM1aUZmSHpoeFRpTHIrOTUzQmxLU2dOVitpM04xNzc5N2x6aHZrT2FTaEtMNXFRZDZSUm1KTWx2ZTczWXpsQmtJdWFhVFNybWFyN21udkQvd1lmeGcwNmpYdnU5TFhVR0I1Yi8zcU5YNVBpZ3lHTEFWTE1EYkFCT2lQVERLT1lBMTB4R1BRMXp5NnM5QlBZQklWNzRwSFM0bkJlczNvZ2p6VWF3UWY3eGJDYzhGQkdpd1l3aXI0SFA2R3lKQnhnUTJsZEFpR1BsVTRCTWhJeFJDZksybTJzRDBIdlZBcktSU0x4MFp6dWZDOWt0M1djMEY2d2ZOTTVlQzdqTXNuc1A3R3hCSnl5MXpWb2hQTlU3OUZnandUM0pCbXAwbitrdHNFTk96YWZpRGVMeEtrekVRSmFmN3NyYWU5NEhRUVhMSmdQbXQ3VGZKWVVYTGtaNFhaaUpYY2h4aWF6a3E5MEJ1UUM1TnNnWE9saWU5eCswUGVFbndId2h5VzJreTczZHJOK1VCdzZ2RVpNa3pSMmoxb00rdjNKOG9tL0QyVExYR1dPK1RralJ0VDFZUFNmTUVsRS84eFVWWjkyY2VSNm1OV0tyck95NkcvSUZ5amhsdmdZKzB6dHg5MkVtN2xSakFYMkQ1WGt1NjJCNGR6ZzB2bFYxVXJhOFBuYU9YcE1BSUpwTkVnQVpNeEtkL0FObDUxWXBoZWdMRlFhMkhYRUgyL2plMUpXeVZNdXFHOGtuTmxNWHNHaTlySytTWFp6akZ2WjF6R2VDS1hnaTF5OURjMnpQQUlCNGJ6ZXJuNnl6SVVQRHJlRWIyUzkrb09HNWRMSVRwazgzcStPbzhrMnB5SW13T3M4WnBPTVB3UA&oeol=CRLF)
-![image](https://hackmd.io/_uploads/BkRYp1drZe.png)
+![image](/images/cscv2025_quals/22.png)
 
 
 
@@ -260,7 +260,7 @@ Tải chuỗi hex từ Pastebin -> ghép vào -> XOR với **0x24** -> load asse
 Vậy ta sẽ tiếp tục decode payload từ **pastebin** ra một file **dll** có tên là **StealerJanai** được viết bằng C#
 
 Từ url [pastebin](https://pastebin.com/raw/90qeYSHA) ở cyberchef, trích xuất ra thành 1 file txt
-![image](https://hackmd.io/_uploads/S1sqTyurbe.png)
+![image](/images/cscv2025_quals/23.png)
 
 
 Sau đó viết 1 script powershell đọc file **90qeYSHA.txt**, parse các giá trị hex, XOR từng byte với **0x24**, rồi ghi kết quả ra **StealerJanai.dll**
@@ -300,47 +300,47 @@ Write-Host "Done. Đã tạo: $OutputPath (bytes: $($out.Length))"
 
 ```
 
-![image](https://hackmd.io/_uploads/BknjaJuSWl.png)
+![image](/images/cscv2025_quals/24.png)
 
 
 
 Sau đó load vào [dnSpy](https://github.com/dnSpy/dnSpy/releases) . Tìm tới hàm **RiderKick**
 
 Đây là một mã độc stealer, lấy cắp các thông tin về máy tính, trình duyệt của người dùng và gửi đến 1 discord webhook **https://discord.com/api/webhooks/1389141710126452766/D1NUx0HaXI0Zx6xJSEqYy06X7b8HisqM3rfNUw2qdIWt_WbcE8HXLcIpe2oicB7GpU6e** có tên là **tung tung tung sahur** (_Sau giải thì webhook không còn hoạt động nữa, nhưng cũng không quan trọng vì flag không nằm trong đây_)
-![image](https://hackmd.io/_uploads/S1OhpkdrZg.png)
+![image](/images/cscv2025_quals/25.png)
 
 
 
 Tiếp tục phân tích các class **BrowserDataCollector**, **DiscordWebhookSender**, **SystemInformation**
 
 Sau một hồi phân tích các class và hàm nhỏ thì thấy trong **SystemInformation** có gọi 1 class nữa là **SystemSecretInformationCollector** (Thực ra thấy có chữ secret nên ấn vào) đang dựng một chuỗi như là flag
-![image](https://hackmd.io/_uploads/Hy7aTyuHWe.png)
+![image](/images/cscv2025_quals/26.png)
 
 
 
 Hàm **DecodeMagicToString()** chính là một hàm **decode Base62** với bảng chữ cái **0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz**
 
 Hàm **Collect()** sẽ dựng một **chuỗi text + machinename + text2 + registryvalue + }** với **text** và **text2** được decode bằng **hàm DecodeMagicToString()** . Ở cuối chuỗi có **}** nên khả năng cao có thể là flag
-![image](https://hackmd.io/_uploads/ryTapyuSWe.png)
+![image](/images/cscv2025_quals/27.png)
 
 
 
 Giải mã chuỗi base62, ta được
-![image](https://hackmd.io/_uploads/ByLR61Or-x.png)
+![image](/images/cscv2025_quals/28.png)
 
-![image](https://hackmd.io/_uploads/B1f1Ay_Bbe.png)
+![image](/images/cscv2025_quals/29.png)
 
 
 
 Tiếp theo tới part2 của flag:
 
 **machinename** là tên máy tính của người dùng. Ta có thể lấy dữ liệu này từ file **SYSTEM** trong **Windows/System32/config**
-![image](https://hackmd.io/_uploads/By1gRyOS-x.png)
+![image](/images/cscv2025_quals/30.png)
 
 
 
 rồi load vào trong **RegistryExplorer**, tên máy sẽ nằm ở key **ROOT\\ControlSet001\\Control\\ComputerName\\ComputerName: DESKTOP-47ICHL6**
-![image](https://hackmd.io/_uploads/SJ8lRk_BZl.png)
+![image](/images/cscv2025_quals/31.png)
 
 
 
@@ -353,7 +353,7 @@ Phần 3 của flag là registryvalue được lấy từ giá trị của key S
 *Cảm ơn author đã cho 1 challenge khá hay:>*
 
 ## Case AlphaS
-![image](https://hackmd.io/_uploads/S1XbAydBZg.png)
+![image](/images/cscv2025_quals/32.png)
 
 
 
@@ -361,7 +361,7 @@ Phần 3 của flag là registryvalue được lấy từ giá trị của key S
 **Phân tích**
 
 _Nội dung file pdf:_
-![image](https://hackmd.io/_uploads/BkKb0yuBbg.png)
+![image](/images/cscv2025_quals/33.png)
 
 
 
@@ -378,7 +378,7 @@ Trước hết tìm hiểu cần những gì để có thể mở một ổ cứ
 Trước hết thì xác định được thư mục người dùng là **windows**, đã thử phân tích file MFT để xem người dùng có giấu key file hay là txt,… chứa mật khẩu không nhưng không tìm được gì nhiều
 
 Load file vào FTK, Để ý thấy trong thư mục **Downloads** có tải một số ứng dụng
-![image](https://hackmd.io/_uploads/B1HXzRkdB-l.png)
+![image](/images/cscv2025_quals/34.png)
 
 
 
@@ -395,19 +395,19 @@ Thử strings ra ta sẽ có chuỗi sau
 ```
 content"Ozip password: 5525b8d2d8534b716467493f3660b11e1c44b22cd0c97275619b94a0e5c82fda"
 ```
-![image](https://hackmd.io/_uploads/BkpGAJuSWl.png)
+![image](/images/cscv2025_quals/35.png)
 
 
 
 _Đây chưa phải là mật khẩu của ổ cứng mà là mật khẩu của file zip nào đó, tạm thời bây giờ chưa dùng đến nhưng cứ lưu lại_
 
 Cuối cùng là ChatGPT, tương tự như SimpleNote và các ứng dụng trong Windows Store khác, các cuộc trò chuyện của người dùng cũng được lưu tại **AppData\\Packages\\OpenAI.ChatGPT-Desktop_2p2nqsd0c76g0\\LocalCache\\Roaming\\ChatGPT\\IndexedDB\\https_chatgpt.com_0.indexeddb.leveldb\\000003.log**
-![image](https://hackmd.io/_uploads/rJ9XAyuHbe.png)
+![image](/images/cscv2025_quals/36.png)
 
 
 
 Sau khi strings và tìm một hồi thấy người dùng đã hỏi câu sau:
-![image](https://hackmd.io/_uploads/BJfNCy_H-g.png)
+![image](/images/cscv2025_quals/37.png)
 
 
 
@@ -416,12 +416,12 @@ Vậy là đã có recovery key rồi: **028853-431640-166364-032076-217943-0458
 Ở trong có một file secret.zip, thử mở khoá với mật khẩu zip trong SimpleNote sẽ thành công **5525b8d2d8534b716467493f3660b11e1c44b22cd0c97275619b94a0e5c82fda**
 
 Giải nén ra sẽ có một số file dữ liệu mật của công ty mà người dùng đang định bán và **ssh.txt** với nội dung
-![image](https://hackmd.io/_uploads/BkeBRkOBZx.png)
+![image](/images/cscv2025_quals/38.png)
 
 
 
 **cff4c6f0b68c31cb** chính là mật khẩu của [pastebin](https://pastebin.com/WciYiDEs)
-![image](https://hackmd.io/_uploads/B1yUAy_HWe.png)
+![image](/images/cscv2025_quals/39.png)
 
 
 
@@ -430,7 +430,7 @@ Giải nén ra sẽ có một số file dữ liệu mật của công ty mà ng�
 
 
 ## CovertS
-![image](https://hackmd.io/_uploads/BylP0Jdr-l.png)
+![image](/images/cscv2025_quals/40.png)
 
 
 
@@ -441,12 +441,12 @@ Tổng hợp các giao thức được ghi lại trong file pcap
 PCAP rất lớn và rất nhiều IP khác nhau
 
 Như mô tả thì người dùng đã bị exfiltrate cái gì đó qua máy của người khác. Trước hết ta sẽ cần xác định được IP của người dùng. Khá may trong pcap có lưu lại NTP
-![image](https://hackmd.io/_uploads/SkdDCJ_Sbx.png)
+![image](/images/cscv2025_quals/41.png)
 
 
 
 Các gói tin client xuất phát từ IP 192.168.203.91 => Đây là IP của người dùng
-![image](https://hackmd.io/_uploads/SkAPAydB-l.png)
+![image](/images/cscv2025_quals/42.png)
 
 
 
@@ -465,24 +465,24 @@ Không tìm được pattern nào hợp lí cả cho nên ta sẽ skip
 Khi chuyển sang phân tích các packet TCP và UDP, ta sẽ sử dụng **Statistics/Conversations** trong wireshark để tiện phân tích
 
 Hầu hết đều giao tiếp qua HTTP và HTTPS (port 80, 443) nhưng sau đó có một đoạn rất lạ, khác hẳn so với những packet trước đó
-![image](https://hackmd.io/_uploads/S1vdRydS-x.png)
+![image](/images/cscv2025_quals/43.png)
 
 
 
 Từ đoạn **192.168.192.1:3239**, từ IP của người dùng nhưng với rất nhiều port khác nhau, nhưng mỗi port đều gửi đến chung một địa chỉ và chỉ có đúng 1 packet. Rất đáng nghi cho nên ta sẽ filter **ip.src == 192.168.203.91 && ip.dst == 192.168.192.1 && tcp.dstport == 3239** và xuất ra để phân tích cho nhẹ (Chỉ có 608 packet)
-![image](https://hackmd.io/_uploads/r1ftRJdBWg.png)
+![image](/images/cscv2025_quals/44.png)
 
 
 
 Đặt tên bất kỳ rồi ấn save
-![image](https://hackmd.io/_uploads/r1PtAydrWe.png)
+![image](/images/cscv2025_quals/45.png)
 
 
 
 Kiểm tra các packet lại thấy một điều lạ hơn nữa lạ hơn nữa là trường Identification (ip.id) của gói IP và checksum (tcp.checksum)của TCP đều giống nhau trong toàn bộ 608 packet. Điều này là rất khó bởi vì ip.id và tcp.checksum được tính toán khác nhau có thể 1 hoặc 2 packet trùng được nhưng đến 608 thì rất lạ
 
 Tất cả đều có thể dịch ra các kí tự đọc được
-![image](https://hackmd.io/_uploads/rJCF01_rWe.png)
+![image](/images/cscv2025_quals/46.png)
 
 
 
@@ -491,7 +491,7 @@ Vậy có thể dữ liệu đã bị exfiltrate qua **192.168.192.1:3239**, n�
 ```tex
 tshark -r challenge.pcapng -Y "ip.src == 192.168.203.91 && ip.dst == 192.168.192.1 && tcp.dstport == 3239" -T fields -e tcp.checksum > out.txt
 ```
-![image](https://hackmd.io/_uploads/SkTq01_BZg.png)
+![image](/images/cscv2025_quals/47.png)
 
 
 
@@ -519,7 +519,7 @@ except FileNotFoundError:
 except Exception as e:
     print(f"Đã xảy ra lỗi: {e}")
 ```
-![image](https://hackmd.io/_uploads/r1_j0JdS-g.png)
+![image](/images/cscv2025_quals/48.png)
 
 
 

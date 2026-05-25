@@ -16,7 +16,7 @@ Writeup for Forensic Challenges
 
 ## Beatiful Memory
 
-![image](https://hackmd.io/_uploads/HyruD70CZg.png)
+![image](/images/bkiscctf2026/1.png)
 *I left my most precious memory here, can you find it?*
 
 
@@ -36,12 +36,12 @@ Trước hết liệt kê tiến trình với Volatility 3
 ```bash
 volatility3 -f chall.dmp windows.pslist
 ```
-![image](https://hackmd.io/_uploads/BkUQoXR0bl.png)
+![image](/images/bkiscctf2026/2.png)
 
 Kết quả cho thấy nhiều tiến trình của edge, mình nghĩ tới [edge store cred plaintext](https://www.pcmag.com/news/researcher-finds-microsoft-edge-stored-passwords-load-in-plaintext) 
 Vậy thì ta sẽ cố gắng dump passwd của user edge [tool](https://github.com/L1v1ng0ffTh3L4N/EdgeSavedPasswordsDumper)
 
-![image](https://hackmd.io/_uploads/ryBV9NAC-e.png)
+![image](/images/bkiscctf2026/3.png)
 
 ```
 [+] Credential Found!                                                      
@@ -58,7 +58,7 @@ Windows lưu chuỗi dưới dạng **UTF-16 Little Endian** nên phải dùng f
 ```bash
 strings -el chall.dmp | grep -iE "BKISC\{|CTF\{|flag\{"
 ```
-![image](https://hackmd.io/_uploads/HJBdFm0A-e.png)
+![image](/images/bkiscctf2026/4.png)
 > BKISC{W3ll_M3mory_is_Str0nk_right_?}
 
 
@@ -66,19 +66,19 @@ strings -el chall.dmp | grep -iE "BKISC\{|CTF\{|flag\{"
 
 ## Lookout
 
-![image](https://hackmd.io/_uploads/B1F4yEAAbe.png)
+![image](/images/bkiscctf2026/5.png)
 *While checking a monthly report sent by one of my employees, everything seemed ordinary. However, when I logged back in my mailbox the next day, something strange was happening on my computer.*
 
 
 Navigate đến `Desktop` của user → tìm thấy file `.pcap` đáng ngờ
 
-![image](https://hackmd.io/_uploads/rkHwJ4RA-x.png)
+![image](/images/bkiscctf2026/6.png)
 
 
 Mở bằng **Wireshark** 
 Phát hiện 1 file report.txt khá đáng ngờ mà "monthly report" nhắc tới trong đề bài
 → **File > Export Objects > HTTP**:
-![image](https://hackmd.io/_uploads/Hkyn1ER0-x.png)
+![image](/images/bkiscctf2026/7.png)
 
 
 IP attacker: `192.168.1.189:1704`
@@ -86,7 +86,7 @@ IP attacker: `192.168.1.189:1704`
 
 
 Nội dung `report.txt`:
-![image](https://hackmd.io/_uploads/Hkp7xVACWg.png)
+![image](/images/bkiscctf2026/8.png)
 
 
 **Kết quả decode được là 1 PowerShell script:**
@@ -138,11 +138,11 @@ Remove-Item -Path $tempRegFile -Force
 
 Giải thích 1 chút tại sao có file `report.txt` chứa powershell độc hại này
 Ở trong ***C:\Users\BKISC\AppData\Local\Microsoft\Outlook*** có 1 file **.ost** chứa data của email 
-![image](https://hackmd.io/_uploads/BJ_4rRCCbx.png)
+![image](/images/bkiscctf2026/9.png)
 
 Trích xuất nó ra và phân tích bằng [OST VIEWER](https://apps.microsoft.com/detail/XP87VTPJGV2367?hl=en-US&gl=US&ocid=pdpshare)
 Ở trong mục important có chứa nội dung của  email đáng ngờ: scheybrening@gmail.com
-![image](https://hackmd.io/_uploads/BJBSLCA0-g.png)
+![image](/images/bkiscctf2026/10.png)
 Như vậy là ta đã rõ attack chain là social engineering
 `Attacker giả danh "Schey Brening - Head of Accountant" để dụ nạn nhân tải về và mở file txt → PowerShell thực thi → Hijack Outlook WebView Inbox → Specula C2 chiếm quyền kiểm soát`
 
@@ -151,7 +151,7 @@ Quay lại Wireshark, Filter traffic đến C2 server:
 ```
 ip.addr == 192.168.1.189 && tcp.port == 8386
 ```
-![image](https://hackmd.io/_uploads/Hy36lEACWl.png)
+![image](/images/bkiscctf2026/11.png)
 
 
 **Timeline giao tiếp:**
@@ -163,7 +163,7 @@ POST /css/dx7u7QYCSlbTbQ             → Gửi kết quả lệnh về C2
 ```
 
 **Phân tích VBScript implant (FxBdmVg):**
-![image](https://hackmd.io/_uploads/H1IfWER0-x.png)
+![image](/images/bkiscctf2026/12.png)
 ```vbscript
 Set outlookapp = window.external.OutlookApplication
 Dim ay
@@ -324,13 +324,13 @@ HKCU\Software\Microsoft\Office\16.0\Outlook\UserInfo → "KEY"
 ```
 
 Ta quay lại FTK và Export `NTUSER.DAT` 
-![image](https://hackmd.io/_uploads/rkHabVCCbe.png)
+![image](/images/bkiscctf2026/13.png)
 
 Và mở bằng Registry Explorer 
 
 Navigate đến: ***Software\Microsoft\Office\16.0\Outlook\UserInfo***
 
-![image](https://hackmd.io/_uploads/S1uRM4RRWg.png)
+![image](/images/bkiscctf2026/14.png)
 
 **Tìm thấy:**
 ```
@@ -461,13 +461,13 @@ print(RC4(key, plaintext).decode())
 
 ## The Interview
 
-![image](https://hackmd.io/_uploads/Sy3X2wwJzg.png)
+![image](/images/bkiscctf2026/15.png)
 
 *You are an undercover police officer, sent on a dangerous mission to bring down a fraudulent organization from the inside. Your only way in is to pose as a job applicant, and now, the company has contacted you for an interview. You unexpectedly gain access to the HR representative’s phone data. It is your chance to expose their secrets and take the entire operation down.*
 *!!!WARNING: Need OSINT skills to complete the challenge*
 
 Giải nén
-![image](https://hackmd.io/_uploads/HyWQKEAAWl.png)
+![image](/images/bkiscctf2026/16.png)
 Đây là **Android data partition dump**, gồm các thư mục đáng chú ý
 
 ```
@@ -493,7 +493,7 @@ sqlite3 ./data/com.android.providers.telephony/databases/mmssms.db \
   "SELECT address, date, body FROM sms ORDER BY date DESC LIMIT 50;"
 ```
 
-![image](https://hackmd.io/_uploads/ByZuVBR0-l.png)
+![image](/images/bkiscctf2026/17.png)
 SMS có tin nhắn mã hóa từ số 0666777888 sử dụng b64 và xor key
 
 Chuyển sang truy tìm key trong db
@@ -505,7 +505,7 @@ sqlite3 ./data/com.android.providers.calendar/databases/calendar.db \
    ORDER BY dtstart DESC LIMIT 20;"
 ```
 
-![image](https://hackmd.io/_uploads/SyG_HH0AZe.png)
+![image](/images/bkiscctf2026/18.png)
 
 Tìm được key là: `ronaldoisthechampionofworldcup2026`
 
@@ -536,7 +536,7 @@ for i, msg in enumerate(msgs, start=1):
     except Exception as e:
         print(f"[MSG {i}] Error: {e}")
 ```
-![image](https://hackmd.io/_uploads/Byz6LSRRbg.png)
+![image](/images/bkiscctf2026/19.png)
 
 Vậy ta có part1 của flag
 > BKISC{f0renshit_mobile3s_is_v3ryy_345y_bu7
@@ -544,14 +544,14 @@ Vậy ta có part1 của flag
 Nhìn kỹ đoạn chat vừa giải mã ta thấy được hint của part2 là *"The user has downloaded a special game; try to win that game"*
 
 -> Game đó chính là **spacerunner.apk**, app của BKISC trong **Download folder**
-![image](https://hackmd.io/_uploads/r1zADH00bx.png)
+![image](/images/bkiscctf2026/20.png)
 
 Trích xuất nó về, strings grep tổng quan 
-![image](https://hackmd.io/_uploads/r18Bur0CWg.png)
+![image](/images/bkiscctf2026/21.png)
 ok, ta đã biết chính xác hàm để lấy part2 ở đâu rồi
 
 load vào jada-gui để phân tích, nhảy tới hàm **GameState.java**
-![Screenshot 2026-05-09 142424](https://hackmd.io/_uploads/H1av_HR0-l.png)
+![Screenshot 2026-05-09 142424](/images/bkiscctf2026/22.png)
 
 ```java
 public final class GameState {
@@ -689,25 +689,25 @@ Ta được part2 của flag
 
 Tới part 3 của flag, thì từ email đã khai thác được trong dump Android:thuminh689099@gmail.com, bỏ đuôi gmail ta có được handle **thuminh689099**, dựa vào đây ta sẽ thử xem các trang social của người dùng này thì tìm được trên [Twitter](https://x.com/thuminh689099) và [Tiktok](https://www.tiktok.com/@thuminh689099)
 
-![image](https://hackmd.io/_uploads/ByYk6qSyMl.png)
+![image](/images/bkiscctf2026/23.png)
 → trong bio có link Pastebin và format password
 
-![image](https://hackmd.io/_uploads/SJHuTqHkfx.png)
+![image](/images/bkiscctf2026/24.png)
 → có video quay cảnh
 
 Mình học ở HCM nên nhìn tòa nhà đó rất quen..
-![image](https://hackmd.io/_uploads/S1Ry9nS1fg.png)
+![image](/images/bkiscctf2026/25.png)
 Nó chính là tòa nhà của Đại học Hồng Bàng. Vậy thì tòa nhà nhìn chéo kia chắc chắc là UEF rồi
 
 Từ đây ta sẽ đối chiếu sang vị trí được chụp ở trong ảnh
-![image](https://hackmd.io/_uploads/S1IB53Syze.png)
+![image](/images/bkiscctf2026/26.png)
 Vị trí cần tìm sẽ loanh quanh vòng tròn to này
 Sau khi cross-reference các yếu tố ở ảnh thứ 2 với Google Maps ở chế độ xem phố
 → xác định được địa điểm quay video tại [BAP Building](https://maps.app.goo.gl/zyhsqdgL17fYEGes8) 
 Format lại tọa độ: **10.798,106.708**
 
 
-![image](https://hackmd.io/_uploads/S173AcSJzx.png)
+![image](/images/bkiscctf2026/27.png)
 Ta được p3 của flag
 
 Vậy ta có Flag:
@@ -716,36 +716,36 @@ Vậy ta có Flag:
 
 ## HomeWork
 
-![image](https://hackmd.io/_uploads/HJFD2DPJzl.png)
+![image](/images/bkiscctf2026/28.png)
 *My friend and I were sleeping in our online class, when the session ended in group chat our teacher said the deadline is tomorrow, but we don't know what it is. Can you help us ?*
 *Flag format is BKISC{}*
 
 Đề bài cho 1 file ad1. Load vào FTK, 
 
-![image](https://hackmd.io/_uploads/ryXHjnSyze.png)
+![image](/images/bkiscctf2026/29.png)
 trích xuất hai file Registry quan trọng: *C:\Windows\System32\config\SAM* và *SYSTEM* 
 Sau đó sử dụng công cụ mimikatz để lấy NTLM hash 
 `lsadump::sam /system:SYSTEM /sam:SAM`
-![image](https://hackmd.io/_uploads/rJ9e32SyMl.png)
+![image](/images/bkiscctf2026/30.png)
 Như vậy ta có NTLM hash của user KangTheConq: `53eb1a04579d5b0cb8f395e9a780a820`. Đẩu lên [Crackstation](https://crackstation.net/) để crack password
 
-![Screenshot 2026-05-16 124345](https://hackmd.io/_uploads/SJ6hh3Hkzg.png)
+![Screenshot 2026-05-16 124345](/images/bkiscctf2026/31.png)
 Tìm được passwd của user là: **Sup3rR0ckP4ss**
 
 Tiếp theo, dựa vào đề bài tìm 1 platform giao tiếp với nhau, và ở chall này đó là zoom. Dữ liệu của Zoom được mã hóa và chìa khóa chính bị khóa bởi Windows DPAPI
-![Screenshot 2026-05-16 140059](https://hackmd.io/_uploads/S1VtT2HJze.png)
+![Screenshot 2026-05-16 140059](/images/bkiscctf2026/32.png)
 
 Thực hiện trích xuất DPAPI tại *C:\Users\KangTheConq\AppData\Roaming\Microsoft\Protect\<SID>*
-![image](https://hackmd.io/_uploads/B1XxA3r1Mg.png)
+![image](/images/bkiscctf2026/33.png)
 
 Tiếp tục dùng Mimikatz, cung cấp mật khẩu Windows vừa crack để giải mã Master Key:
 ```
 dpapi::masterkey /in:1d4f66e2-0ad9-4e0b-9f17-c526c4920624 /sid:S-1-5-21-2185385569-2550479847-782288727-1000 /password:Sup3rR0ckP4ss
 ```
-![image](https://hackmd.io/_uploads/rJHmR2Hyze.png)
+![image](/images/bkiscctf2026/34.png)
 
 Đọc file cấu hình **zoom.us.ini** tại *AppData\Roaming\Zoom\data*, tìm chuỗi Base64 của biến *win_osencrypt_key*
-![image](https://hackmd.io/_uploads/HJ6t0hBkGl.png)
+![image](/images/bkiscctf2026/35.png)
 
 Bỏ tiền tố ZWOSKEY, đưa [cyberchef](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false)&input=QVFBQUFOQ01uZDhCRmRFUmpIb0F3RS9DbCtzQkFBQUE0bVpQSGRrS0MwNmZGOFVteEpJR0pBQUFBQUFDQUFBQUFBQVFaZ0FBQUFFQUFDQUFBQUNoQkxaOUdVRnM0b2JnV0pOSjlSRDFIUmVEZ2FjVVMzMklRRHl0WFdwU0VnQUFBQUFPZ0FBQUFBSUFBQ0FBQUFEVFQvQmFzUVM0bEpLWjF4eGpTUnVrUlFvVmlCWkJJREQxTGp2SlNQL1Z3REFBQUFEOXZQUFB1T1ZjcWhJK3NCQXVBRkluVVRwWTNPTHROWk9wSER5bTViZnJVdTMyQjljYmZ1dlFoeWMxWHRjUldoWkFBQUFBZjhiVVdwRlEyRTI4U3QxY0xpNjVBT3FMam8rNlJ1RElNRml6ZmNyamhlRmF1anp5cC9ZVDRDMGdma2N3MHBHRnAzbmlGb1NIRGJ1OFIxSnNqMVY2YUE9PQ) giải mã, export thành file blob.bin
 
@@ -753,20 +753,20 @@ Sau đó dùng mimikatz kết hợp với Master Key vừa giải mã để decr
 ```
 dpapi::blob /masterkey:416028ce358926baf81aae4bc79ef097efc76d999f266c38f4b3c861625e8700b222d8daccfb2d596438014c54ab50835eeb523f4ce6165a8491653e05e80bae /in:blob.bin /out:main_key.bin 
 ```
-![image](https://hackmd.io/_uploads/B1lVyprJMe.png)
+![image](/images/bkiscctf2026/36.png)
 
 Load vào Hxd để đọc main key
-![image](https://hackmd.io/_uploads/HkhYJpBkMe.png)
+![image](/images/bkiscctf2026/37.png)
 `ncj4HN14EMgmf1tuPqAv0FvYRXzhql5M+8bZf3/sv1k=`
 
 Trích xuất file *zoommeeting.enc.db*, load vào SQLite để đọc với mainkey vừa tìm được và set pages 1024, 4000 iterations
-![Screenshot 2026-05-16 144028](https://hackmd.io/_uploads/SJumxTSkGg.png)
+![Screenshot 2026-05-16 144028](/images/bkiscctf2026/38.png)
 
 Kiểm tra bảng message, thu được đoạn hội thoại của giáo viên kèm theo đường link Google Drive chứa file **homework.rar**
-![Screenshot 2026-05-16 144317](https://hackmd.io/_uploads/rJwrl6rJzl.png)
+![Screenshot 2026-05-16 144317](/images/bkiscctf2026/39.png)
 
 Access và tải về, giải nén
-![Screenshot 2026-05-16 150829](https://hackmd.io/_uploads/rJ3PeaHyfe.png)
+![Screenshot 2026-05-16 150829](/images/bkiscctf2026/40.png)
 
 Giải thích 1 chút về lỗi này là do mình chơi trên ổ SSD rời, không phải là NTFS: Các chuẩn format như FAT32 hoặc exFAT (thường thấy trên ổ cứng rời, USB hoặc phân vùng phụ) không hỗ trợ Alternate Data Streams. Ta chỉ cần đẩy nó vào ổ C:\ và giải nén. 
 Ta thấy bên trong có key.txt và homework.jpg. Tuy nhiên, nội dung file key.txt không đủ manh mối. Phân tích Header của RAR (hoặc giải nén trên NTFS) cho thấy có sử dụng [ADS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fscc/e2b19412-a925-4360-b009-86e3b8a020c8)
@@ -775,7 +775,7 @@ Dùng PowerShell để đọc luồng dữ liệu ẩn :secret đính kèm trong
 ```shell
 Get-Content -Path .\key.txt -Stream secret
 ```
-![image](https://hackmd.io/_uploads/HJlANbarJze.png)
+![image](/images/bkiscctf2026/41.png)
 
 Output trả về chỉ thị rõ ràng cho thuật toán AES-CBC:
 - Key: b'N3v3rG0n4G1v3UUP'
@@ -793,7 +793,7 @@ cipher = AES.new(key, AES.MODE_CBC, iv)
 encrypted_data = cipher.encrypt(pad(data, AES.block_size))
 with open('flag.png', 'wb') as f: f.write(encrypted_data)
 ```
-![image](https://hackmd.io/_uploads/B12yMTrJzx.png)
+![image](/images/bkiscctf2026/42.png)
 
 > BKISCTF{Y0u_G0t_A_F0r_Th1s_St3g4n0gr4phy_C14ss}
 
@@ -802,16 +802,16 @@ with open('flag.png', 'wb') as f: f.write(encrypted_data)
 
 ## Deleted Secret
 
-![image](https://hackmd.io/_uploads/rJfPIVRRWl.png)
+![image](/images/bkiscctf2026/43.png)
 *During a cybercrime investigation, law enforcement seized a suspect's machine while the system was still live. To prevent data loss from an imminent power failure, investigators performed a rapid acquisition of the disk. Analyze the resulting image to identify and document any relevant digital evidence.*
 *Flag is separated into 2 parts.*
 
-![image](https://hackmd.io/_uploads/rJ6bm1Pyze.png)
+![image](/images/bkiscctf2026/44.png)
 
 Đề cho 1 file ad1 khá nặng ~10GB khiến việc điều tra ban đầu khá khó khăn, mình đã mất nhiều thời gian để tìm được hướng đi 
 Vọc 1 hồi mình tìm thấy được script đáng ngờ: `nuke.py`
 
-![image](https://hackmd.io/_uploads/HJCqQkDkMe.png)
+![image](/images/bkiscctf2026/45.png)
 
 ```python    
 import os
@@ -959,10 +959,10 @@ if __name__ == '__main__':
 Mình có vọc được thêm file INBOX chứa nội dung của attacker. 
 Navigate đến `AppData\Roaming\Thunderbird\Profiles\b62yv516.default-release\ImapMail\imap.gmail.com\`
  
-![image](https://hackmd.io/_uploads/SyUfSkPyzl.png)
+![image](/images/bkiscctf2026/46.png)
 Tìm thấy file **INBOX** có thể đọc được. Phần lớn là Google security alert (nhiễu), nhưng vẫn có phát hiện
 
-![image](https://hackmd.io/_uploads/HyQ3S1vyMg.png)
+![image](/images/bkiscctf2026/47.png)
 ```
 From: K4ngTh3C0nq <kangtheconq_lmao123@proton.me>
 Subject: Welcome to the team
@@ -1008,15 +1008,15 @@ def secure_wipe_file(filepath):
 Tuy nhiên thì Windows Search Service đã **index và cache nội dung** của `Instructions.pdf` và `target.txt` trước khi chúng bị xóa → tức là dữ liệu vẫn còn trong `Windows.edb`. Như vậy nhiệm vụ của mình là đi tìm file này
 
 `C:\ProgramData\Microsoft\Search\Data\Applications\Windows`
-![image](https://hackmd.io/_uploads/rJbevkv1fl.png)
+![image](/images/bkiscctf2026/48.png)
 
 ***Bước này là bước làm mình mất thời gian nhất vì mình đi grep strings với từng keyword=))) cơ mà nhờ vậy mình đã tìm được 1 manh mối rất quan trọng mà mãi về sau khi giải xong challenge mình mới thấy may mắn. Đó là tìm được link ggdrive của file tool.zip mà không cần phải decrypt Clipboard DPAPI (mặc dù mình vẫn làm cách này và tìm được password và master key của user briaf)***
-![image](https://hackmd.io/_uploads/ryiriywyfx.png)
+![image](/images/bkiscctf2026/49.png)
 
 ***https://drive.google.com/drive/folders/1GwJ1AjIQAYCHj_Gxio5dcpoR-36lOKb7?usp=sharing***
 
 Thế mà lại hay
-![image](https://hackmd.io/_uploads/SJRg3kPkze.png)
+![image](/images/bkiscctf2026/50.png)
 just meme=]]
 
 Và tất nhiên mình phải mất khá lâu và đi hỏi lung tung thì mới biết tới công cụ [SIDR](https://github.com/strozfriedberg/sidr) để parse ESE database
@@ -1029,7 +1029,7 @@ cd sidr && cargo build --release
 ```
  
 Output sinh ra nhiều file csv
-![image](https://hackmd.io/_uploads/HJg2O1Pkfg.png)
+![image](/images/bkiscctf2026/51.png)
 
 nhưng để grep với các keyword với các file DESKTOP trước 
 ```
@@ -1037,9 +1037,9 @@ grep -i "instruction\|target\|BKISC\|secret\|briar\|Base32" \
   DESKTOP-124K5L1_File_Report_*_dirty.csv
 ```
 
-![Screenshot 2026-05-17 122008](https://hackmd.io/_uploads/Hk1zOkwJMg.png)
+![Screenshot 2026-05-17 122008](/images/bkiscctf2026/52.png)
 thì ra được content trong file `target.txt` chứa part1 của flag đang bị encrypt bằng b32 
-![Screenshot 2026-05-17 121321](https://hackmd.io/_uploads/H1LSO1D1Mx.png)
+![Screenshot 2026-05-17 121321](/images/bkiscctf2026/53.png)
 > BKISC{Woah_I_r34lly_dunno_
  
 Ngoài ra SIDR còn trả về cached content của `Instructions.pdf` (WorkId 2871):
@@ -1058,11 +1058,11 @@ Mot_con_vit_xoe_r4_h4i_c4i_c4nh!!!
 
 Tiếp tục grep strings 
 `strings tools.exe | grep "gist.github"`
-![image](https://hackmd.io/_uploads/B18261Pyzg.png)
-![image](https://hackmd.io/_uploads/rkxaTkv1fx.png)
+![image](/images/bkiscctf2026/54.png)
+![image](/images/bkiscctf2026/55.png)
 
 Thấy được 1 đoạn mã được encrypt bằng b45, như vậy ta dễ dàng có được part2 của flag
-![image](https://hackmd.io/_uploads/HkEZC1Dkzx.png)
+![image](/images/bkiscctf2026/56.png)
 
 Vậy ta có flag hoàn chỉnh
 > BKISC{Woah_I_r34lly_dunno_whut_t0_s4y_here_n0_idea_T^T}
@@ -1082,7 +1082,7 @@ Crack bằng crackstation → kangkong
  
 Decrypt MasterKey tại `AppData\Roaming\Microsoft\Protect\S-1-5-21-...-1001\33394d46-...`:
 
-![image](https://hackmd.io/_uploads/SJggJgP1zl.png)
+![image](/images/bkiscctf2026/57.png)
 
 
 ```
@@ -1096,7 +1096,7 @@ sha1 : 8ed338cb44d7c271b0e21b32ed2fe5480eaf9e2f
 Windows lưu **pinned clipboard items** tại:
 `AppData\Local\Microsoft\Windows\Clipboard\Pinned`
 
-![image](https://hackmd.io/_uploads/r1RwklvkGg.png)
+![image](/images/bkiscctf2026/58.png)
 File `VGV4dA==` bắt đầu bằng header `30 82 ... 06 09 2a 86 48 86 f7 0d 01 07 03` → **ASN.1 CMS EnvelopedData** bao ngoài DPAPI blob. DPAPI magic `01 00 00 00 d0 8c 9d df` nằm ở **offset 45**.
  
 ```python
@@ -1156,6 +1156,6 @@ Chat giữa Horse và Pony chứa link Google Drive đến `tools.zip` kèm pass
 
 ## Lời kết
 
-![image](https://hackmd.io/_uploads/BywlZgwkzg.png)
+![image](/images/bkiscctf2026/59.png)
 
 Rất cảm ơn các tác giả đã đem đến những challenge chất lượng và thú vị. Qua quá trình giải đề, mình đã học hỏi thêm được nhiều kỹ thuật mới. Hy vọng BKISC sẽ tiếp tục duy trì phong độ và mang đến nhiều sân chơi bổ ích như thế này trong tương lai! GGWP

@@ -25,7 +25,7 @@ curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mi
 bash Miniforge3-$(uname)-$(uname -m).sh
 ```
 Với uname và uname -m trên máy Linux của bạn. Ví dụ như của mình:
-![Ảnh chụp màn hình 2025-07-31 224027](https://hackmd.io/_uploads/HJDcLoFDel.png)
+![Ảnh chụp màn hình 2025-07-31 224027](/images/sagemath_notebook/1.png)
 
 Thì ta sẽ có lệnh như sau:
 
@@ -38,10 +38,10 @@ Sau khi tải Miniforge3 thành công, ta sẽ được 1 file .sh. Tiếp tục
 ```bash
 bash Miniforge3-Linux-x86_64.sh
 ```
-![Ảnh chụp màn hình 2025-07-31 224039](https://hackmd.io/_uploads/BktCPjtPle.png)
+![Ảnh chụp màn hình 2025-07-31 224039](/images/sagemath_notebook/2.png)
 
  Khi được hỏi `Do you accept the license...`, chọn `yes`.
-![Ảnh chụp màn hình 2025-07-31 224121](https://hackmd.io/_uploads/ByYHIiKPge.png)
+![Ảnh chụp màn hình 2025-07-31 224121](/images/sagemath_notebook/3.png)
 
  Sau khi cài xong, **đóng terminal và mở lại**, hoặc chạy thủ công:
 
@@ -50,7 +50,7 @@ source ~/.zshrc    # nếu dùng Zsh
 source ~/.bashrc   # nếu dùng Bash
 ```
 Kết quả thành công, khi bạn gõ conda sẽ hiển thị như trong ảnh
-![Ảnh chụp màn hình 2025-07-31 224221](https://hackmd.io/_uploads/BymGDiYvgl.png)
+![Ảnh chụp màn hình 2025-07-31 224221](/images/sagemath_notebook/4.png)
 
 
 ### Bước 2: Tạo môi trường riêng cho SageMath
@@ -59,17 +59,17 @@ Kết quả thành công, khi bạn gõ conda sẽ hiển thị như trong ảnh
 conda create -n sage sage python=3.11
 ```
 
-![Ảnh chụp màn hình 2025-07-31 224234](https://hackmd.io/_uploads/rJY_vjYDeg.png)
+![Ảnh chụp màn hình 2025-07-31 224234](/images/sagemath_notebook/5.png)
 
 Trong quá trình tạo, các bạn cứ tiếp tục chọn yes nhé
 
-![Ảnh chụp màn hình 2025-07-31 224303](https://hackmd.io/_uploads/SJBpusKwee.png)
+![Ảnh chụp màn hình 2025-07-31 224303](/images/sagemath_notebook/6.png)
 
 Sau khi tạo xong, tiến hành activate sage
 ```bash
 conda activate sage
 ```
-![Ảnh chụp màn hình 2025-08-01 093942](https://hackmd.io/_uploads/HynmFotvlx.png)
+![Ảnh chụp màn hình 2025-08-01 093942](/images/sagemath_notebook/7.png)
 
 Tới đây thì môi trường ảo `Conda` đã được kích hoạt
 
@@ -91,14 +91,14 @@ sage -n
 ```
 
  Một đường link local sẽ hiện ra trong cmd, ví dụ:
-![Ảnh chụp màn hình 2025-07-31 224428](https://hackmd.io/_uploads/SyJg9stPxg.png)
+![Ảnh chụp màn hình 2025-07-31 224428](/images/sagemath_notebook/8.png)
 
 ```
 http://localhost:8888/tree?token=...
 ```
 
 → Mở link này trong trình duyệt để sử dụng SageMath qua Jupyter.
-![Ảnh chụp màn hình 2025-08-01 095145](https://hackmd.io/_uploads/ryCensFPxg.png)
+![Ảnh chụp màn hình 2025-08-01 095145](/images/sagemath_notebook/9.png)
 
 
 ### Gợi ý (tuỳ chọn)
@@ -147,7 +147,7 @@ wsl --list --online
 ```
 
 Danh sách sẽ hiển thị các distro như: Ubuntu-20.04, Ubuntu-22.04, Ubuntu-24.04...
-![Ảnh chụp màn hình 2025-08-01 101822](https://hackmd.io/_uploads/rkcHznFwlx.png)
+![Ảnh chụp màn hình 2025-08-01 101822](/images/sagemath_notebook/10.png)
 
 
 ### Bước 5: Cài Ubuntu 24.04
@@ -203,7 +203,7 @@ Thì các bạn thử Chuyển DNS sang Google:
 Preferred: 8.8.8.8
 Alternate: 8.8.4.4
 ```
-![Ảnh chụp màn hình 2025-08-01 103532](https://hackmd.io/_uploads/HkjVLhFwex.png)
+![Ảnh chụp màn hình 2025-08-01 103532](/images/sagemath_notebook/11.png)
 
 Sau đó nhấn OK và tải lại 
 
@@ -252,7 +252,7 @@ Sau khi cài đặt và chạy thành công, mình sẽ kiểm tra SageMath bằ
 Ở đây mình sẽ mượn tạm 2 challenge Crypto của giải [HCMUS-CTF 2025](https://hackmd.io/@YaipbyxZRByK2Qi9Le0t4A/Sk_8Z6c8xx)
 
 Các bạn chỉ cần copy Solution của Author và paste vào chương trình với tên file .py là được. Ở đây mình đặt exploit.py
-![Ảnh chụp màn hình 2025-07-31 222843](https://hackmd.io/_uploads/Sk2Q1hFPgx.png)
+![Ảnh chụp màn hình 2025-07-31 222843](/images/sagemath_notebook/12.png)
 
 Chạy và exploit thành công! Get được flag
 

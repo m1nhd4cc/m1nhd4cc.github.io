@@ -15,7 +15,7 @@ cover: "/images/post_covers/fptsecathon-2025.jpg"
 # CryptoGraphy
 
 
-![My_Solve](https://hackmd.io/_uploads/HyURqQVvlx.png)
+![My_Solve](/images/fptsecathon2025/1.png)
 
 Tuần vừa rồi mình có tham gia giải FPTU Secathon 2025 và cũng may mắn clear gần full mảng mà mình enjoy trong CTF là Cryptography (còn bài cuối mình khong solve được)....
 
@@ -80,7 +80,7 @@ Sau mỗi lần giải mã, kiểm tra xem plaintext kết quả có chứa chu�
 
 #### 3. Result:
 Khi tìm thấy plaintext hợp lệ, script sẽ dừng lại và in ra key đã tìm thấy cùng với flag đầy đủ.
-![Ảnh chụp màn hình 2025-07-28 060115](https://hackmd.io/_uploads/BkcWe4Vwgx.png)
+![Ảnh chụp màn hình 2025-07-28 060115](/images/fptsecathon2025/2.png)
 
 
 Solution của mình:
@@ -220,7 +220,7 @@ $Plaintext_{original} = Ciphertext_{original} \oplus Keystream$
 ### Solution
 
 Trước hết ta chạy cần file [oracle.py](https://drive.google.com/file/d/1IuyKZVDoDK-MgruZ0Xhslo55K9K3irGe/view?usp=sharing) để chạy oracle:
-![Ảnh chụp màn hình 2025-07-29 220210](https://hackmd.io/_uploads/BkTnGDLDeg.png)
+![Ảnh chụp màn hình 2025-07-29 220210](/images/fptsecathon2025/3.png)
 
 Sau đó chạy script exploit:
 
@@ -262,7 +262,7 @@ except Exception as e:
     print(f"\n[!] Đã có lỗi xảy ra: {e}")
 ```
 Kết quả:
-![Ảnh chụp màn hình 2025-07-29 220436](https://hackmd.io/_uploads/S1K4XP8wlg.png)
+![Ảnh chụp màn hình 2025-07-29 220436](/images/fptsecathon2025/4.png)
 
 > Flag: FUSec2025{StreamXorMagic!}
 
@@ -422,7 +422,7 @@ print("Flag:", flag.decode())
 ```
 **Kết quả:**
 
-![Ảnh chụp màn hình 2025-07-29 222703](https://hackmd.io/_uploads/B1hdOvIwgl.png)
+![Ảnh chụp màn hình 2025-07-29 222703](/images/fptsecathon2025/5.png)
 
 > Flag: FUSec2025{Chuc_mung_ban_da_thanh_cong}
 
@@ -437,7 +437,7 @@ print("Flag:", flag.decode())
 # Góc enjoy
 Mặc dù có khá nhiều tranh cãi sau cuộc thi và một vài sự cố trước cuộc thi nữa.. ờm maybe chắc lần đầu open toàn quốc nên hong tránh được sự cố request khổng lồ... thôi thì cứ ch1ll và vét tea break trước..
 
-![Ảnh chụp màn hình 2025-07-29 224217](https://hackmd.io/_uploads/SJvG2vLPxg.png)
+![Ảnh chụp màn hình 2025-07-29 224217](/images/fptsecathon2025/6.png)
 
 ... Và nhiều cái khác nữa, nhưng dù sao thì cũng cảm ơn trường Ép đã tạo sân chơi học thuật cho sinh viên toàn quốc được tham gia và học hỏi.
 > P/s: Không phải challenge mà Tea Break là thứ bị clear đầu tiên💀... cơm gà ngol lắm ạ

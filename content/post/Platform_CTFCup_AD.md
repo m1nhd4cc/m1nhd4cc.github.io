@@ -151,8 +151,8 @@ Dùng `docker ps` để kiểm tra container đang chạy. Kỳ vọng: **khoả
 ```bash
 sudo docker ps
 ```
-![Ảnh chụp màn hình 2025-10-16 214942](https://hackmd.io/_uploads/ByxjUFR6el.png)
-![Ảnh chụp màn hình 2025-10-16 215059](https://hackmd.io/_uploads/HycRLtC6eg.png)
+![Ảnh chụp màn hình 2025-10-16 214942](/images/Platform_CTFCup_AD/1.png)
+![Ảnh chụp màn hình 2025-10-16 215059](/images/Platform_CTFCup_AD/2.png)
 
 ### Dừng tất cả Services
 
@@ -162,7 +162,7 @@ sudo python3 check.py down
 
 Lệnh `down` sẽ dừng và xóa container, network, volume liên quan — thuận tiện để dọn dẹp môi trường demo.
 
-![Ảnh chụp màn hình 2025-10-16 214951](https://hackmd.io/_uploads/BJcsLYCpgl.png)
+![Ảnh chụp màn hình 2025-10-16 214951](/images/Platform_CTFCup_AD/3.png)
 
 
 ## 4. Tương tác & Tấn công (Thực hành)
@@ -342,17 +342,17 @@ curl -X POST http://<IP_VM>:9090/api/users -H "Content-Type: application/json" -
 
 **S4DFarm** (Khuyên dùng cho đội): https://github.com/C4T-BuT-S4D/S4DFarm
 
-![image](https://hackmd.io/_uploads/HyGC51ccA.png)
+![image](/images/Platform_CTFCup_AD/4.png)
 
 **DestructiveFarm** (Khuyên dùng cho cá nhân): https://github.com/DestructiveVoice/DestructiveFarm
 
-![image](https://hackmd.io/_uploads/Hk7zckc5A.png)
+![image](/images/Platform_CTFCup_AD/5.png)
 
 #### Hướng Dẫn Cài Đặt
 
 **Cài đặt S4DFram:**
 
-![image](https://hackmd.io/_uploads/B1n3fb590.png)
+![image](/images/Platform_CTFCup_AD/6.png)
 
 Cấu Hình File config.py
 
@@ -461,7 +461,7 @@ for _ in range(3):
 
 ### Proxy
 
-![image](https://hackmd.io/_uploads/rk4DM799A.png)
+![image](/images/Platform_CTFCup_AD/7.png)
 
 #### Hướng Dẫn Sử Dụng
 
@@ -595,7 +595,7 @@ Trong trường hợp bạn viết rule không đúng, chẳng hạn như sử d
 
 Link: https://github.com/OpenAttackDefenseTools/tulip
 
-![image](https://hackmd.io/_uploads/SJGMz4qqA.png)
+![image](/images/Platform_CTFCup_AD/8.png)
 
 ##### Cài Đặt Tulip
 
